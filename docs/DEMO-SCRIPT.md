@@ -6,11 +6,12 @@ Zwei Varianten: 30-Minuten-Kurzversion fuer fokussierte Demos, 60-Minuten-Langve
 
 ## Vorbereitung (vor dem Termin)
 
-- [ ] `docker compose up -d` ausgefuehrt, alle 6 Services `healthy`
+- [ ] `docker compose up -d` ausgefuehrt, alle 7 Services `healthy`
 - [ ] `make seed` ausgefuehrt, 5 Tabellen geladen
 - [ ] Jupyter geoeffnet: http://localhost:8888?token=lakehouse
 - [ ] MinIO Console geoeffnet: http://localhost:9001
 - [ ] Nessie UI geoeffnet: http://localhost:19120
+- [ ] CloudBeaver geoeffnet: http://localhost:8978 (Admin-Passwort einmalig setzen)
 - [ ] Kernel in Notebook 01 gestartet (erste Zelle ausgefuehrt)
 - [ ] RAM-Auslastung geprueft — Docker sollte >= 8 GB frei haben
 
@@ -96,7 +97,22 @@ Alle Zellen durchlaufen. Besondere Betonung:
 - Schema Evolution: "Kein ALTER TABLE REBUILD, kein Downtime"
 - Bonus-Zelle: `RENAME COLUMN` — Parquet-Dateien haben interne Feld-IDs, keine Namen
 
-### Trino CLI (5 Min)
+### CloudBeaver — SQL-Editor im Browser (5 Min)
+
+http://localhost:8978 → Verbindung "Lakehouse (Trino)" ist bereits vorkonfiguriert.
+
+SQL Editor oeffnen:
+
+```sql
+SELECT sector, count(*), round(avg(scope_1_tco2e)) AS avg_scope1
+FROM nessie.raw.nzdpu_emissions
+GROUP BY sector
+ORDER BY avg_scope1 DESC;
+```
+
+Pointe: Keine CLI, kein lokales Tool — SQL direkt im Browser auf den Iceberg-Tabellen.
+
+### Trino CLI (alternativ, 5 Min)
 
 ```bash
 docker compose exec trino trino

@@ -180,6 +180,27 @@ services:
     networks:
       - lakehouse-net
 
+  cloudbeaver:
+    image: dbeaver/cloudbeaver:latest
+    container_name: cloudbeaver
+    depends_on:
+      trino:
+        condition: service_healthy
+    ports:
+      - "${CLOUDBEAVER_PORT}:8978"
+    volumes:
+      - cloudbeaver-data:/opt/cloudbeaver/workspace
+      - ./config/cloudbeaver/initial-data-sources.conf:/opt/cloudbeaver/conf/initial-data-sources.conf:ro
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8978 || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - lakehouse-net
+
   minio-init:
     image: minio/mc
     container_name: minio-init
@@ -207,3 +228,4 @@ networks:
 volumes:
   minio-data:
   postgres-data:
+  cloudbeaver-data:

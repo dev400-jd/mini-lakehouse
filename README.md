@@ -11,7 +11,7 @@ Apache Iceberg als offenes Tabellenformat, Nessie als versionierter Katalog, Spa
 git clone https://github.com/dev400-jd/mini-lakehouse.git
 cd mini-lakehouse
 
-docker compose up -d        # alle 6 Services starten
+docker compose up -d        # alle 7 Services starten
 make seed                   # Beispieldaten laden (ca. 3 Min)
 ```
 
@@ -20,6 +20,7 @@ Danach im Browser:
 | Was | URL |
 |-----|-----|
 | Jupyter (Notebooks) | http://localhost:8888?token=lakehouse |
+| CloudBeaver (SQL-Editor) | http://localhost:8978 |
 | MinIO Console | http://localhost:9001 |
 | Nessie UI | http://localhost:19120 |
 | Trino Web UI | http://localhost:8080 |
@@ -38,6 +39,7 @@ Danach im Browser:
 | Trino | 8080 | Verteilte SQL-Engine, Web-UI |
 | Spark Master | 7077 / 8081 | Spark-Cluster (7077 intern, 8081 Web-UI) |
 | Jupyter | 8888 | Notebook-Umgebung (Token: `lakehouse`) |
+| CloudBeaver | 8978 | Web-basierter SQL-Editor fuer Trino |
 
 Alle Ports und Credentials sind in `.env` konfigurierbar. Standard: Benutzer `lakehouse`, Passwort `lakehouse123`.
 
@@ -80,6 +82,7 @@ flowchart LR
     Jupyter -->|SparkSession local| MinIO
     Jupyter -->|JDBC| Trino
     Jupyter <-->|Catalog| Nessie
+    CloudBeaver[CloudBeaver\nSQL-Editor] -->|JDBC| Trino
 ```
 
 ---

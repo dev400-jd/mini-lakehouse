@@ -74,6 +74,7 @@ make seed
 | Service | URL | Zugangsdaten |
 |---------|-----|--------------|
 | Jupyter | http://localhost:8888?token=lakehouse | Token: `lakehouse` |
+| CloudBeaver | http://localhost:8978 | Admin-Passwort beim Erststart setzen |
 | MinIO Console | http://localhost:9001 | `lakehouse` / `lakehouse123` |
 | Nessie UI | http://localhost:19120 | keins |
 | Trino Web UI | http://localhost:8080 | keins |
@@ -115,7 +116,8 @@ Wenn ein Port bereits belegt ist, schlaegt `docker compose up` fehl.
 Ports in `.env` aendern:
 
 ```env
-TRINO_PORT=18080        # statt 8080
+TRINO_PORT=18080           # statt 8080
+CLOUDBEAVER_PORT=18978     # statt 8978
 JUPYTER_PORT=18888      # statt 8888
 ```
 
