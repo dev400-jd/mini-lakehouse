@@ -1,0 +1,2565 @@
+{
+  "status": "ok",
+  "total_records": 30,
+  "source": "nzdpu_fallback",
+  "data": [
+    {
+      "company_id": "NZDPU-0001",
+      "company_name": "Siemens AG",
+      "isin": "DE0007236101",
+      "lei": "549300DE00072361",
+      "country_of_incorporation": "Germany",
+      "primary_sector": "Industrials",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": null,
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 3430896,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 381067,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 270562,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 3794435,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 404866,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 311248,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 3002863,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 439768,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 378180,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 28253375,
+            "categories_reported": 13,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": {
+            "type": "absolute",
+            "base_year": 2019,
+            "target_year": 2050,
+            "reduction_pct": 52,
+            "sbti_validated": false
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0002",
+      "company_name": "BASF SE",
+      "isin": "DE000BASF111",
+      "lei": "549300DE000BASF1",
+      "country_of_incorporation": "Germany",
+      "primary_sector": "Materials",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": null,
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 12183318,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 949425,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 713940,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 144727029,
+            "categories_reported": 8,
+            "unit": "tCO2e",
+            "data_quality": "estimated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 13292120,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 1107446,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": null,
+          "scope_3": {
+            "total": 230889375,
+            "categories_reported": 9,
+            "unit": "tCO2e",
+            "data_quality": "verified"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": null,
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 12580548,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 1331073,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 1323205,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 280919527,
+            "categories_reported": 10,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": {
+            "type": "intensity",
+            "base_year": 2019,
+            "target_year": 2035,
+            "reduction_pct": 47,
+            "sbti_validated": true
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0003",
+      "company_name": "Allianz SE",
+      "isin": "DE0008404005",
+      "lei": "549300DE00084040",
+      "country_of_incorporation": "Germany",
+      "primary_sector": "Financials",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 79417,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 46776,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 39946,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 785928,
+            "categories_reported": 11,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 71073,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 54109,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 49094,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": null,
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 69589,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 69915,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 57811,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 643874,
+            "categories_reported": 11,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": {
+            "type": "intensity",
+            "base_year": 2019,
+            "target_year": 2035,
+            "reduction_pct": 33,
+            "sbti_validated": true
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0004",
+      "company_name": "SAP SE",
+      "isin": "DE0007164600",
+      "lei": "549300DE00071646",
+      "country_of_incorporation": "Germany",
+      "primary_sector": "Information Technology",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 121275,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 365586,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 304684,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 3025389,
+            "categories_reported": 6,
+            "unit": "tCO2e",
+            "data_quality": "verified"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": null,
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 129010,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 334121,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 221854,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 2183905,
+            "categories_reported": 10,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 136959,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 457725,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 276737,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 2552122,
+            "categories_reported": 12,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": {
+            "type": "intensity",
+            "base_year": 2019,
+            "target_year": 2035,
+            "reduction_pct": 52,
+            "sbti_validated": true
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0005",
+      "company_name": "Deutsche Telekom AG",
+      "isin": "DE0005557508",
+      "lei": "549300DE00055575",
+      "country_of_incorporation": "Germany",
+      "primary_sector": "Communication Services",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 628195,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 766664,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 613511,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": null,
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 606261,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 911052,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 602329,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 9571394,
+            "categories_reported": 12,
+            "unit": "tCO2e",
+            "data_quality": "estimated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 530136,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 850673,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 845678,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 5189526,
+            "categories_reported": 7,
+            "unit": "tCO2e",
+            "data_quality": "verified"
+          },
+          "net_zero_target": {
+            "type": "absolute",
+            "base_year": 2021,
+            "target_year": 2035,
+            "reduction_pct": 29,
+            "sbti_validated": true
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0006",
+      "company_name": "BMW AG",
+      "isin": "DE0005190003",
+      "lei": "549300DE00051900",
+      "country_of_incorporation": "Germany",
+      "primary_sector": "Consumer Discretionary",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": null,
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 3819832,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 340991,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 323591,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 35279831,
+            "categories_reported": 12,
+            "unit": "tCO2e",
+            "data_quality": "verified"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 3762427,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 414646,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": null,
+          "scope_3": {
+            "total": 52785808,
+            "categories_reported": 7,
+            "unit": "tCO2e",
+            "data_quality": "estimated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 4064706,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 414150,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": null,
+          "scope_3": {
+            "total": 25109621,
+            "categories_reported": 5,
+            "unit": "tCO2e",
+            "data_quality": "estimated"
+          },
+          "net_zero_target": {
+            "type": "absolute",
+            "base_year": 2021,
+            "target_year": 2030,
+            "reduction_pct": 42,
+            "sbti_validated": false
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0007",
+      "company_name": "Bayer AG",
+      "isin": "DE000BAY0017",
+      "lei": "549300DE000BAY00",
+      "country_of_incorporation": "Germany",
+      "primary_sector": "Health Care",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 851066,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 193528,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 152707,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 17999995,
+            "categories_reported": 7,
+            "unit": "tCO2e",
+            "data_quality": "estimated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 758209,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 191441,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 170695,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 18715103,
+            "categories_reported": 5,
+            "unit": "tCO2e",
+            "data_quality": "estimated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 886801,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 179893,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 121623,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 11916506,
+            "categories_reported": 8,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": null
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0008",
+      "company_name": "Deutsche Bank AG",
+      "isin": "DE0005140008",
+      "lei": "549300DE00051400",
+      "country_of_incorporation": "Germany",
+      "primary_sector": "Financials",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 83310,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 47374,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 40782,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 441140,
+            "categories_reported": 5,
+            "unit": "tCO2e",
+            "data_quality": "estimated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 70936,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 55896,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 34849,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 1752557,
+            "categories_reported": 8,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": null,
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 85532,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 66801,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 57766,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 752507,
+            "categories_reported": 7,
+            "unit": "tCO2e",
+            "data_quality": "estimated"
+          },
+          "net_zero_target": {
+            "type": "absolute",
+            "base_year": 2021,
+            "target_year": 2035,
+            "reduction_pct": 28,
+            "sbti_validated": true
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0009",
+      "company_name": "Volkswagen AG",
+      "isin": "DE0007664039",
+      "lei": "549300DE00076640",
+      "country_of_incorporation": "Germany",
+      "primary_sector": "Consumer Discretionary",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 4161849,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 324789,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 319694,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": null,
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 4083947,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 346904,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 224778,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 40530344,
+            "categories_reported": 13,
+            "unit": "tCO2e",
+            "data_quality": "estimated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 4100407,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 403645,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 393103,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": {
+            "type": "absolute",
+            "base_year": 2020,
+            "target_year": 2035,
+            "reduction_pct": 33,
+            "sbti_validated": false
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0010",
+      "company_name": "Mercedes-Benz Group AG",
+      "isin": "DE0007100000",
+      "lei": "549300DE00071000",
+      "country_of_incorporation": "Germany",
+      "primary_sector": "Consumer Discretionary",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": null,
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 4255579,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 302490,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": null,
+          "scope_3": {
+            "total": 29787457,
+            "categories_reported": 12,
+            "unit": "tCO2e",
+            "data_quality": "estimated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 3704246,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 321076,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 224019,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 4134013,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 477957,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 411803,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": {
+            "type": "intensity",
+            "base_year": 2021,
+            "target_year": 2030,
+            "reduction_pct": 33,
+            "sbti_validated": false
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0011",
+      "company_name": "Infineon Technologies AG",
+      "isin": "DE0006231004",
+      "lei": "549300DE00062310",
+      "country_of_incorporation": "Germany",
+      "primary_sector": "Information Technology",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": null,
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 101237,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 343505,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 235044,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": null,
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 116589,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 349374,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 336539,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 103587,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 373369,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 243559,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 852691,
+            "categories_reported": 11,
+            "unit": "tCO2e",
+            "data_quality": "verified"
+          },
+          "net_zero_target": {
+            "type": "absolute",
+            "base_year": 2019,
+            "target_year": 2030,
+            "reduction_pct": 34,
+            "sbti_validated": true
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0012",
+      "company_name": "Muenchener Rueckversicherung AG",
+      "isin": "DE0008430026",
+      "lei": "549300DE00084300",
+      "country_of_incorporation": "Germany",
+      "primary_sector": "Financials",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 73686,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 46108,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 34390,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 1801175,
+            "categories_reported": 4,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 68353,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 64721,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 61721,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 1190247,
+            "categories_reported": 6,
+            "unit": "tCO2e",
+            "data_quality": "estimated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": null,
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 68595,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 65678,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 48134,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 1443561,
+            "categories_reported": 15,
+            "unit": "tCO2e",
+            "data_quality": "estimated"
+          },
+          "net_zero_target": null
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0013",
+      "company_name": "adidas AG",
+      "isin": "DE000A1EWWW0",
+      "lei": "549300DE000A1EWW",
+      "country_of_incorporation": "Germany",
+      "primary_sector": "Consumer Discretionary",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 3242783,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 371948,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": null,
+          "scope_3": {
+            "total": 38891243,
+            "categories_reported": 7,
+            "unit": "tCO2e",
+            "data_quality": "estimated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": null,
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 3680097,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 444548,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 438660,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": null,
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 4577380,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 405795,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 395932,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": {
+            "type": "absolute",
+            "base_year": 2021,
+            "target_year": 2035,
+            "reduction_pct": 27,
+            "sbti_validated": true
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0014",
+      "company_name": "Linde plc",
+      "isin": "IE00BZ12WP82",
+      "lei": "549300IE00BZ12WP",
+      "country_of_incorporation": "Ireland",
+      "primary_sector": "Materials",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": null,
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 12261001,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 1100353,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 1093415,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": null,
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 12369078,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 931987,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 904242,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 239819105,
+            "categories_reported": 15,
+            "unit": "tCO2e",
+            "data_quality": "verified"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 10451906,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 1278834,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 936209,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": {
+            "type": "intensity",
+            "base_year": 2021,
+            "target_year": 2035,
+            "reduction_pct": 51,
+            "sbti_validated": false
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0015",
+      "company_name": "Airbus SE",
+      "isin": "NL0000235190",
+      "lei": "549300NL00002351",
+      "country_of_incorporation": "Netherlands",
+      "primary_sector": "Industrials",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 2924931,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 455480,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 444615,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 67437534,
+            "categories_reported": 13,
+            "unit": "tCO2e",
+            "data_quality": "verified"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 2886163,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 443661,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 342486,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 52222558,
+            "categories_reported": 11,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": null,
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 3471845,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 580236,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 532894,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0016",
+      "company_name": "ASML Holding NV",
+      "isin": "NL0010273215",
+      "lei": "549300NL00102732",
+      "country_of_incorporation": "Netherlands",
+      "primary_sector": "Information Technology",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 107325,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 424297,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 382060,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 1018816,
+            "categories_reported": 7,
+            "unit": "tCO2e",
+            "data_quality": "estimated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": null,
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 115532,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 442279,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 278252,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 2032821,
+            "categories_reported": 7,
+            "unit": "tCO2e",
+            "data_quality": "verified"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": null,
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 110783,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 424969,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 255924,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 2260076,
+            "categories_reported": 5,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": null
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0017",
+      "company_name": "LVMH Moet Hennessy Louis Vuitton SE",
+      "isin": "FR0000121014",
+      "lei": "549300FR00001210",
+      "country_of_incorporation": "France",
+      "primary_sector": "Consumer Discretionary",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 3828416,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 439208,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 284845,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": null,
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 3948589,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 359645,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 324436,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 84105460,
+            "categories_reported": 12,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 4292387,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 395948,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 278619,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": {
+            "type": "intensity",
+            "base_year": 2021,
+            "target_year": 2030,
+            "reduction_pct": 42,
+            "sbti_validated": false
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0018",
+      "company_name": "TotalEnergies SE",
+      "isin": "FR0014000MR3",
+      "lei": "549300FR0014000M",
+      "country_of_incorporation": "France",
+      "primary_sector": "Energy",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 39440791,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 698437,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 569967,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 46353059,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 640737,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 488908,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 617213447,
+            "categories_reported": 7,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 38513681,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 921810,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 765357,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 918737434,
+            "categories_reported": 8,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": {
+            "type": "intensity",
+            "base_year": 2021,
+            "target_year": 2050,
+            "reduction_pct": 59,
+            "sbti_validated": true
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0019",
+      "company_name": "BNP Paribas SA",
+      "isin": "FR0000131104",
+      "lei": "549300FR00001311",
+      "country_of_incorporation": "France",
+      "primary_sector": "Financials",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": null,
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 74948,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 53944,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": null,
+          "scope_3": {
+            "total": 1460259,
+            "categories_reported": 11,
+            "unit": "tCO2e",
+            "data_quality": "estimated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 75133,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 59699,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 36467,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 579575,
+            "categories_reported": 11,
+            "unit": "tCO2e",
+            "data_quality": "estimated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 73080,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 55844,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 50510,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 1464538,
+            "categories_reported": 10,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": {
+            "type": "intensity",
+            "base_year": 2019,
+            "target_year": 2050,
+            "reduction_pct": 59,
+            "sbti_validated": true
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0020",
+      "company_name": "Schneider Electric SE",
+      "isin": "FR0000121972",
+      "lei": "549300FR00001219",
+      "country_of_incorporation": "France",
+      "primary_sector": "Industrials",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 3570993,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 499007,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": null,
+          "scope_3": {
+            "total": 32093277,
+            "categories_reported": 4,
+            "unit": "tCO2e",
+            "data_quality": "verified"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": null,
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 3567594,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 497410,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 341813,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 72557591,
+            "categories_reported": 6,
+            "unit": "tCO2e",
+            "data_quality": "verified"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": null,
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 3791681,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 432753,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 313493,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 89399282,
+            "categories_reported": 13,
+            "unit": "tCO2e",
+            "data_quality": "verified"
+          },
+          "net_zero_target": {
+            "type": "intensity",
+            "base_year": 2020,
+            "target_year": 2050,
+            "reduction_pct": 37,
+            "sbti_validated": true
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0021",
+      "company_name": "Sanofi SA",
+      "isin": "FR0000120578",
+      "lei": "549300FR00001205",
+      "country_of_incorporation": "France",
+      "primary_sector": "Health Care",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 694651,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 203023,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 146305,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 14664471,
+            "categories_reported": 13,
+            "unit": "tCO2e",
+            "data_quality": "estimated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 745869,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 194463,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 143221,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 15996368,
+            "categories_reported": 5,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 790337,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 172239,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 115478,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 14233296,
+            "categories_reported": 13,
+            "unit": "tCO2e",
+            "data_quality": "verified"
+          },
+          "net_zero_target": {
+            "type": "intensity",
+            "base_year": 2020,
+            "target_year": 2050,
+            "reduction_pct": 62,
+            "sbti_validated": false
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0022",
+      "company_name": "Shell plc",
+      "isin": "GB00BP6MXD84",
+      "lei": "549300GB00BP6MXD",
+      "country_of_incorporation": "United Kingdom",
+      "primary_sector": "Energy",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 37090230,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 867625,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 605208,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 638198016,
+            "categories_reported": 10,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": null,
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 39483693,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 686642,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 631115,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 45753179,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 805321,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 544737,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": {
+            "type": "absolute",
+            "base_year": 2021,
+            "target_year": 2035,
+            "reduction_pct": 56,
+            "sbti_validated": false
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0023",
+      "company_name": "AstraZeneca PLC",
+      "isin": "GB0009895292",
+      "lei": "549300GB00098952",
+      "country_of_incorporation": "United Kingdom",
+      "primary_sector": "Health Care",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": null,
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 731132,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 168858,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 146161,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 11748896,
+            "categories_reported": 9,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 823225,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 176223,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": null,
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 808607,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 220975,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 148950,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": {
+            "type": "intensity",
+            "base_year": 2019,
+            "target_year": 2030,
+            "reduction_pct": 43,
+            "sbti_validated": true
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0024",
+      "company_name": "HSBC Holdings plc",
+      "isin": "GB0005405286",
+      "lei": "549300GB00054052",
+      "country_of_incorporation": "United Kingdom",
+      "primary_sector": "Financials",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 79969,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 48022,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 29688,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 80810,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 64085,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 41081,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 76177,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 71172,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": null,
+          "scope_3": {
+            "total": 554701,
+            "categories_reported": 5,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": {
+            "type": "absolute",
+            "base_year": 2019,
+            "target_year": 2030,
+            "reduction_pct": 61,
+            "sbti_validated": false
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0025",
+      "company_name": "BP p.l.c.",
+      "isin": "GB0007980591",
+      "lei": "549300GB00079805",
+      "country_of_incorporation": "United Kingdom",
+      "primary_sector": "Energy",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": null,
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 45699500,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 784731,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 719046,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": null,
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 42899932,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 887796,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 884256,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 48241206,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 943229,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 644334,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": {
+            "type": "absolute",
+            "base_year": 2019,
+            "target_year": 2030,
+            "reduction_pct": 60,
+            "sbti_validated": true
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0026",
+      "company_name": "Unilever PLC",
+      "isin": "GB00B10RZP78",
+      "lei": "549300GB00B10RZP",
+      "country_of_incorporation": "United Kingdom",
+      "primary_sector": "Consumer Staples",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 1491531,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 278873,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 170965,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 1267820,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 259971,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 183493,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 21294041,
+            "categories_reported": 7,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": null,
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 1342045,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 271876,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 178594,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": {
+            "type": "intensity",
+            "base_year": 2020,
+            "target_year": 2030,
+            "reduction_pct": 54,
+            "sbti_validated": false
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0027",
+      "company_name": "Nestle S.A.",
+      "isin": "CH0038863350",
+      "lei": "549300CH00388633",
+      "country_of_incorporation": "Switzerland",
+      "primary_sector": "Consumer Staples",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 1411550,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 281569,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 178001,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 1346036,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 243430,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": null,
+          "scope_3": {
+            "total": 22214954,
+            "categories_reported": 4,
+            "unit": "tCO2e",
+            "data_quality": "verified"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 1615321,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 296460,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 255135,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 13939870,
+            "categories_reported": 13,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": {
+            "type": "intensity",
+            "base_year": 2019,
+            "target_year": 2035,
+            "reduction_pct": 47,
+            "sbti_validated": false
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0028",
+      "company_name": "Novartis AG",
+      "isin": "CH0012221716",
+      "lei": "549300CH00122217",
+      "country_of_incorporation": "Switzerland",
+      "primary_sector": "Health Care",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 833502,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 175369,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": null,
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": null,
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 680100,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 174786,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 112976,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 15165014,
+            "categories_reported": 4,
+            "unit": "tCO2e",
+            "data_quality": "verified"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 725020,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 188942,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 170535,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 14645267,
+            "categories_reported": 7,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": {
+            "type": "intensity",
+            "base_year": 2020,
+            "target_year": 2050,
+            "reduction_pct": 56,
+            "sbti_validated": true
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0029",
+      "company_name": "Roche Holding AG",
+      "isin": "CH0012032048",
+      "lei": "549300CH00120320",
+      "country_of_incorporation": "Switzerland",
+      "primary_sector": "Health Care",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 693849,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 162465,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 133276,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 4762707,
+            "categories_reported": 5,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 775622,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 210808,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 169395,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": "ISO 14064",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 812304,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 190687,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 184728,
+            "unit": "tCO2e"
+          },
+          "scope_3": {
+            "total": 18347125,
+            "categories_reported": 5,
+            "unit": "tCO2e",
+            "data_quality": "calculated"
+          },
+          "net_zero_target": {
+            "type": "intensity",
+            "base_year": 2020,
+            "target_year": 2050,
+            "reduction_pct": 42,
+            "sbti_validated": true
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    },
+    {
+      "company_id": "NZDPU-0030",
+      "company_name": "Zurich Insurance Group AG",
+      "isin": "CH0011075394",
+      "lei": "549300CH00110753",
+      "country_of_incorporation": "Switzerland",
+      "primary_sector": "Financials",
+      "reporting_periods": [
+        {
+          "reporting_year": 2021,
+          "reporting_framework": null,
+          "verification_status": "limited_assurance",
+          "scope_1": {
+            "value": 77235,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 67720,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 53895,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2022,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "not_verified",
+          "scope_1": {
+            "value": 78809,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 59211,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 46311,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": null
+        },
+        {
+          "reporting_year": 2023,
+          "reporting_framework": "GHG Protocol",
+          "verification_status": "third_party_verified",
+          "scope_1": {
+            "value": 77191,
+            "unit": "tCO2e"
+          },
+          "scope_2_location_based": {
+            "value": 68544,
+            "unit": "tCO2e"
+          },
+          "scope_2_market_based": {
+            "value": 52389,
+            "unit": "tCO2e"
+          },
+          "scope_3": null,
+          "net_zero_target": {
+            "type": "intensity",
+            "base_year": 2020,
+            "target_year": 2050,
+            "reduction_pct": 34,
+            "sbti_validated": false
+          }
+        }
+      ],
+      "_meta": {
+        "source": "NZDPU (Net Zero Data Public Utility)",
+        "retrieved": "2024-03-01",
+        "note": "Fallback-Daten — für echte API: NZDPU_API_TOKEN setzen"
+      }
+    }
+  ]
+}

@@ -109,6 +109,7 @@ services:
     volumes:
       - ./config/spark/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf.template:ro
       - ./scripts:/scripts:ro
+      - ./data:/data:ro
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080"]
       interval: 15s
@@ -137,6 +138,7 @@ services:
       AWS_REGION: us-east-1
     volumes:
       - ./config/spark/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf.template:ro
+      - ./data:/data:ro
     restart: unless-stopped
     networks:
       - lakehouse-net

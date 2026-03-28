@@ -1,0 +1,11 @@
+fund_isin,fund_wkn,fund_name,fund_type,currency,inception_date,domicile
+DE000DK0EC05,DK0EC0,Deka-Nachhaltigkeit Aktien CF,Aktienfonds,EUR,2001-03-15,Luxembourg
+DE000DK0EQ06,DK0EQ0,Deka-Nachhaltigkeit Renten CF,Rentenfonds,EUR,2003-07-01,Luxembourg
+DE0008474503,847450,DekaFonds CF,Aktienfonds,EUR,1956-01-01,Germany
+DE000DK2CDF5,DK2CDF,Deka-Europa Aktien Spezial CF,Aktienfonds,EUR,2015-06-30,Luxembourg
+DE000DK0EMF2,DK0EMF,Deka-GlobalChampions CF,Aktienfonds,EUR,2000-09-01,Luxembourg
+DE000DK0EYJ4,DK0EYJ,Deka-Klimawandel & Biodiversitaet CF,Thematischer Fonds,EUR,2021-04-19,Luxembourg
+DE000DK0ESD0,DK0ESD,Deka-ESG MSCI World Climate Paris CF,Indexfonds,EUR,2022-01-17,Luxembourg
+DE000DK0ETR2,DK0ETR,Deka-EuropaSelect CF,Aktienfonds,EUR,1999-10-04,Germany
+DE000DK0EMX6,DK0EMX,Deka-Wandelanleihen CF,Mischfonds,EUR,2008-03-03,Luxembourg
+DE000DK0EBR7,DK0EBR,Deka-Basisstrategie Aktien CF,Aktienfonds,EUR,2018-09-17,Luxembourg

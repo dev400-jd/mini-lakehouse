@@ -1,0 +1,101 @@
+Account Number,Organization,Primary Sector,Primary Industry,Country,ISIN,Reporting Year,Scope 1 (metric tons CO2e),Scope 2 Location-Based (metric tons CO2e),Scope 2 Market-Based (metric tons CO2e),Scope 3 Total (metric tons CO2e),Emission Unit,Data Verification,CDP Score,Public Disclosure
+CDP-DE0007236101-2022,Siemens AG,Industrials,Industrials,Germany,DE0007236101,2022,3253366.0,464767.0,254258.0,64627392.0,metric tons CO2e,Not verified,A,Yes
+CDP-DE0007236101-2023,Siemens AG,Industrials,Industrials,Germany,DE0007236101,2023,,,,,tonnes CO2,Third-party verified,A-,Yes
+CDP-DE000BASF111-2022,BASF SE,Materials,Materials,Germany,DE000BASF111,2022,12370094.0,1237009.0,700874.0,146299921.0,metric tons CO2e,Limited assurance,C,Yes
+CDP-DE000BASF111-2023,BASF SE,Materials,Materials,Germany,DE000BASF111,2023,10094667.0,1009467.0,536425.0,,metric tons CO2e,Not verified,B-,No
+CDP-DE0008404005-2022,Allianz SE,Financials,Financials,Germany,DE0008404005,2022,88871.0,66653.0,59800.0,571971.0,metric tons CO2e,Limited assurance,C,No
+CDP-DE0008404005-2023,Allianz SE,Financials,Financials,Germany,DE0008404005,2023,92004.0,69003.0,,1269712.0,metric tons CO2e,Not verified,B-,No
+CDP-DE0007164600-2022,SAP SE,Information Technology,Information Technology,Germany,DE0007164600,2022,97882.0,326273.0,220263.0,1985660.0,metric tons CO2e,Third-party verified,,Yes
+CDP-DE0007164600-2023,SAP SE,Information Technology,Information Technology,Germany,DE0007164600,2023,141345.0,471149.0,308510.0,1749724.0,metric tons CO2e,,B,No
+CDP-DE0005557508-2022,Deutsche Telekom AG,Communication Services,Communication Services,Germany,DE0005557508,2022,692890.0,1039335.0,,,metric tons CO2e,Third-party verified,A-,No
+CDP-DE0005557508-2023,Deutsche Telekom AG,Communication Services,Communication Services,Germany,DE0005557508,2023,511042.0,766562.0,,7404287.0,tonnes CO2,Not verified,,No
+CDP-DE0005190003-2022,BMW AG,Consumer Discretionary,Consumer Discretionary,Germany,DE0005190003,2022,4582375.0,458238.0,316285.0,,metric tons CO2e,Third-party verified,A-,Yes
+CDP-DE0005190003-2023,BMW AG,Consumer Discretionary,Consumer Discretionary,Germany,DE0005190003,2023,3571131.0,357113.0,179287.0,37109243.0,metric tons CO2e,Limited assurance,A-,Yes
+CDP-DE000BAY0017-2022,Bayer AG,Health Care,Health Care,Germany,DE000BAY0017,2022,786126.0,196531.0,136994.0,7846020.0,tonnes CO2,Not verified,A,Yes
+CDP-DE000BAY0017-2023,Bayer AG,Health Care,Health Care,Germany,DE000BAY0017,2023,781001.0,195250.0,,,metric tons CO2e,Third-party verified,B,Yes
+CDP-DE0005140008-2022,Deutsche Bank AG,Financials,Financials,Germany,DE0005140008,2022,66250.0,49688.0,39807.0,396881.0,metric tons CO2e,,B-,No
+CDP-DE0005140008-2023,Deutsche Bank AG,Financials,Financials,Germany,DE0005140008,2023,,,,890926.0,metric tons CO2e,Not verified,C,Yes
+CDP-DE0007664039-2022,Volkswagen AG,Consumer Discretionary,Consumer Discretionary,Germany,DE0007664039,2022,3528344.0,352834.0,229005.0,18188718.0,metric tons CO2e,Limited assurance,C,No
+CDP-DE0007664039-2023,Volkswagen AG,Consumer Discretionary,Consumer Discretionary,Germany,DE0007664039,2023,4653214.0,465321.0,375334.0,63565925.0,metric tons CO2e,Not verified,,Yes
+CDP-DE0007100000-2022,Mercedes-Benz Group AG,Consumer Discretionary,Consumer Discretionary,Germany,DE0007100000,2022,4509333.0,450933.0,232001.0,,tonnes CO2,Limited assurance,B-,No
+CDP-DE0007100000-2023,Mercedes-Benz Group AG,Consumer Discretionary,Consumer Discretionary,Germany,DE0007100000,2023,3509832.0,350983.0,239482.0,,metric tons CO2e,Not verified,B-,Yes
+CDP-DE0006231004-2022,Infineon Technologies AG,Information Technology,Information Technology,Germany,DE0006231004,2022,112211.0,374038.0,309138.0,532948.0,metric tons CO2e,Third-party verified,B-,Yes
+CDP-DE0006231004-2023,Infineon Technologies AG,Information Technology,Information Technology,Germany,DE0006231004,2023,118946.0,396485.0,,1832522.0,metric tons CO2e,,B-,Yes
+CDP-DE0008430026-2022,Muenchener Rueckversicherung AG,Financials,Financials,Germany,DE0008430026,2022,87194.0,,,872881.0,metric tons CO2e,Not verified,C,No
+CDP-DE0008430026-2023,Muenchener Rueckversicherung AG,Financials,Financials,Germany,DE0008430026,2023,85033.0,63774.0,,1227863.0,metric tons CO2e,Third-party verified,C,Yes
+CDP-DE000A1EWWW0-2022,adidas AG,Consumer Discretionary,Consumer Discretionary,Germany,DE000A1EWWW0,2022,3894095.0,389410.0,,,metric tons CO2e,Not verified,,No
+CDP-DE000A1EWWW0-2023,adidas AG,Consumer Discretionary,Consumer Discretionary,Germany,DE000A1EWWW0,2023,3614984.0,,,57048288.0,metric tons CO2e,,,Yes
+CDP-IE00BZ12WP82-2022,Linde plc,Materials,Materials,Ireland,IE00BZ12WP82,2022,12152760.0,,,160145146.0,tonnes CO2,Not verified,A-,Yes
+CDP-IE00BZ12WP82-2023,Linde plc,Materials,Materials,Ireland,IE00BZ12WP82,2023,11872766.0,1187277.0,908698.0,194403981.0,metric tons CO2e,Third-party verified,A-,Yes
+CDP-NL0000235190-2022,Airbus SE,Industrials,Industrials,Netherlands,NL0000235190,2022,3187684.0,455383.0,435457.0,46945409.0,metric tons CO2e,Not verified,D,No
+CDP-NL0000235190-2023,Airbus SE,Industrials,Industrials,Netherlands,NL0000235190,2023,3433284.0,490469.0,460191.0,25945742.0,metric tons CO2e,Not verified,,No
+CDP-NL0010273215-2022,ASML Holding NV,Information Technology,Information Technology,Netherlands,NL0010273215,2022,102582.0,341942.0,244204.0,,metric tons CO2e,Limited assurance,,Yes
+CDP-NL0010273215-2023,ASML Holding NV,Information Technology,Information Technology,Netherlands,NL0010273215,2023,139057.0,463524.0,,2333791.0,metric tons CO2e,Not verified,D,Yes
+CDP-FR0000121014-2022,LVMH Moet Hennessy Louis Vuitton SE,Consumer Discretionary,Consumer Discretionary,France,FR0000121014,2022,3837211.0,383721.0,,47061144.0,metric tons CO2e,Limited assurance,B-,Yes
+CDP-FR0000121014-2023,LVMH Moet Hennessy Louis Vuitton SE,Consumer Discretionary,Consumer Discretionary,France,FR0000121014,2023,,377058.0,271568.0,,metric tons CO2e,Limited assurance,C,No
+CDP-FR0014000MR3-2022,TotalEnergies SE,Energy,Energy,France,FR0014000MR3,2022,,803924.0,444079.0,,metric tons CO2e,Third-party verified,,Yes
+CDP-FR0014000MR3-2023,TotalEnergies SE,Energy,Energy,France,FR0014000MR3,2023,40868030.0,726543.0,558203.0,513378213.0,metric tons CO2e,Limited assurance,A,No
+CDP-FR0000131104-2022,BNP Paribas SA,Financials,Financials,France,FR0000131104,2022,65841.0,49381.0,25106.0,,metric tons CO2e,Limited assurance,A,Yes
+CDP-FR0000131104-2023,BNP Paribas SA,Financials,Financials,France,FR0000131104,2023,66132.0,49599.0,35160.0,1085517.0,metric tons CO2e,Third-party verified,C,Yes
+CDP-FR0000121972-2022,Schneider Electric SE,Industrials,Industrials,France,FR0000121972,2022,4113376.0,587625.0,,,metric tons CO2e,Limited assurance,C,Yes
+CDP-FR0000121972-2023,Schneider Electric SE,Industrials,Industrials,France,FR0000121972,2023,3205945.0,457992.0,456732.0,,metric tons CO2e,Third-party verified,D,Yes
+CDP-FR0000120578-2022,Sanofi SA,Health Care,Health Care,France,FR0000120578,2022,804555.0,201139.0,155471.0,15596249.0,tonnes CO2,Limited assurance,D,Yes
+CDP-FR0000120578-2023,Sanofi SA,Health Care,Health Care,France,FR0000120578,2023,954381.0,238595.0,160760.0,,metric tons CO2e,Not verified,A,Yes
+CDP-GB00BP6MXD84-2022,Shell plc,Energy,Energy,United Kingdom,GB00BP6MXD84,2022,47258070.0,840143.0,,800961433.0,metric tons CO2e,Limited assurance,C,Yes
+CDP-GB00BP6MXD84-2023,Shell plc,Energy,Energy,United Kingdom,GB00BP6MXD84,2023,,861659.0,544242.0,879056593.0,metric tons CO2e,Limited assurance,A-,Yes
+CDP-GB0009895292-2022,AstraZeneca PLC,Health Care,Health Care,United Kingdom,GB0009895292,2022,949013.0,237253.0,128578.0,,metric tons CO2e,Not verified,A-,Yes
+CDP-GB0009895292-2023,AstraZeneca PLC,Health Care,Health Care,United Kingdom,GB0009895292,2023,669073.0,,,,metric tons CO2e,Limited assurance,B,Yes
+CDP-GB0005405286-2022,HSBC Holdings plc,Financials,Financials,United Kingdom,GB0005405286,2022,66703.0,50028.0,42924.0,769742.0,metric tons CO2e,Limited assurance,D,No
+CDP-GB0005405286-2023,HSBC Holdings plc,Financials,Financials,United Kingdom,GB0005405286,2023,68783.0,51587.0,44236.0,823773.0,metric tons CO2e,Not verified,C,Yes
+CDP-GB0007980591-2022,BP p.l.c.,Energy,Energy,United Kingdom,GB0007980591,2022,50875364.0,904451.0,,,metric tons CO2e,Limited assurance,A,No
+CDP-GB0007980591-2023,BP p.l.c.,Energy,Energy,United Kingdom,GB0007980591,2023,51044782.0,907463.0,455235.0,707423008.0,metric tons CO2e,Third-party verified,D,Yes
+CDP-GB00B10RZP78-2022,Unilever PLC,Consumer Staples,Consumer Staples,United Kingdom,GB00B10RZP78,2022,1647437.0,329487.0,,10383771.0,metric tons CO2e,,B-,No
+CDP-GB00B10RZP78-2023,Unilever PLC,Consumer Staples,Consumer Staples,United Kingdom,GB00B10RZP78,2023,1246044.0,249209.0,204696.0,,metric tons CO2e,Not verified,B,No
+CDP-CH0038863350-2022,Nestle S.A.,Consumer Staples,Consumer Staples,Switzerland,CH0038863350,2022,1590921.0,318184.0,,,metric tons CO2e,Limited assurance,D,Yes
+CDP-CH0038863350-2023,Nestle S.A.,Consumer Staples,Consumer Staples,Switzerland,CH0038863350,2023,1615311.0,323062.0,236859.0,,metric tons CO2e,Not verified,B,Yes
+CDP-CH0012221716-2022,Novartis AG,Health Care,Health Care,Switzerland,CH0012221716,2022,,234900.0,162885.0,15055290.0,tonnes CO2,Third-party verified,C,Yes
+CDP-CH0012221716-2023,Novartis AG,Health Care,Health Care,Switzerland,CH0012221716,2023,685357.0,171339.0,139784.0,,metric tons CO2e,Third-party verified,D,No
+CDP-CH0012032048-2022,Roche Holding AG,Health Care,Health Care,Switzerland,CH0012032048,2022,714043.0,178511.0,,11669598.0,metric tons CO2e,,B,Yes
+CDP-CH0012032048-2023,Roche Holding AG,Health Care,Health Care,Switzerland,CH0012032048,2023,773178.0,,,,metric tons CO2e,Limited assurance,,No
+CDP-CH0011075394-2022,Zurich Insurance Group AG,Financials,Financials,Switzerland,CH0011075394,2022,67841.0,50881.0,27094.0,,metric tons CO2e,Third-party verified,B,No
+CDP-CH0011075394-2023,Zurich Insurance Group AG,Financials,Financials,Switzerland,CH0011075394,2023,88181.0,66136.0,42513.0,579082.0,metric tons CO2e,Limited assurance,B-,No
+CDP-ANON-0000-2023,European Company 1,Technology,Technology,Netherlands,,2022,3158170.0,1881695.0,,,,Third-party verified,,Yes
+CDP-ANON-0001-2023,European Company 2,Energy,Energy,Germany,,2022,1438180.0,,,,,Third-party verified,B,No
+CDP-ANON-0002-2023,European Company 3,Technology,Technology,Spain,,2023,3696339.0,815387.0,,,metric tons CO2e,Not verified,D,No
+CDP-ANON-0003-2022,European Company 4,Utilities,Utilities,France,,2022,4530740.0,443950.0,,,tonnes CO2,Not verified,D,Yes
+CDP-ANON-0004-2022,European Company 5,Automobiles,Automobiles,Denmark,,2022,2783812.0,739769.0,,,,Third-party verified,A,No
+CDP-ANON-0005-2022,European Company 6,Energy,Energy,Spain,,2023,3763034.0,1150690.0,,,tonnes CO2,Third-party verified,,Yes
+CDP-ANON-0006-2022,European Company 7,Pharmaceuticals,Pharmaceuticals,France,,2023,2234833.0,1698124.0,,,metric tons CO2e,Third-party verified,A,No
+CDP-ANON-0007-2022,European Company 8,Retail,Retail,Italy,,2022,4634868.0,1711648.0,,,tonnes CO2,Third-party verified,A,Yes
+CDP-ANON-0008-2022,European Company 9,Utilities,Utilities,United Kingdom,,2023,,7725.0,,,metric tons CO2e,Third-party verified,,Yes
+CDP-ANON-0009-2023,European Company 10,Utilities,Utilities,Switzerland,,2023,569542.0,,,,,,B,No
+CDP-ANON-0010-2022,European Company 11,Automobiles,Automobiles,Switzerland,,2022,4981907.0,636132.0,,,metric tons CO2e,Not verified,,Yes
+CDP-ANON-0011-2022,European Company 12,Automobiles,Automobiles,Denmark,,2023,1543915.0,,,,tonnes CO2,,,No
+CDP-ANON-0012-2022,European Company 13,Pharmaceuticals,Pharmaceuticals,France,,2023,1141663.0,,,,tonnes CO2,,D,No
+CDP-ANON-0013-2022,European Company 14,Automobiles,Automobiles,Spain,,2023,2529343.0,1939868.0,,,tonnes CO2,Third-party verified,B,No
+CDP-ANON-0014-2023,European Company 15,Pharmaceuticals,Pharmaceuticals,Netherlands,,2022,2483866.0,,,,metric tons CO2e,Not verified,D,Yes
+CDP-ANON-0015-2023,European Company 16,Utilities,Utilities,Norway,,2022,4870857.0,,,,metric tons CO2e,,A,Yes
+CDP-ANON-0016-2023,European Company 17,Retail,Retail,Spain,,2022,4658662.0,375097.0,,,,,D,Yes
+CDP-ANON-0017-2023,European Company 18,Energy,Energy,Switzerland,,2023,553699.0,,,,metric tons CO2e,Not verified,D,Yes
+CDP-ANON-0018-2023,European Company 19,Automobiles,Automobiles,Denmark,,2023,1550409.0,180082.0,,,,Not verified,B,No
+CDP-ANON-0019-2022,European Company 20,Retail,Retail,Denmark,,2023,4485997.0,,,,tonnes CO2,Third-party verified,,No
+CDP-ANON-0020-2022,European Company 21,Energy,Energy,Germany,,2023,,517747.0,,,,Third-party verified,,No
+CDP-ANON-0021-2023,European Company 22,Pharmaceuticals,Pharmaceuticals,Sweden,,2022,3586012.0,554883.0,,,metric tons CO2e,,,Yes
+CDP-ANON-0022-2022,European Company 23,Automobiles,Automobiles,Germany,,2023,2334062.0,1580649.0,,,tonnes CO2,Not verified,B,No
+CDP-ANON-0023-2023,European Company 24,Financial Services,Financial Services,United Kingdom,,2022,1645721.0,726908.0,,,,Third-party verified,,Yes
+CDP-ANON-0024-2022,European Company 25,Utilities,Utilities,Spain,,2023,,,,,,,C,Yes
+CDP-ANON-0025-2022,European Company 26,Chemicals,Chemicals,Spain,,2023,1049622.0,1976922.0,,,tonnes CO2,Third-party verified,B,Yes
+CDP-ANON-0026-2022,European Company 27,Retail,Retail,Spain,,2022,1476678.0,538993.0,,,tonnes CO2,,C,Yes
+CDP-ANON-0027-2022,European Company 28,Automobiles,Automobiles,Italy,,2022,1413957.0,380559.0,,,metric tons CO2e,Not verified,C,Yes
+CDP-ANON-0028-2022,European Company 29,Telecommunications,Telecommunications,Denmark,,2022,4954869.0,,,,tonnes CO2,Third-party verified,D,No
+CDP-ANON-0029-2022,European Company 30,Pharmaceuticals,Pharmaceuticals,Germany,,2022,,1656710.0,,,metric tons CO2e,Third-party verified,C,Yes
+CDP-ANON-0030-2022,European Company 31,Pharmaceuticals,Pharmaceuticals,Italy,,2022,3551433.0,79722.0,,,tonnes CO2,Third-party verified,A,Yes
+CDP-ANON-0031-2022,European Company 32,Financial Services,Financial Services,Switzerland,,2022,2050885.0,1243923.0,,,metric tons CO2e,Third-party verified,A,No
+CDP-ANON-0032-2022,European Company 33,Retail,Retail,Denmark,,2023,1982531.0,1280168.0,,,metric tons CO2e,,B,No
+CDP-ANON-0033-2023,European Company 34,Energy,Energy,Switzerland,,2023,266290.0,1767971.0,,,tonnes CO2,Not verified,A,No
+CDP-ANON-0034-2023,European Company 35,Energy,Energy,Netherlands,,2022,2176480.0,,,,metric tons CO2e,Third-party verified,D,No
+CDP-ANON-0035-2022,European Company 36,Utilities,Utilities,Italy,,2022,,,,,tonnes CO2,Third-party verified,,No
+CDP-ANON-0036-2022,European Company 37,Utilities,Utilities,Denmark,,2023,2610583.0,222042.0,,,tonnes CO2,Third-party verified,C,Yes
+CDP-ANON-0037-2023,European Company 38,Retail,Retail,Germany,,2022,3185475.0,,,,,,,Yes
+CDP-ANON-0038-2022,European Company 39,Energy,Energy,Netherlands,,2023,1098503.0,1038196.0,,,tonnes CO2,Not verified,A,Yes
+CDP-ANON-0039-2022,European Company 40,Automobiles,Automobiles,Netherlands,,2022,1627772.0,914188.0,,,,Not verified,,No
