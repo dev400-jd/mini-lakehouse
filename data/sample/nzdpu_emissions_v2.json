@@ -1,0 +1,2342 @@
+[
+  {
+    "entity": {
+      "id": "NZDPU-0001",
+      "name": "Siemens AG",
+      "isin": "DE0007236101",
+      "lei": "549300DE00072361",
+      "country": "Germany"
+    },
+    "industry_classification": "Industrials",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 3430896,
+      "scope_2_location_tco2e": 381067,
+      "scope_2_market_tco2e": 270562,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0001",
+      "name": "Siemens AG",
+      "isin": "DE0007236101",
+      "lei": "549300DE00072361",
+      "country": "Germany"
+    },
+    "industry_classification": "Industrials",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 3794435,
+      "scope_2_location_tco2e": 404866,
+      "scope_2_market_tco2e": 311248,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0001",
+      "name": "Siemens AG",
+      "isin": "DE0007236101",
+      "lei": "549300DE00072361",
+      "country": "Germany"
+    },
+    "industry_classification": "Industrials",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 3002863,
+      "scope_2_location_tco2e": 439768,
+      "scope_2_market_tco2e": 378180,
+      "scope_3_total_tco2e": 28253375,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2050
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0002",
+      "name": "BASF SE",
+      "isin": "DE000BASF111",
+      "lei": "549300DE000BASF1",
+      "country": "Germany"
+    },
+    "industry_classification": "Materials",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 12183318,
+      "scope_2_location_tco2e": 949425,
+      "scope_2_market_tco2e": 713940,
+      "scope_3_total_tco2e": 144727029,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0002",
+      "name": "BASF SE",
+      "isin": "DE000BASF111",
+      "lei": "549300DE000BASF1",
+      "country": "Germany"
+    },
+    "industry_classification": "Materials",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 13292120,
+      "scope_2_location_tco2e": 1107446,
+      "scope_2_market_tco2e": null,
+      "scope_3_total_tco2e": 230889375,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0002",
+      "name": "BASF SE",
+      "isin": "DE000BASF111",
+      "lei": "549300DE000BASF1",
+      "country": "Germany"
+    },
+    "industry_classification": "Materials",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 12580548,
+      "scope_2_location_tco2e": 1331073,
+      "scope_2_market_tco2e": 1323205,
+      "scope_3_total_tco2e": 280919527,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2035
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0003",
+      "name": "Allianz SE",
+      "isin": "DE0008404005",
+      "lei": "549300DE00084040",
+      "country": "Germany"
+    },
+    "industry_classification": "Financials",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 79417,
+      "scope_2_location_tco2e": 46776,
+      "scope_2_market_tco2e": 39946,
+      "scope_3_total_tco2e": 785928,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0003",
+      "name": "Allianz SE",
+      "isin": "DE0008404005",
+      "lei": "549300DE00084040",
+      "country": "Germany"
+    },
+    "industry_classification": "Financials",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 71073,
+      "scope_2_location_tco2e": 54109,
+      "scope_2_market_tco2e": 49094,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0003",
+      "name": "Allianz SE",
+      "isin": "DE0008404005",
+      "lei": "549300DE00084040",
+      "country": "Germany"
+    },
+    "industry_classification": "Financials",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 69589,
+      "scope_2_location_tco2e": 69915,
+      "scope_2_market_tco2e": 57811,
+      "scope_3_total_tco2e": 643874,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2035
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0004",
+      "name": "SAP SE",
+      "isin": "DE0007164600",
+      "lei": "549300DE00071646",
+      "country": "Germany"
+    },
+    "industry_classification": "Information Technology",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 121275,
+      "scope_2_location_tco2e": 365586,
+      "scope_2_market_tco2e": 304684,
+      "scope_3_total_tco2e": 3025389,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0004",
+      "name": "SAP SE",
+      "isin": "DE0007164600",
+      "lei": "549300DE00071646",
+      "country": "Germany"
+    },
+    "industry_classification": "Information Technology",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 129010,
+      "scope_2_location_tco2e": 334121,
+      "scope_2_market_tco2e": 221854,
+      "scope_3_total_tco2e": 2183905,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0004",
+      "name": "SAP SE",
+      "isin": "DE0007164600",
+      "lei": "549300DE00071646",
+      "country": "Germany"
+    },
+    "industry_classification": "Information Technology",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 136959,
+      "scope_2_location_tco2e": 457725,
+      "scope_2_market_tco2e": 276737,
+      "scope_3_total_tco2e": 2552122,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2035
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0005",
+      "name": "Deutsche Telekom AG",
+      "isin": "DE0005557508",
+      "lei": "549300DE00055575",
+      "country": "Germany"
+    },
+    "industry_classification": "Communication Services",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 628195,
+      "scope_2_location_tco2e": 766664,
+      "scope_2_market_tco2e": 613511,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0005",
+      "name": "Deutsche Telekom AG",
+      "isin": "DE0005557508",
+      "lei": "549300DE00055575",
+      "country": "Germany"
+    },
+    "industry_classification": "Communication Services",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 606261,
+      "scope_2_location_tco2e": 911052,
+      "scope_2_market_tco2e": 602329,
+      "scope_3_total_tco2e": 9571394,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0005",
+      "name": "Deutsche Telekom AG",
+      "isin": "DE0005557508",
+      "lei": "549300DE00055575",
+      "country": "Germany"
+    },
+    "industry_classification": "Communication Services",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 530136,
+      "scope_2_location_tco2e": 850673,
+      "scope_2_market_tco2e": 845678,
+      "scope_3_total_tco2e": 5189526,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2035
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0006",
+      "name": "BMW AG",
+      "isin": "DE0005190003",
+      "lei": "549300DE00051900",
+      "country": "Germany"
+    },
+    "industry_classification": "Consumer Discretionary",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 3819832,
+      "scope_2_location_tco2e": 340991,
+      "scope_2_market_tco2e": 323591,
+      "scope_3_total_tco2e": 35279831,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0006",
+      "name": "BMW AG",
+      "isin": "DE0005190003",
+      "lei": "549300DE00051900",
+      "country": "Germany"
+    },
+    "industry_classification": "Consumer Discretionary",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 3762427,
+      "scope_2_location_tco2e": 414646,
+      "scope_2_market_tco2e": null,
+      "scope_3_total_tco2e": 52785808,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0006",
+      "name": "BMW AG",
+      "isin": "DE0005190003",
+      "lei": "549300DE00051900",
+      "country": "Germany"
+    },
+    "industry_classification": "Consumer Discretionary",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 4064706,
+      "scope_2_location_tco2e": 414150,
+      "scope_2_market_tco2e": null,
+      "scope_3_total_tco2e": 25109621,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2030
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0007",
+      "name": "Bayer AG",
+      "isin": "DE000BAY0017",
+      "lei": "549300DE000BAY00",
+      "country": "Germany"
+    },
+    "industry_classification": "Health Care",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 851066,
+      "scope_2_location_tco2e": 193528,
+      "scope_2_market_tco2e": 152707,
+      "scope_3_total_tco2e": 17999995,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0007",
+      "name": "Bayer AG",
+      "isin": "DE000BAY0017",
+      "lei": "549300DE000BAY00",
+      "country": "Germany"
+    },
+    "industry_classification": "Health Care",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 758209,
+      "scope_2_location_tco2e": 191441,
+      "scope_2_market_tco2e": 170695,
+      "scope_3_total_tco2e": 18715103,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0007",
+      "name": "Bayer AG",
+      "isin": "DE000BAY0017",
+      "lei": "549300DE000BAY00",
+      "country": "Germany"
+    },
+    "industry_classification": "Health Care",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 886801,
+      "scope_2_location_tco2e": 179893,
+      "scope_2_market_tco2e": 121623,
+      "scope_3_total_tco2e": 11916506,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0008",
+      "name": "Deutsche Bank AG",
+      "isin": "DE0005140008",
+      "lei": "549300DE00051400",
+      "country": "Germany"
+    },
+    "industry_classification": "Financials",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 83310,
+      "scope_2_location_tco2e": 47374,
+      "scope_2_market_tco2e": 40782,
+      "scope_3_total_tco2e": 441140,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0008",
+      "name": "Deutsche Bank AG",
+      "isin": "DE0005140008",
+      "lei": "549300DE00051400",
+      "country": "Germany"
+    },
+    "industry_classification": "Financials",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 70936,
+      "scope_2_location_tco2e": 55896,
+      "scope_2_market_tco2e": 34849,
+      "scope_3_total_tco2e": 1752557,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0008",
+      "name": "Deutsche Bank AG",
+      "isin": "DE0005140008",
+      "lei": "549300DE00051400",
+      "country": "Germany"
+    },
+    "industry_classification": "Financials",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 85532,
+      "scope_2_location_tco2e": 66801,
+      "scope_2_market_tco2e": 57766,
+      "scope_3_total_tco2e": 752507,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2035
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0009",
+      "name": "Volkswagen AG",
+      "isin": "DE0007664039",
+      "lei": "549300DE00076640",
+      "country": "Germany"
+    },
+    "industry_classification": "Consumer Discretionary",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 4161849,
+      "scope_2_location_tco2e": 324789,
+      "scope_2_market_tco2e": 319694,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0009",
+      "name": "Volkswagen AG",
+      "isin": "DE0007664039",
+      "lei": "549300DE00076640",
+      "country": "Germany"
+    },
+    "industry_classification": "Consumer Discretionary",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 4083947,
+      "scope_2_location_tco2e": 346904,
+      "scope_2_market_tco2e": 224778,
+      "scope_3_total_tco2e": 40530344,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0009",
+      "name": "Volkswagen AG",
+      "isin": "DE0007664039",
+      "lei": "549300DE00076640",
+      "country": "Germany"
+    },
+    "industry_classification": "Consumer Discretionary",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 4100407,
+      "scope_2_location_tco2e": 403645,
+      "scope_2_market_tco2e": 393103,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2035
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0010",
+      "name": "Mercedes-Benz Group AG",
+      "isin": "DE0007100000",
+      "lei": "549300DE00071000",
+      "country": "Germany"
+    },
+    "industry_classification": "Consumer Discretionary",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 4255579,
+      "scope_2_location_tco2e": 302490,
+      "scope_2_market_tco2e": null,
+      "scope_3_total_tco2e": 29787457,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0010",
+      "name": "Mercedes-Benz Group AG",
+      "isin": "DE0007100000",
+      "lei": "549300DE00071000",
+      "country": "Germany"
+    },
+    "industry_classification": "Consumer Discretionary",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 3704246,
+      "scope_2_location_tco2e": 321076,
+      "scope_2_market_tco2e": 224019,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0010",
+      "name": "Mercedes-Benz Group AG",
+      "isin": "DE0007100000",
+      "lei": "549300DE00071000",
+      "country": "Germany"
+    },
+    "industry_classification": "Consumer Discretionary",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 4134013,
+      "scope_2_location_tco2e": 477957,
+      "scope_2_market_tco2e": 411803,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2030
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0011",
+      "name": "Infineon Technologies AG",
+      "isin": "DE0006231004",
+      "lei": "549300DE00062310",
+      "country": "Germany"
+    },
+    "industry_classification": "Information Technology",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 101237,
+      "scope_2_location_tco2e": 343505,
+      "scope_2_market_tco2e": 235044,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0011",
+      "name": "Infineon Technologies AG",
+      "isin": "DE0006231004",
+      "lei": "549300DE00062310",
+      "country": "Germany"
+    },
+    "industry_classification": "Information Technology",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 116589,
+      "scope_2_location_tco2e": 349374,
+      "scope_2_market_tco2e": 336539,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0011",
+      "name": "Infineon Technologies AG",
+      "isin": "DE0006231004",
+      "lei": "549300DE00062310",
+      "country": "Germany"
+    },
+    "industry_classification": "Information Technology",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 103587,
+      "scope_2_location_tco2e": 373369,
+      "scope_2_market_tco2e": 243559,
+      "scope_3_total_tco2e": 852691,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2030
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0012",
+      "name": "Muenchener Rueckversicherung AG",
+      "isin": "DE0008430026",
+      "lei": "549300DE00084300",
+      "country": "Germany"
+    },
+    "industry_classification": "Financials",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 73686,
+      "scope_2_location_tco2e": 46108,
+      "scope_2_market_tco2e": 34390,
+      "scope_3_total_tco2e": 1801175,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0012",
+      "name": "Muenchener Rueckversicherung AG",
+      "isin": "DE0008430026",
+      "lei": "549300DE00084300",
+      "country": "Germany"
+    },
+    "industry_classification": "Financials",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 68353,
+      "scope_2_location_tco2e": 64721,
+      "scope_2_market_tco2e": 61721,
+      "scope_3_total_tco2e": 1190247,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0012",
+      "name": "Muenchener Rueckversicherung AG",
+      "isin": "DE0008430026",
+      "lei": "549300DE00084300",
+      "country": "Germany"
+    },
+    "industry_classification": "Financials",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 68595,
+      "scope_2_location_tco2e": 65678,
+      "scope_2_market_tco2e": 48134,
+      "scope_3_total_tco2e": 1443561,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0013",
+      "name": "adidas AG",
+      "isin": "DE000A1EWWW0",
+      "lei": "549300DE000A1EWW",
+      "country": "Germany"
+    },
+    "industry_classification": "Consumer Discretionary",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 3242783,
+      "scope_2_location_tco2e": 371948,
+      "scope_2_market_tco2e": null,
+      "scope_3_total_tco2e": 38891243,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0013",
+      "name": "adidas AG",
+      "isin": "DE000A1EWWW0",
+      "lei": "549300DE000A1EWW",
+      "country": "Germany"
+    },
+    "industry_classification": "Consumer Discretionary",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 3680097,
+      "scope_2_location_tco2e": 444548,
+      "scope_2_market_tco2e": 438660,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0013",
+      "name": "adidas AG",
+      "isin": "DE000A1EWWW0",
+      "lei": "549300DE000A1EWW",
+      "country": "Germany"
+    },
+    "industry_classification": "Consumer Discretionary",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 4577380,
+      "scope_2_location_tco2e": 405795,
+      "scope_2_market_tco2e": 395932,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2035
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0014",
+      "name": "Linde plc",
+      "isin": "IE00BZ12WP82",
+      "lei": "549300IE00BZ12WP",
+      "country": "Ireland"
+    },
+    "industry_classification": "Materials",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 12261001,
+      "scope_2_location_tco2e": 1100353,
+      "scope_2_market_tco2e": 1093415,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0014",
+      "name": "Linde plc",
+      "isin": "IE00BZ12WP82",
+      "lei": "549300IE00BZ12WP",
+      "country": "Ireland"
+    },
+    "industry_classification": "Materials",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 12369078,
+      "scope_2_location_tco2e": 931987,
+      "scope_2_market_tco2e": 904242,
+      "scope_3_total_tco2e": 239819105,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0014",
+      "name": "Linde plc",
+      "isin": "IE00BZ12WP82",
+      "lei": "549300IE00BZ12WP",
+      "country": "Ireland"
+    },
+    "industry_classification": "Materials",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 10451906,
+      "scope_2_location_tco2e": 1278834,
+      "scope_2_market_tco2e": 936209,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2035
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0015",
+      "name": "Airbus SE",
+      "isin": "NL0000235190",
+      "lei": "549300NL00002351",
+      "country": "Netherlands"
+    },
+    "industry_classification": "Industrials",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 2924931,
+      "scope_2_location_tco2e": 455480,
+      "scope_2_market_tco2e": 444615,
+      "scope_3_total_tco2e": 67437534,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0015",
+      "name": "Airbus SE",
+      "isin": "NL0000235190",
+      "lei": "549300NL00002351",
+      "country": "Netherlands"
+    },
+    "industry_classification": "Industrials",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 2886163,
+      "scope_2_location_tco2e": 443661,
+      "scope_2_market_tco2e": 342486,
+      "scope_3_total_tco2e": 52222558,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0015",
+      "name": "Airbus SE",
+      "isin": "NL0000235190",
+      "lei": "549300NL00002351",
+      "country": "Netherlands"
+    },
+    "industry_classification": "Industrials",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 3471845,
+      "scope_2_location_tco2e": 580236,
+      "scope_2_market_tco2e": 532894,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0016",
+      "name": "ASML Holding NV",
+      "isin": "NL0010273215",
+      "lei": "549300NL00102732",
+      "country": "Netherlands"
+    },
+    "industry_classification": "Information Technology",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 107325,
+      "scope_2_location_tco2e": 424297,
+      "scope_2_market_tco2e": 382060,
+      "scope_3_total_tco2e": 1018816,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0016",
+      "name": "ASML Holding NV",
+      "isin": "NL0010273215",
+      "lei": "549300NL00102732",
+      "country": "Netherlands"
+    },
+    "industry_classification": "Information Technology",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 115532,
+      "scope_2_location_tco2e": 442279,
+      "scope_2_market_tco2e": 278252,
+      "scope_3_total_tco2e": 2032821,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0016",
+      "name": "ASML Holding NV",
+      "isin": "NL0010273215",
+      "lei": "549300NL00102732",
+      "country": "Netherlands"
+    },
+    "industry_classification": "Information Technology",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 110783,
+      "scope_2_location_tco2e": 424969,
+      "scope_2_market_tco2e": 255924,
+      "scope_3_total_tco2e": 2260076,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0017",
+      "name": "LVMH Moet Hennessy Louis Vuitton SE",
+      "isin": "FR0000121014",
+      "lei": "549300FR00001210",
+      "country": "France"
+    },
+    "industry_classification": "Consumer Discretionary",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 3828416,
+      "scope_2_location_tco2e": 439208,
+      "scope_2_market_tco2e": 284845,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0017",
+      "name": "LVMH Moet Hennessy Louis Vuitton SE",
+      "isin": "FR0000121014",
+      "lei": "549300FR00001210",
+      "country": "France"
+    },
+    "industry_classification": "Consumer Discretionary",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 3948589,
+      "scope_2_location_tco2e": 359645,
+      "scope_2_market_tco2e": 324436,
+      "scope_3_total_tco2e": 84105460,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0017",
+      "name": "LVMH Moet Hennessy Louis Vuitton SE",
+      "isin": "FR0000121014",
+      "lei": "549300FR00001210",
+      "country": "France"
+    },
+    "industry_classification": "Consumer Discretionary",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 4292387,
+      "scope_2_location_tco2e": 395948,
+      "scope_2_market_tco2e": 278619,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2030
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0018",
+      "name": "TotalEnergies SE",
+      "isin": "FR0014000MR3",
+      "lei": "549300FR0014000M",
+      "country": "France"
+    },
+    "industry_classification": "Energy",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 39440791,
+      "scope_2_location_tco2e": 698437,
+      "scope_2_market_tco2e": 569967,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0018",
+      "name": "TotalEnergies SE",
+      "isin": "FR0014000MR3",
+      "lei": "549300FR0014000M",
+      "country": "France"
+    },
+    "industry_classification": "Energy",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 46353059,
+      "scope_2_location_tco2e": 640737,
+      "scope_2_market_tco2e": 488908,
+      "scope_3_total_tco2e": 617213447,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0018",
+      "name": "TotalEnergies SE",
+      "isin": "FR0014000MR3",
+      "lei": "549300FR0014000M",
+      "country": "France"
+    },
+    "industry_classification": "Energy",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 38513681,
+      "scope_2_location_tco2e": 921810,
+      "scope_2_market_tco2e": 765357,
+      "scope_3_total_tco2e": 918737434,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2050
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0019",
+      "name": "BNP Paribas SA",
+      "isin": "FR0000131104",
+      "lei": "549300FR00001311",
+      "country": "France"
+    },
+    "industry_classification": "Financials",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 74948,
+      "scope_2_location_tco2e": 53944,
+      "scope_2_market_tco2e": null,
+      "scope_3_total_tco2e": 1460259,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0019",
+      "name": "BNP Paribas SA",
+      "isin": "FR0000131104",
+      "lei": "549300FR00001311",
+      "country": "France"
+    },
+    "industry_classification": "Financials",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 75133,
+      "scope_2_location_tco2e": 59699,
+      "scope_2_market_tco2e": 36467,
+      "scope_3_total_tco2e": 579575,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0019",
+      "name": "BNP Paribas SA",
+      "isin": "FR0000131104",
+      "lei": "549300FR00001311",
+      "country": "France"
+    },
+    "industry_classification": "Financials",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 73080,
+      "scope_2_location_tco2e": 55844,
+      "scope_2_market_tco2e": 50510,
+      "scope_3_total_tco2e": 1464538,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2050
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0020",
+      "name": "Schneider Electric SE",
+      "isin": "FR0000121972",
+      "lei": "549300FR00001219",
+      "country": "France"
+    },
+    "industry_classification": "Industrials",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 3570993,
+      "scope_2_location_tco2e": 499007,
+      "scope_2_market_tco2e": null,
+      "scope_3_total_tco2e": 32093277,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0020",
+      "name": "Schneider Electric SE",
+      "isin": "FR0000121972",
+      "lei": "549300FR00001219",
+      "country": "France"
+    },
+    "industry_classification": "Industrials",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 3567594,
+      "scope_2_location_tco2e": 497410,
+      "scope_2_market_tco2e": 341813,
+      "scope_3_total_tco2e": 72557591,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0020",
+      "name": "Schneider Electric SE",
+      "isin": "FR0000121972",
+      "lei": "549300FR00001219",
+      "country": "France"
+    },
+    "industry_classification": "Industrials",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 3791681,
+      "scope_2_location_tco2e": 432753,
+      "scope_2_market_tco2e": 313493,
+      "scope_3_total_tco2e": 89399282,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2050
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0021",
+      "name": "Sanofi SA",
+      "isin": "FR0000120578",
+      "lei": "549300FR00001205",
+      "country": "France"
+    },
+    "industry_classification": "Health Care",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 694651,
+      "scope_2_location_tco2e": 203023,
+      "scope_2_market_tco2e": 146305,
+      "scope_3_total_tco2e": 14664471,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0021",
+      "name": "Sanofi SA",
+      "isin": "FR0000120578",
+      "lei": "549300FR00001205",
+      "country": "France"
+    },
+    "industry_classification": "Health Care",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 745869,
+      "scope_2_location_tco2e": 194463,
+      "scope_2_market_tco2e": 143221,
+      "scope_3_total_tco2e": 15996368,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0021",
+      "name": "Sanofi SA",
+      "isin": "FR0000120578",
+      "lei": "549300FR00001205",
+      "country": "France"
+    },
+    "industry_classification": "Health Care",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 790337,
+      "scope_2_location_tco2e": 172239,
+      "scope_2_market_tco2e": 115478,
+      "scope_3_total_tco2e": 14233296,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2050
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0022",
+      "name": "Shell plc",
+      "isin": "GB00BP6MXD84",
+      "lei": "549300GB00BP6MXD",
+      "country": "United Kingdom"
+    },
+    "industry_classification": "Energy",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 37090230,
+      "scope_2_location_tco2e": 867625,
+      "scope_2_market_tco2e": 605208,
+      "scope_3_total_tco2e": 638198016,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0022",
+      "name": "Shell plc",
+      "isin": "GB00BP6MXD84",
+      "lei": "549300GB00BP6MXD",
+      "country": "United Kingdom"
+    },
+    "industry_classification": "Energy",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 39483693,
+      "scope_2_location_tco2e": 686642,
+      "scope_2_market_tco2e": 631115,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0022",
+      "name": "Shell plc",
+      "isin": "GB00BP6MXD84",
+      "lei": "549300GB00BP6MXD",
+      "country": "United Kingdom"
+    },
+    "industry_classification": "Energy",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 45753179,
+      "scope_2_location_tco2e": 805321,
+      "scope_2_market_tco2e": 544737,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2035
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0023",
+      "name": "AstraZeneca PLC",
+      "isin": "GB0009895292",
+      "lei": "549300GB00098952",
+      "country": "United Kingdom"
+    },
+    "industry_classification": "Health Care",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 731132,
+      "scope_2_location_tco2e": 168858,
+      "scope_2_market_tco2e": 146161,
+      "scope_3_total_tco2e": 11748896,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0023",
+      "name": "AstraZeneca PLC",
+      "isin": "GB0009895292",
+      "lei": "549300GB00098952",
+      "country": "United Kingdom"
+    },
+    "industry_classification": "Health Care",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 823225,
+      "scope_2_location_tco2e": 176223,
+      "scope_2_market_tco2e": null,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0023",
+      "name": "AstraZeneca PLC",
+      "isin": "GB0009895292",
+      "lei": "549300GB00098952",
+      "country": "United Kingdom"
+    },
+    "industry_classification": "Health Care",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 808607,
+      "scope_2_location_tco2e": 220975,
+      "scope_2_market_tco2e": 148950,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2030
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0024",
+      "name": "HSBC Holdings plc",
+      "isin": "GB0005405286",
+      "lei": "549300GB00054052",
+      "country": "United Kingdom"
+    },
+    "industry_classification": "Financials",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 79969,
+      "scope_2_location_tco2e": 48022,
+      "scope_2_market_tco2e": 29688,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0024",
+      "name": "HSBC Holdings plc",
+      "isin": "GB0005405286",
+      "lei": "549300GB00054052",
+      "country": "United Kingdom"
+    },
+    "industry_classification": "Financials",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 80810,
+      "scope_2_location_tco2e": 64085,
+      "scope_2_market_tco2e": 41081,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0024",
+      "name": "HSBC Holdings plc",
+      "isin": "GB0005405286",
+      "lei": "549300GB00054052",
+      "country": "United Kingdom"
+    },
+    "industry_classification": "Financials",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 76177,
+      "scope_2_location_tco2e": 71172,
+      "scope_2_market_tco2e": null,
+      "scope_3_total_tco2e": 554701,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2030
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0025",
+      "name": "BP p.l.c.",
+      "isin": "GB0007980591",
+      "lei": "549300GB00079805",
+      "country": "United Kingdom"
+    },
+    "industry_classification": "Energy",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 45699500,
+      "scope_2_location_tco2e": 784731,
+      "scope_2_market_tco2e": 719046,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0025",
+      "name": "BP p.l.c.",
+      "isin": "GB0007980591",
+      "lei": "549300GB00079805",
+      "country": "United Kingdom"
+    },
+    "industry_classification": "Energy",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 42899932,
+      "scope_2_location_tco2e": 887796,
+      "scope_2_market_tco2e": 884256,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0025",
+      "name": "BP p.l.c.",
+      "isin": "GB0007980591",
+      "lei": "549300GB00079805",
+      "country": "United Kingdom"
+    },
+    "industry_classification": "Energy",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 48241206,
+      "scope_2_location_tco2e": 943229,
+      "scope_2_market_tco2e": 644334,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2030
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0026",
+      "name": "Unilever PLC",
+      "isin": "GB00B10RZP78",
+      "lei": "549300GB00B10RZP",
+      "country": "United Kingdom"
+    },
+    "industry_classification": "Consumer Staples",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 1491531,
+      "scope_2_location_tco2e": 278873,
+      "scope_2_market_tco2e": 170965,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0026",
+      "name": "Unilever PLC",
+      "isin": "GB00B10RZP78",
+      "lei": "549300GB00B10RZP",
+      "country": "United Kingdom"
+    },
+    "industry_classification": "Consumer Staples",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 1267820,
+      "scope_2_location_tco2e": 259971,
+      "scope_2_market_tco2e": 183493,
+      "scope_3_total_tco2e": 21294041,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0026",
+      "name": "Unilever PLC",
+      "isin": "GB00B10RZP78",
+      "lei": "549300GB00B10RZP",
+      "country": "United Kingdom"
+    },
+    "industry_classification": "Consumer Staples",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 1342045,
+      "scope_2_location_tco2e": 271876,
+      "scope_2_market_tco2e": 178594,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2030
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0027",
+      "name": "Nestle S.A.",
+      "isin": "CH0038863350",
+      "lei": "549300CH00388633",
+      "country": "Switzerland"
+    },
+    "industry_classification": "Consumer Staples",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 1411550,
+      "scope_2_location_tco2e": 281569,
+      "scope_2_market_tco2e": 178001,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0027",
+      "name": "Nestle S.A.",
+      "isin": "CH0038863350",
+      "lei": "549300CH00388633",
+      "country": "Switzerland"
+    },
+    "industry_classification": "Consumer Staples",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 1346036,
+      "scope_2_location_tco2e": 243430,
+      "scope_2_market_tco2e": null,
+      "scope_3_total_tco2e": 22214954,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0027",
+      "name": "Nestle S.A.",
+      "isin": "CH0038863350",
+      "lei": "549300CH00388633",
+      "country": "Switzerland"
+    },
+    "industry_classification": "Consumer Staples",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 1615321,
+      "scope_2_location_tco2e": 296460,
+      "scope_2_market_tco2e": 255135,
+      "scope_3_total_tco2e": 13939870,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2035
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0028",
+      "name": "Novartis AG",
+      "isin": "CH0012221716",
+      "lei": "549300CH00122217",
+      "country": "Switzerland"
+    },
+    "industry_classification": "Health Care",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 833502,
+      "scope_2_location_tco2e": 175369,
+      "scope_2_market_tco2e": null,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0028",
+      "name": "Novartis AG",
+      "isin": "CH0012221716",
+      "lei": "549300CH00122217",
+      "country": "Switzerland"
+    },
+    "industry_classification": "Health Care",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 680100,
+      "scope_2_location_tco2e": 174786,
+      "scope_2_market_tco2e": 112976,
+      "scope_3_total_tco2e": 15165014,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0028",
+      "name": "Novartis AG",
+      "isin": "CH0012221716",
+      "lei": "549300CH00122217",
+      "country": "Switzerland"
+    },
+    "industry_classification": "Health Care",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 725020,
+      "scope_2_location_tco2e": 188942,
+      "scope_2_market_tco2e": 170535,
+      "scope_3_total_tco2e": 14645267,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2050
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0029",
+      "name": "Roche Holding AG",
+      "isin": "CH0012032048",
+      "lei": "549300CH00120320",
+      "country": "Switzerland"
+    },
+    "industry_classification": "Health Care",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 693849,
+      "scope_2_location_tco2e": 162465,
+      "scope_2_market_tco2e": 133276,
+      "scope_3_total_tco2e": 4762707,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0029",
+      "name": "Roche Holding AG",
+      "isin": "CH0012032048",
+      "lei": "549300CH00120320",
+      "country": "Switzerland"
+    },
+    "industry_classification": "Health Care",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 775622,
+      "scope_2_location_tco2e": 210808,
+      "scope_2_market_tco2e": 169395,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0029",
+      "name": "Roche Holding AG",
+      "isin": "CH0012032048",
+      "lei": "549300CH00120320",
+      "country": "Switzerland"
+    },
+    "industry_classification": "Health Care",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 812304,
+      "scope_2_location_tco2e": 190687,
+      "scope_2_market_tco2e": 184728,
+      "scope_3_total_tco2e": 18347125,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2050
+    },
+    "metadata": {
+      "reporting_framework": "ISO 14064",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0030",
+      "name": "Zurich Insurance Group AG",
+      "isin": "CH0011075394",
+      "lei": "549300CH00110753",
+      "country": "Switzerland"
+    },
+    "industry_classification": "Financials",
+    "reporting_year": 2021,
+    "emissions": {
+      "scope_1_tco2e": 77235,
+      "scope_2_location_tco2e": 67720,
+      "scope_2_market_tco2e": 53895,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": null,
+      "verification": "limited_assurance",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0030",
+      "name": "Zurich Insurance Group AG",
+      "isin": "CH0011075394",
+      "lei": "549300CH00110753",
+      "country": "Switzerland"
+    },
+    "industry_classification": "Financials",
+    "reporting_year": 2022,
+    "emissions": {
+      "scope_1_tco2e": 78809,
+      "scope_2_location_tco2e": 59211,
+      "scope_2_market_tco2e": 46311,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": null
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "not_verified",
+      "api_version": "v2"
+    }
+  },
+  {
+    "entity": {
+      "id": "NZDPU-0030",
+      "name": "Zurich Insurance Group AG",
+      "isin": "CH0011075394",
+      "lei": "549300CH00110753",
+      "country": "Switzerland"
+    },
+    "industry_classification": "Financials",
+    "reporting_year": 2023,
+    "emissions": {
+      "scope_1_tco2e": 77191,
+      "scope_2_location_tco2e": 68544,
+      "scope_2_market_tco2e": 52389,
+      "scope_3_total_tco2e": null,
+      "unit": "tCO2e"
+    },
+    "climate_target": {
+      "net_zero_year": 2050
+    },
+    "metadata": {
+      "reporting_framework": "GHG Protocol",
+      "verification": "third_party_verified",
+      "api_version": "v2"
+    }
+  }
+]

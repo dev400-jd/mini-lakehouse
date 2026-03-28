@@ -143,6 +143,43 @@ services:
     networks:
       - lakehouse-net
 
+  jupyter:
+    build:
+      context: .
+      dockerfile: jupyter/Dockerfile
+      args:
+        JUPYTER_VERSION: ${JUPYTER_VERSION}
+    container_name: jupyter
+    depends_on:
+      spark-master:
+        condition: service_healthy
+      trino:
+        condition: service_healthy
+      nessie:
+        condition: service_healthy
+    ports:
+      - "${JUPYTER_PORT}:8888"
+    environment:
+      JUPYTER_TOKEN: ${JUPYTER_TOKEN}
+      JUPYTER_ENABLE_LAB: "yes"
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+      AWS_REGION: us-east-1
+      SPARK_CONF_DIR: /home/jovyan/spark-conf
+    volumes:
+      - ./notebooks:/home/jovyan/notebooks
+      - ./data:/home/jovyan/data:ro
+      - ./config/spark/spark-defaults.conf:/home/jovyan/spark-defaults.conf.template:ro
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8888/api || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - lakehouse-net
+
   minio-init:
     image: minio/mc
     container_name: minio-init
