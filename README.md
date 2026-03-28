@@ -1,42 +1,45 @@
-# 🏠 Mini-Lakehouse
+# Mini-Lakehouse
 
-Docker-basierte Sandbox, die die Kernkonzepte eines AI-Ready Self-Service Lakehouse demonstriert.
+Docker-basierte Sandbox, die die Kernkonzepte eines modernen Lakehouse demonstriert:
+Apache Iceberg als offenes Tabellenformat, Nessie als versionierter Katalog, Spark zum Schreiben, Trino zum Abfragen — alles auf MinIO als S3-kompatiblem Objektspeicher.
 
 ---
 
 ## Schnellstart
 
-### Mit Docker (lokal)
-
 ```bash
 git clone https://github.com/dev400-jd/mini-lakehouse.git
 cd mini-lakehouse
-make up
+
+docker compose up -d        # alle 6 Services starten
+make seed                   # Beispieldaten laden (ca. 3 Min)
 ```
 
-### Ohne Docker (GitHub Codespaces)
+Danach im Browser:
 
-Auf GitHub → **Code** → **Codespaces** → „Create codespace on main". Die Umgebung startet vollständig im Browser, ohne lokale Installation.
-
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/dev400-jd/mini-lakehouse)
-
-### Beispieldaten laden
-
-```bash
-make seed
-```
-
-Danach ist die Umgebung bereit. `make demo` lädt Daten und öffnet Jupyter direkt im Browser.
+| Was | URL |
+|-----|-----|
+| Jupyter (Notebooks) | http://localhost:8888?token=lakehouse |
+| MinIO Console | http://localhost:9001 |
+| Nessie UI | http://localhost:19120 |
+| Trino Web UI | http://localhost:8080 |
+| Spark Master UI | http://localhost:8081 |
 
 ---
 
-## Was zeigt die Sandbox?
+## Services & Ports
 
-- **Separation of Storage and Compute** — Spark schreibt Daten, Trino liest dieselben Daten; kein gemeinsamer Compute-Layer
-- **Apache Iceberg** — Time Travel, Schema Evolution und Hidden Partitioning auf Basis offener Tabellenspezifikation
-- **Medallion-Architektur** — dreistufige Layer-Trennung: Raw → Staging → Curated
-- **dbt-Transformationen** — dbt-Modelle laufen über Trino direkt auf Iceberg-Tabellen
-- **Iceberg REST Catalog** — Nessie als versionierter Katalog mit Web-UI und Git-ähnlichem Branching
+| Service | Port(s) | Beschreibung |
+|---------|---------|--------------|
+| MinIO API | 9000 | S3-kompatibler Objektspeicher |
+| MinIO Console | 9001 | Web-UI: Buckets, Objekte, Pfade |
+| PostgreSQL | 5432 | Metastore-Backend fuer Nessie |
+| Nessie | 19120 | Iceberg REST Catalog mit Branch-Uebersicht |
+| Trino | 8080 | Verteilte SQL-Engine, Web-UI |
+| Spark Master | 7077 / 8081 | Spark-Cluster (7077 intern, 8081 Web-UI) |
+| Jupyter | 8888 | Notebook-Umgebung (Token: `lakehouse`) |
+
+Alle Ports und Credentials sind in `.env` konfigurierbar. Standard: Benutzer `lakehouse`, Passwort `lakehouse123`.
 
 ---
 
@@ -44,52 +47,40 @@ Danach ist die Umgebung bereit. `make demo` lädt Daten und öffnet Jupyter dire
 
 ```mermaid
 flowchart LR
-    subgraph Ingestion
-        CSV[CSV / Rohdaten]
-        Spark[Apache Spark]
+    subgraph Quellen
+        J[JSON\nnzdpu_emissions]
+        C[CSV\ncdp / owid / fonds]
+    end
+
+    subgraph Verarbeitung
+        Spark[Apache Spark\nIngestion]
     end
 
     subgraph Katalog
-        Nessie[(Nessie\nREST Catalog)]
+        Nessie[(Nessie\nIceberg REST Catalog)]
+        PG[(PostgreSQL\nMetadata-Backend)]
     end
 
     subgraph Speicher
-        MinIO[(MinIO\nS3-kompatibel)]
+        MinIO[(MinIO\nS3 - Parquet + Iceberg-Metadaten)]
     end
 
-    subgraph Abfrage & Transformation
-        Trino[Trino]
-        dbt[dbt]
+    subgraph Abfrage
+        Trino[Trino\nSQL-Engine]
+        Jupyter[Jupyter\nSparkSession + Trino]
     end
 
-    subgraph Exploration
-        Jupyter[Jupyter Notebook]
-    end
-
-    CSV --> Spark
-    Spark -->|schreibt Iceberg| MinIO
+    J --> Spark
+    C --> Spark
+    Spark -->|schreibt Parquet| MinIO
     Spark <-->|registriert Tabellen| Nessie
+    Nessie --- PG
     Trino <-->|liest Metadaten| Nessie
-    Trino -->|liest Daten| MinIO
-    dbt -->|SQL über| Trino
-    Jupyter -->|SparkSession / SQL| Spark
-    Jupyter -->|SQL| Trino
+    Trino -->|liest Parquet| MinIO
+    Jupyter -->|SparkSession local| MinIO
+    Jupyter -->|JDBC| Trino
+    Jupyter <-->|Catalog| Nessie
 ```
-
----
-
-## Services & Ports
-
-| Service          | Port   | URL                                        | Beschreibung                          |
-|------------------|--------|--------------------------------------------|---------------------------------------|
-| MinIO Console    | 9001   | http://localhost:9001                      | Objektspeicher Web-UI                 |
-| MinIO API        | 9000   | http://localhost:9000                      | S3-kompatibler Endpunkt               |
-| Nessie UI        | 19120  | http://localhost:19120                     | Iceberg-Katalog mit Branch-Übersicht  |
-| Trino Web UI     | 8080   | http://localhost:8080                      | Query-Übersicht und Cluster-Status    |
-| Jupyter          | 8888   | http://localhost:8888?token=lakehouse      | Notebook-Umgebung                     |
-| Spark Master UI  | 8081   | http://localhost:8081                      | Spark-Cluster-Übersicht               |
-
-> Ports sind über `.env` konfigurierbar. Standard-Zugangsdaten: Benutzer `lakehouse`, Passwort `lakehouse123`.
 
 ---
 
@@ -97,32 +88,52 @@ flowchart LR
 
 | Notebook | Inhalt |
 |----------|--------|
-| `01_ingest.ipynb` | Rohdaten per Spark als Iceberg-Tabelle in MinIO schreiben (Raw-Layer) |
-| `02_time_travel.ipynb` | Iceberg-Snapshots abfragen und frühere Tabellenzustände wiederherstellen |
-| `03_schema_evolution.ipynb` | Spalten hinzufügen und entfernen, ohne bestehende Daten zu migrieren |
-| `04_trino_query.ipynb` | Dieselben Iceberg-Tabellen über Trino per SQL abfragen (Compute-Trennung) |
-| `05_dbt_pipeline.ipynb` | dbt-Transformationen von Staging nach Curated nachvollziehen und prüfen |
+| `01_iceberg_erkunden.ipynb` | Anatomie einer Iceberg-Tabelle: Data Files, Manifest Files, Snapshots, Partitionen |
+| `02_time_travel_schema_evolution.ipynb` | NZDPU aendert sein API-Format: Schema Evolution, Feld-Mapping, Time Travel per Snapshot-ID |
+
+Beide Notebooks setzen `make seed` voraus.
+Vor dem manuellen Durchlauf von Notebook 02 muss `make seed` erneut ausgefuehrt werden, da das Notebook die Tabelle veraendert.
+
+---
+
+## Beispieldaten
+
+`make seed` laedt fuenf Tabellen in den Raw Layer (`s3://raw/`):
+
+| Tabelle | Format | Zeilen | Beschreibung |
+|---------|--------|--------|--------------|
+| `nzdpu_emissions` | JSON, nested | 90 | CO2-Emissionen (Scope 1-3) von 30 europaeischen Unternehmen, 3 Jahre |
+| `cdp_emissions` | CSV | 100 | CDP Climate Change Questionnaire — unreine Daten fuer Staging-Demo |
+| `owid_co2_countries` | CSV | 100 | CO2 pro Land und Jahr, partitioniert nach `year` |
+| `fund_master` | CSV | 10 | Fondsstammdaten mit ISINs |
+| `fund_positions` | CSV | 319 | Fondspositionen, partitioniert nach `position_date` |
+
+Datengenerierung (Fallback-Daten sind bereits im Repository enthalten):
+
+```bash
+uv run scripts/generate-sample-data.py
+```
 
 ---
 
 ## Voraussetzungen
 
-- **Docker Desktop** — mindestens 12 GB RAM zuweisen (Einstellungen → Resources)
-- **oder:** GitHub-Account für Codespaces (kein lokales Setup nötig)
-- `git`, `make`
+- **Docker Desktop** mit mindestens 12 GB RAM
+  - Windows: WSL2-Backend aktivieren und `.wslconfig` anpassen (siehe [docs/SETUP.md](docs/SETUP.md))
+- **git**, **make**
+- **uv** — nur fuer `scripts/generate-sample-data.py`, optional
 
 ---
 
-## Weiterführend
+## Konfiguration
 
-- [docs/SETUP.md](docs/SETUP.md) — Detaillierte Installationsanleitung und Troubleshooting
-- [docs/DEMO-SCRIPT.md](docs/DEMO-SCRIPT.md) — Geführtes Demo-Skript für Präsentationen
-- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — Architekturentscheidungen und Komponentenübersicht
-
-> Diese Dokumentation entsteht in AP-8.
+Alle Versionen, Ports und Credentials stehen in `.env` (Single Source of Truth).
+Docker Compose und alle Skripte lesen ausschliesslich aus dieser Datei.
 
 ---
 
-## Mapping Sandbox → Produktion
+## Weiterfuehrendes
 
-Diese Sandbox spiegelt die geplante Architektur des Lakehouse auf der FI-TS Finance Cloud wider. Nessie übernimmt in der Demo die Rolle des Iceberg REST Catalog (in Produktion: Polaris); MinIO steht stellvertretend für den S3-kompatiblen Objektspeicher der FI-TS. Spark, Trino, Iceberg und die Medallion-Schichtung sind in beiden Umgebungen identisch.
+- [docs/SETUP.md](docs/SETUP.md) — Installation, WSL2-Konfiguration, Troubleshooting
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — Komponentenuebersicht, Mapping Sandbox zu Produktion
+- [docs/DEMO-SCRIPT.md](docs/DEMO-SCRIPT.md) — Gefuehrtes Demo-Skript (30 Min / 60 Min)
