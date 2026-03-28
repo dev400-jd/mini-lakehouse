@@ -68,6 +68,28 @@ services:
     networks:
       - lakehouse-net
 
+  trino:
+    image: trinodb/trino:${TRINO_VERSION}
+    container_name: trino
+    depends_on:
+      nessie:
+        condition: service_healthy
+    ports:
+      - "${TRINO_PORT}:8080"
+    volumes:
+      - ./config/trino/catalog:/etc/trino/catalog:ro
+      - ./config/trino/jvm.config:/etc/trino/jvm.config:ro
+      - ./config/trino/config.properties:/etc/trino/config.properties:ro
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8080/v1/info | grep -q '\"starting\":false' || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - lakehouse-net
+
   spark-master:
     build:
       context: .
