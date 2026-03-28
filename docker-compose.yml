@@ -68,6 +68,57 @@ services:
     networks:
       - lakehouse-net
 
+  spark-master:
+    build:
+      context: .
+      dockerfile: spark/Dockerfile
+    container_name: spark-master
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
+    ports:
+      - "${SPARK_MASTER_WEBUI_PORT}:8080"
+      - "${SPARK_MASTER_PORT}:7077"
+    environment:
+      SPARK_MASTER_HOST: spark-master
+      SPARK_NO_DAEMONIZE: "true"
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+      # AWS SDK v2 (iceberg-aws-bundle) erfordert eine Region — MinIO ignoriert den Wert
+      AWS_REGION: us-east-1
+    volumes:
+      - ./config/spark/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf.template:ro
+      - ./scripts:/scripts:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
+    networks:
+      - lakehouse-net
+
+  spark-worker:
+    build:
+      context: .
+      dockerfile: spark/Dockerfile
+    container_name: spark-worker
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    depends_on:
+      spark-master:
+        condition: service_healthy
+    environment:
+      SPARK_WORKER_MEMORY: 2g
+      SPARK_WORKER_CORES: "2"
+      SPARK_NO_DAEMONIZE: "true"
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+      AWS_REGION: us-east-1
+    volumes:
+      - ./config/spark/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf.template:ro
+    restart: unless-stopped
+    networks:
+      - lakehouse-net
+
   minio-init:
     image: minio/mc
     container_name: minio-init
