@@ -1,0 +1,16 @@
+name: 'mini_lakehouse'
+version: '1.0.0'
+profile: 'mini_lakehouse'
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  mini_lakehouse:
+    +materialized: table
+    staging:
+      +schema: staging
+    curated:
+      +schema: curated

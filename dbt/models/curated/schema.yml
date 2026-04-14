@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: curated_esg_emissions
+    description: "ESG-Emissionen vereinigt aus CDP + NZDPU, dedupliziert nach ISIN + Jahr"
+    columns:
+      - name: isin
+        description: "ISIN — kann NULL sein bei CDP-Eintraegen ohne ISIN"
+      - name: scope_1_tco2e
+        tests:
+          - not_null

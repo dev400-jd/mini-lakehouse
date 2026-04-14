@@ -1,0 +1,12 @@
+mini_lakehouse:
+  target: dev
+  outputs:
+    dev:
+      type: trino
+      method: none
+      host: trino
+      port: 8080
+      user: dbt
+      database: nessie
+      schema: staging
+      threads: 1

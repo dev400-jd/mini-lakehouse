@@ -146,6 +146,18 @@ INGESTION_SECS=$((INGESTION_END - INGESTION_START))
 ok "Spark Ingestion erfolgreich (${INGESTION_SECS}s)"
 
 # ---------------------------------------------------------------------------
+# Nessie Namespaces für dbt anlegen (idempotent)
+# ---------------------------------------------------------------------------
+
+info "Lege Nessie-Namespaces an (staging, curated) ..."
+MSYS_NO_PATHCONV=1 docker compose exec -T spark-master \
+    /opt/spark/bin/spark-sql -e \
+    "CREATE NAMESPACE IF NOT EXISTS nessie.staging;
+     CREATE NAMESPACE IF NOT EXISTS nessie.curated;" > /dev/null 2>&1 \
+&& ok "Namespaces staging + curated bereit" \
+|| fail "Namespace-Erstellung fehlgeschlagen (nicht kritisch — manuell via trino-init)"
+
+# ---------------------------------------------------------------------------
 # [4/4] Verifizierung via Trino
 # ---------------------------------------------------------------------------
 

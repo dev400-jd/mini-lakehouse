@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: raw
+    database: nessie
+    schema: raw
+    tables:
+      - name: cdp_emissions
+        description: "CDP Scope 1+2 Emissionsdaten — alles als String, unbereinigt"
+      - name: nzdpu_emissions
+        description: "NZDPU Emissionsdaten aus JSON-API — typisiert durch Spark"
+      - name: fund_master
+        description: "Deka Fondsstammdaten — 10 Fonds"
+      - name: fund_positions
+        description: "Fondsbestaende — welcher Fonds haelt welches Unternehmen"
+      - name: owid_co2_countries
+        description: "Laender-Level CO2-Daten von Our World in Data"

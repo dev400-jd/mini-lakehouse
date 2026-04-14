@@ -170,6 +170,7 @@ services:
       - ./notebooks:/home/jovyan/notebooks
       - ./data:/home/jovyan/data:ro
       - ./config/spark/spark-defaults.conf:/home/jovyan/spark-defaults.conf.template:ro
+      - ./dbt:/home/jovyan/dbt:rw
     healthcheck:
       test: ["CMD-SHELL", "curl -sf http://localhost:8888/api || exit 1"]
       interval: 15s
@@ -198,6 +199,19 @@ services:
       retries: 5
       start_period: 30s
     restart: unless-stopped
+    networks:
+      - lakehouse-net
+
+  trino-init:
+    image: trinodb/trino:${TRINO_VERSION}
+    container_name: trino-init
+    depends_on:
+      trino:
+        condition: service_healthy
+    entrypoint: /bin/bash /scripts/init-schemas.sh
+    volumes:
+      - ./scripts:/scripts:ro
+    restart: "no"
     networks:
       - lakehouse-net
 

@@ -62,5 +62,5 @@ ENV SPARK_HOME=/usr/local/spark
 
 USER jovyan
 
-# trino Python-Client (pandas + matplotlib bereits im Basisimage)
-RUN pip install --no-cache-dir "trino>=0.328.0"
+# trino Python-Client + dbt (pandas + matplotlib bereits im Basisimage)
+RUN pip install --no-cache-dir "trino>=0.328.0" dbt-trino
