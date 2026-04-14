@@ -47,6 +47,10 @@ RUN mkdir -p /opt/spark/custom-conf && chown spark:spark /opt/spark/custom-conf
 COPY config/spark/entrypoint.sh /opt/spark-custom-entrypoint.sh
 RUN chmod +x /opt/spark-custom-entrypoint.sh
 
+RUN ln -s /opt/spark/bin/spark-sql /usr/local/bin/spark-sql && \
+    ln -s /opt/spark/bin/pyspark /usr/local/bin/pyspark && \
+    ln -s /opt/spark/bin/spark-submit /usr/local/bin/spark-submit
+
 USER spark
 
 ENTRYPOINT ["/opt/spark-custom-entrypoint.sh"]

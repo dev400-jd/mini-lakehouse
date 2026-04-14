@@ -15,6 +15,13 @@ docker compose up -d        # alle 7 Services starten
 make seed                   # Beispieldaten laden (ca. 3 Min)
 ```
 
+**Windows (ohne make):**
+
+```powershell
+docker compose up -d
+bash scripts/seed-data.sh
+```
+
 Danach im Browser:
 
 | Was | URL |
@@ -123,7 +130,8 @@ uv run scripts/generate-sample-data.py
 
 - **Docker Desktop** mit mindestens 12 GB RAM
   - Windows: WSL2-Backend aktivieren und `.wslconfig` anpassen (siehe [docs/SETUP.md](docs/SETUP.md))
-- **git**, **make**
+- **git**
+- **make** — optional, auf Windows nicht standardmaessig vorhanden (Alternativen siehe Schnellstart)
 - **uv** — nur fuer `scripts/generate-sample-data.py`, optional
 
 ---

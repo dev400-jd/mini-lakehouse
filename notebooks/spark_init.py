@@ -3,7 +3,7 @@ spark_init.py — Gemeinsame Lakehouse-Hilfsfunktionen für alle Notebooks.
 
 Erste Zelle in jedem Notebook:
     import sys; sys.path.insert(0, "/home/jovyan/notebooks")
-    from spark_init import get_spark_session, trino_query
+    from spark_init import get_spark_session, trino_query, show
     spark = get_spark_session("01-mein-notebook")
 """
 
@@ -127,7 +127,16 @@ def trino_query(sql: str, catalog: str = "nessie", schema: str = "raw") -> pd.Da
 
 
 # ---------------------------------------------------------------------------
+# Anzeige-Hilfsfunktionen
+# ---------------------------------------------------------------------------
+
+def show(df, n: int = 10) -> pd.DataFrame:
+    """Zeigt einen Spark DataFrame als formatierte HTML-Tabelle in Jupyter."""
+    return df.limit(n).toPandas()
+
+
+# ---------------------------------------------------------------------------
 # Modul geladen
 # ---------------------------------------------------------------------------
 
-print("Lakehouse Helpers geladen \u2705")
+print("Lakehouse Helpers geladen")
