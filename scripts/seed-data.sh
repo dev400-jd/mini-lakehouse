@@ -149,13 +149,12 @@ ok "Spark Ingestion erfolgreich (${INGESTION_SECS}s)"
 # Nessie Namespaces für dbt anlegen (idempotent)
 # ---------------------------------------------------------------------------
 
-info "Lege Nessie-Namespaces an (staging, curated) ..."
-MSYS_NO_PATHCONV=1 docker compose exec -T spark-master \
-    /opt/spark/bin/spark-sql -e \
-    "CREATE NAMESPACE IF NOT EXISTS nessie.staging;
-     CREATE NAMESPACE IF NOT EXISTS nessie.curated;" > /dev/null 2>&1 \
-&& ok "Namespaces staging + curated bereit" \
-|| fail "Namespace-Erstellung fehlgeschlagen (nicht kritisch — manuell via trino-init)"
+info "Lege Nessie-Schemas mit Bucket-Locations an (staging, curated) ..."
+MSYS_NO_PATHCONV=1 docker compose exec -T trino \
+    trino --execute "CREATE SCHEMA IF NOT EXISTS nessie.staging WITH (location = 's3a://staging/')" > /dev/null 2>&1
+MSYS_NO_PATHCONV=1 docker compose exec -T trino \
+    trino --execute "CREATE SCHEMA IF NOT EXISTS nessie.curated WITH (location = 's3a://curated/')" > /dev/null 2>&1
+ok "Schemas staging (s3a://staging/) + curated (s3a://curated/) bereit"
 
 # ---------------------------------------------------------------------------
 # [4/4] Verifizierung via Trino
