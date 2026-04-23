@@ -1,0 +1,16 @@
+{
+  "source_system": "fondsdaten_provider_xyz",
+  "source_version": "v1-correction",
+  "generated_at": "2026-04-22T14:37:00Z",
+  "correction_reason": "NAV-Fehler im initialen Load — korrigierte Werte nachgeliefert",
+  "record_count": 1,
+  "records": [
+    {
+      "isin": "DE000A1JX0V2",
+      "fund_name": "TestFonds Aktien Europa",
+      "business_date": "2026-04-20",
+      "nav": 126.81,
+      "currency": "EUR"
+    }
+  ]
+}
