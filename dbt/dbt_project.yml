@@ -17,5 +17,4 @@ models:
       +schema: curated
 
 snapshots:
-  mini_lakehouse:
-    +file_format: iceberg
+  mini_lakehouse: {}

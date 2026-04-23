@@ -8,7 +8,6 @@
         strategy='check',
         check_cols=['nav', 'currency'],
         invalidate_hard_deletes=False,
-        file_format='iceberg',
     )
 }}
 
