@@ -3,6 +3,7 @@ version: '1.0.0'
 profile: 'mini_lakehouse'
 
 model-paths: ["models"]
+snapshot-paths: ["snapshots"]
 macro-paths: ["macros"]
 target-path: "target"
 clean-targets: ["target", "dbt_packages"]
@@ -14,3 +15,7 @@ models:
       +schema: staging
     curated:
       +schema: curated
+
+snapshots:
+  mini_lakehouse:
+    +file_format: iceberg

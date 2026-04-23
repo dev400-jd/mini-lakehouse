@@ -1,0 +1,41 @@
+version: 2
+
+snapshots:
+  - name: snp_fondspreise_scd2
+    description: >
+      SCD2-Historisierung der Fondspreise. Bei Aenderung von nav oder currency
+      fuer (isin, business_date) wird die alte Version geschlossen (dbt_valid_to gesetzt)
+      und eine neue aktuelle Version eingefuegt (dbt_valid_to NULL).
+    columns:
+      - name: scd_key
+        description: "Composite-Surrogate-Key: isin + '|' + business_date"
+        tests:
+          - not_null
+      - name: isin
+        description: "Fonds-Identifikation"
+        tests:
+          - not_null
+      - name: business_date
+        description: "Handelstag des Fondspreises"
+        tests:
+          - not_null
+      - name: nav
+        description: "Net Asset Value zum Zeitpunkt der Version"
+        tests:
+          - not_null
+      - name: dbt_scd_id
+        description: "Eindeutige ID pro SCD2-Version (von dbt generiert)"
+        tests:
+          - unique
+          - not_null
+      - name: dbt_valid_from
+        description: "Gueltigkeits-Start der SCD2-Version"
+        tests:
+          - not_null
+      # dbt_valid_to: NULL bei aktueller Version — deshalb kein not_null-Test
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - isin
+            - business_date
+          where: "dbt_valid_to IS NULL"
