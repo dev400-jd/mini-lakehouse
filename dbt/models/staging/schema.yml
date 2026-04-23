@@ -29,3 +29,29 @@ models:
         tests:
           - not_null
           - unique
+
+  - name: stg_fondspreise
+    description: "Staging fuer Fondspreis-Zeitreihen: JSON expandiert, Typen casted, Spaltennamen harmonisiert."
+    columns:
+      - name: ingestion_id
+        description: "UUID pro Ingestion-Run, von Raw durchgereicht"
+        tests:
+          - not_null
+      - name: isin
+        description: "Fonds-Kennung (International Securities Identification Number)"
+        tests:
+          - not_null
+      - name: business_date
+        description: "Handelstag des Fondspreises"
+        tests:
+          - not_null
+      - name: nav
+        description: "Net Asset Value in der angegebenen Waehrung"
+        tests:
+          - not_null
+      - name: currency
+        description: "Waehrung des NAV (ISO 4217)"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['EUR', 'USD']

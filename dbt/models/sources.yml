@@ -15,3 +15,22 @@ sources:
         description: "Fondsbestaende — welcher Fonds haelt welches Unternehmen"
       - name: owid_co2_countries
         description: "Laender-Level CO2-Daten von Our World in Data"
+      - name: fondspreise
+        description: "Fondspreis-Ingestion, File-level Raw Layer. Ein Row pro geladener JSON-Datei mit vollstaendiger Provenance."
+        columns:
+          - name: ingestion_id
+            description: "UUID pro Ingestion-Run"
+            tests:
+              - not_null
+          - name: ingestion_timestamp
+            description: "Zeitpunkt des Ingestion-Runs (UTC)"
+            tests:
+              - not_null
+          - name: source_file_hash
+            description: "SHA-256 der geladenen Quelldatei"
+            tests:
+              - not_null
+          - name: raw_payload
+            description: "Kompletter File-Inhalt als JSON-String, byte-identisch zum Original"
+            tests:
+              - not_null
