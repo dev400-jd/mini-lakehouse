@@ -34,27 +34,20 @@ Die Tabellen-Initialisierung ist **inline im Ingestion-Script** (`CREATE TABLE I
 
 ## Voraussetzungen
 
+**1. Stack starten:**
 ```powershell
 docker compose up -d
-docker compose ps   # alle Services: Up (healthy)
+docker compose ps
 ```
 
-Benötigte Dateien (aus AP-1, bereits vorhanden):
-- `data/sample/fondspreise_load1.json`
-- `data/sample/fondspreise_load2_correction.json`
-
----
-
-## Schema-Migration: alte Tabelle droppen
-
-Falls `nessie.raw.fondspreise` noch mit dem AP-2-Schema (451 Rows, record-level)
-existiert, zuerst droppen:
-
+**2. Quelldaten generieren** (einmalig, Ergebnis ist bereits im Repo vorhanden):
 ```powershell
-docker compose exec spark-master spark-submit /scripts/drop-fondspreise-table.py
+uv run python scripts/generate-fondspreise.py
 ```
 
-Idempotent — kein Fehler wenn Tabelle nicht existiert.
+Erzeugt:
+- `data/sample/fondspreise_load1.json` (450 Records, 5 Fonds × 90 Handelstage)
+- `data/sample/fondspreise_load2_correction.json` (1 Korrektur-Record)
 
 ---
 

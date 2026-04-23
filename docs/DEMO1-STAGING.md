@@ -21,16 +21,16 @@ ist Aufgabe von Curated (AP-4b). Nach Load 1 + Load 2 existieren 2 Rows für
 ## Ausführung
 
 ```powershell
-docker compose exec jupyter dbt run --select stg_fondspreise --project-dir /home/jovyan/dbt --profiles-dir /home/jovyan/dbt
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt run --select stg_fondspreise"
 ```
 
 ```powershell
-docker compose exec jupyter dbt test --select stg_fondspreise --project-dir /home/jovyan/dbt --profiles-dir /home/jovyan/dbt
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt test --select stg_fondspreise"
 ```
 
 ESG-Modelle prüfen (Regression):
 ```powershell
-docker compose exec jupyter dbt run --select stg_nzdpu_emissions --project-dir /home/jovyan/dbt --profiles-dir /home/jovyan/dbt
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt run --select stg_nzdpu_emissions"
 ```
 
 ---
