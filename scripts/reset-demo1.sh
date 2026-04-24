@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # =============================================================================
 # reset-demo1.sh — Stellt konsistenten Startzustand fuer Demo 1 her.
 #
@@ -14,7 +14,7 @@
 # ESG-Tabellen (raw.*_emissions, staging.stg_*) bleiben unveraendert.
 # =============================================================================
 
-set -euo pipefail
+set -eu
 
 # ---------------------------------------------------------------------------
 # Hilfsfunktionen
@@ -41,7 +41,7 @@ err() {
 # Repo-Root als Arbeitsverzeichnis (unabhaengig vom Aufruf-Pfad)
 # ---------------------------------------------------------------------------
 
-cd "$(dirname "${BASH_SOURCE[0]:-$0}")/.."
+cd "$(dirname "$0")/.."
 REPO_ROOT="$(pwd)"
 COMPOSE="docker compose"
 
