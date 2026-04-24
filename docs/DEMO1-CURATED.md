@@ -90,6 +90,12 @@ SELECT nav, source_version, dbt_valid_from, dbt_valid_to FROM nessie.curated.snp
 
 ---
 
+## Unique Key
+
+`(isin, business_date)` als Listen-`unique_key` — dbt-trino-nativer Standard,
+kein Surrogate-Key nötig. dbt erkennt Änderungen über einen Hash der
+`check_cols` (`nav`, `currency`).
+
 ## dbt-Meta-Spalten im Snapshot
 
 | Spalte | Bedeutung |
@@ -98,3 +104,19 @@ SELECT nav, source_version, dbt_valid_from, dbt_valid_to FROM nessie.curated.snp
 | `dbt_updated_at` | Zeitpunkt der letzten Änderung |
 | `dbt_valid_from` | Gültigkeits-Start dieser Version |
 | `dbt_valid_to` | Gültigkeits-Ende — `NULL` = aktuell gültig |
+
+## Reset vor erstem Run (nach Schema-Änderung)
+
+Bei Schema-Änderungen (z.B. scd_key-Spalte entfernt) muss die alte
+Tabelle manuell in CloudBeaver gedroppt werden:
+
+```sql
+DROP TABLE IF EXISTS nessie.curated.snp_fondspreise_scd2;
+DROP TABLE IF EXISTS nessie.curated.snp_fondspreise_scd2_test;
+```
+
+---
+
+_AP-4b-refactor: Ursprünglich mit `scd_key`-Workaround implementiert
+(isin || '|' || business_date). Nach Adapter-Kompatibilitätstest auf
+nativen Listen-`unique_key` umgestellt._

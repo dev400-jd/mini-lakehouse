@@ -7,10 +7,6 @@ snapshots:
       fuer (isin, business_date) wird die alte Version geschlossen (dbt_valid_to gesetzt)
       und eine neue aktuelle Version eingefuegt (dbt_valid_to NULL).
     columns:
-      - name: scd_key
-        description: "Composite-Surrogate-Key: isin + '|' + business_date"
-        tests:
-          - not_null
       - name: isin
         description: "Fonds-Identifikation"
         tests:

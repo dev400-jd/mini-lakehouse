@@ -4,21 +4,19 @@
     config(
         target_schema='curated',
         target_database='nessie',
-        unique_key='scd_key',
+        unique_key=['isin', 'business_date'],
         strategy='check',
         check_cols=['nav', 'currency'],
-        invalidate_hard_deletes=False,
+        invalidate_hard_deletes=False
     )
 }}
 
 -- SCD2-Historisierung der Fondspreise.
--- scd_key als Surrogate Key verhindert Probleme mit Expression-unique_key in dbt-trino.
--- Trennzeichen '|' schliesst Kollisionen aus (ISINs enthalten keine Pipes).
--- Aenderungen an nav oder currency erzeugen eine neue SCD2-Version.
+-- Listen-unique_key (isin, business_date) wird von dbt-trino nativ
+-- unterstuetzt. Aenderungen an nav oder currency erzeugen eine neue
+-- SCD2-Version.
 
 SELECT
-    isin || '|' || CAST(business_date AS VARCHAR) AS scd_key,
-
     isin,
     business_date,
 
