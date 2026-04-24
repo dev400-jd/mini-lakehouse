@@ -16,6 +16,9 @@
 
 set -eu
 
+# Verhindert Git Bash MSYS2-Pfadkonvertierung (/scripts -> C:/Program Files/Git/scripts)
+export MSYS_NO_PATHCONV=1
+
 # ---------------------------------------------------------------------------
 # Hilfsfunktionen
 # ---------------------------------------------------------------------------
