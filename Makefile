@@ -25,7 +25,7 @@ else
 endif
 
 .PHONY: help up down clean status logs logs-spark logs-trino seed demo health \
-        dbt-run dbt-test dbt-docs restart pull
+        dbt-run dbt-test dbt-docs restart pull reset-demo1
 
 help: ## Zeigt alle verfügbaren Targets mit Beschreibung
 	@echo ""
@@ -79,3 +79,6 @@ restart: down up ## Startet alle Services neu (down + up)
 
 pull: ## Lädt alle Docker-Images vorab (für Offline-Demo)
 	$(COMPOSE) pull
+
+reset-demo1: ## Setzt Demo 1 (Fondspreise) auf Startzustand zurück
+	bash $(SCRIPTS_DIR)/reset-demo1.sh
