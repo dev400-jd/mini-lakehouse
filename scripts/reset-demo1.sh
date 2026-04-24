@@ -23,13 +23,13 @@ set -eu
 STEP_START=0
 
 step() {
-    STEP_START=$SECONDS
+    STEP_START=$(date +%s)
     echo ""
     echo "$(date +%H:%M:%S) [$1] $2"
 }
 
 done_step() {
-    local elapsed=$(( SECONDS - STEP_START ))
+    local elapsed=$(( $(date +%s) - STEP_START ))
     echo "$(date +%H:%M:%S)     fertig. (${elapsed}s)"
 }
 
@@ -52,7 +52,7 @@ echo "  $(date '+%Y-%m-%d %H:%M:%S')"
 echo "  Repo: $REPO_ROOT"
 echo "============================================"
 
-TOTAL_START=$SECONDS
+TOTAL_START=$(date +%s)
 
 # ---------------------------------------------------------------------------
 # Schritt 0: Voraussetzungs-Check
