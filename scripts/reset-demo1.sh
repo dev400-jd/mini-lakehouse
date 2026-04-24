@@ -60,13 +60,13 @@ TOTAL_START=$(date +%s)
 
 step "0/5" "Voraussetzungs-Check..."
 
-if ! command -v docker &> /dev/null; then
+if ! command -v docker > /dev/null 2>&1; then
     err "docker nicht gefunden. Docker Desktop starten."
     exit 1
 fi
 
-if ! $COMPOSE exec -T trino trino --execute "SELECT 1" > /dev/null 2>&1; then
-    err "Trino nicht erreichbar. Stack starten mit:"
+if ! $COMPOSE exec -T trino echo ok > /dev/null 2>&1; then
+    err "Trino-Container nicht erreichbar. Stack starten mit:"
     err "  docker compose up -d"
     exit 1
 fi
@@ -90,24 +90,24 @@ done_step
 
 step "1/5" "Droppe Fondspreis-Tabellen..."
 
-$COMPOSE exec -T trino trino --execute \
+$COMPOSE exec -T trino trino --server http://localhost:8080 --execute \
     "DROP TABLE IF EXISTS nessie.curated.snp_fondspreise_scd2"
 echo "  curated.snp_fondspreise_scd2 gedroppt (oder war nicht vorhanden)"
 
-$COMPOSE exec -T trino trino --execute \
+$COMPOSE exec -T trino trino --server http://localhost:8080 --execute \
     "DROP TABLE IF EXISTS nessie.staging.stg_fondspreise"
 echo "  staging.stg_fondspreise gedroppt (oder war nicht vorhanden)"
 
-$COMPOSE exec -T trino trino --execute \
+$COMPOSE exec -T trino trino --server http://localhost:8080 --execute \
     "DROP TABLE IF EXISTS nessie.raw.fondspreise"
 echo "  raw.fondspreise gedroppt (oder war nicht vorhanden)"
 
 # Schemas sicherstellen (idempotent, mit S3-Locations)
-$COMPOSE exec -T trino trino --execute \
+$COMPOSE exec -T trino trino --server http://localhost:8080 --execute \
     "CREATE SCHEMA IF NOT EXISTS nessie.raw WITH (location = 's3a://raw/')"
-$COMPOSE exec -T trino trino --execute \
+$COMPOSE exec -T trino trino --server http://localhost:8080 --execute \
     "CREATE SCHEMA IF NOT EXISTS nessie.staging WITH (location = 's3a://staging/')"
-$COMPOSE exec -T trino trino --execute \
+$COMPOSE exec -T trino trino --server http://localhost:8080 --execute \
     "CREATE SCHEMA IF NOT EXISTS nessie.curated WITH (location = 's3a://curated/')"
 echo "  Schemas raw/staging/curated sichergestellt."
 
