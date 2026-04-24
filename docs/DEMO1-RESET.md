@@ -28,20 +28,24 @@ und Wiederholung nach Problemen.
 
 ## Aufruf
 
-**Bash direkt (vom Repo-Root):**
+**Aus Git Bash Terminal (empfohlen unter Windows):**
 ```bash
-bash scripts/reset-demo1.sh
+sh scripts/reset-demo1.sh
 ```
 
-**Make:**
+**Aus PowerShell via Git Bash:**
+```powershell
+& "C:\Program Files\Git\bin\sh.exe" scripts/reset-demo1.sh
+```
+
+**Make (aus Git Bash Terminal):**
 ```bash
 make reset-demo1
 ```
 
-**Aus PowerShell via WSL2:**
-```powershell
-wsl bash scripts/reset-demo1.sh
-```
+> **Hinweis:** WSL funktioniert nicht, wenn Docker Desktop dort nicht explizit
+> integriert ist. Git Bash hat denselben Docker-Kontext wie PowerShell und
+> ist die zuverlässigere Wahl unter Windows.
 
 ## Erwartete Laufzeit
 

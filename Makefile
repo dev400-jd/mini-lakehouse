@@ -81,4 +81,4 @@ pull: ## Lädt alle Docker-Images vorab (für Offline-Demo)
 	$(COMPOSE) pull
 
 reset-demo1: ## Setzt Demo 1 (Fondspreise) auf Startzustand zurück
-	bash $(SCRIPTS_DIR)/reset-demo1.sh
+	sh $(SCRIPTS_DIR)/reset-demo1.sh
