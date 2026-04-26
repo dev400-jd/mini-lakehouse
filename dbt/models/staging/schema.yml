@@ -20,15 +20,49 @@ models:
           - not_null
 
   - name: stg_nzdpu_emissions
-    description: "NZDPU-Emissionen normalisiert auf gemeinsames Schema"
+    description: "Staging fuer NZDPU-Emissionen: doppelter JSON-Expand ueber data[] -> reporting_periods[], Scope-Werte typkonvertiert, Provenance durchgereicht. 30 Companies x 3 Jahre = 90 Rows."
     columns:
+      - name: ingestion_id
+        description: "UUID pro Ingestion-Run (aus Raw)"
+        tests:
+          - not_null
+      - name: ingestion_timestamp
+        description: "Zeitpunkt des Ingestion-Runs (UTC, aus Raw)"
+        tests:
+          - not_null
+      - name: source_file_hash
+        description: "SHA-256 der Quelldatei (aus Raw, fuer Lineage)"
+        tests:
+          - not_null
+      - name: company_id
+        description: "Fachlicher Identifier des Unternehmens"
+        tests:
+          - not_null
       - name: company_name
+        description: "Anzeigename des Unternehmens"
         tests:
           - not_null
       - name: isin
+        description: "ISIN (12-stellig)"
         tests:
           - not_null
-          - unique
+      - name: reporting_year
+        description: "Berichtsjahr"
+        tests:
+          - not_null
+      - name: scope_1_tco2e
+        description: "Scope 1 Emissionen in tCO2e (kann null sein)"
+      - name: scope_1_unit
+        description: "Einheit der Scope-1-Werte (Konsistenzfeld)"
+        tests:
+          - accepted_values:
+              values: ['tCO2e']
+      - name: scope_2_location_tco2e
+        description: "Scope 2 Emissionen, Location-based (kann null sein)"
+      - name: scope_2_market_tco2e
+        description: "Scope 2 Emissionen, Market-based (kann null sein)"
+      - name: scope_3_total_tco2e
+        description: "Scope 3 Total-Emissionen (haeufig null)"
 
   - name: stg_fondspreise
     description: "Staging fuer Fondspreis-Zeitreihen: JSON expandiert, Typen casted, Spaltennamen harmonisiert."
