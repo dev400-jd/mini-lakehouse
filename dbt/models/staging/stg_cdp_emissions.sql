@@ -1,3 +1,14 @@
+-- TEMPORAER DEAKTIVIERT in AP-10:
+-- Diese Staging-Logik bezieht sich auf das alte Source-Schema
+-- (strukturierte Spalten). Mit AP-10 wurde die Source auf File-level
+-- Raw umgestellt (raw_payload als String). AP-11 wird dieses Modell
+-- auf CSV-Expand via split(raw_payload, chr(10)) umschreiben.
+
+{{ config(
+    enabled=false,
+    materialized='table'
+) }}
+
 -- CDP-Daten bereinigen: Strings -> typisiert, NULLs behandeln, normalisieren
 -- Spaltennamen mit Leerzeichen/Sonderzeichen muessen gequotet werden (Iceberg via Trino)
 

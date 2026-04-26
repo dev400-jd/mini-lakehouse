@@ -6,9 +6,81 @@ sources:
     schema: raw
     tables:
       - name: cdp_emissions
-        description: "CDP Scope 1+2 Emissionsdaten — alles als String, unbereinigt"
+        description: "CDP-Emissions-Daten als File-level Raw. Ein Row pro geladener CSV-Datei mit vollstaendiger Provenance. Parsing erfolgt in Staging."
+        columns:
+          - name: ingestion_id
+            description: "UUID pro Ingestion-Run"
+            tests:
+              - not_null
+          - name: ingestion_timestamp
+            description: "Zeitpunkt des Ingestion-Runs (UTC)"
+            tests:
+              - not_null
+          - name: source_system
+            description: "Konstant 'cdp'"
+            tests:
+              - not_null
+          - name: source_version
+            description: "Manuell gesetzt beim Ingest, Default 'v1'"
+          - name: source_file_path
+            description: "Absoluter Pfad der geladenen Datei"
+          - name: source_file_hash
+            description: "SHA-256 der geladenen Quelldatei (verifizierbar gegen raw_payload)"
+            tests:
+              - not_null
+          - name: source_file_size_bytes
+            description: "Groesse der Quelldatei in Bytes"
+            tests:
+              - not_null
+          - name: source_file_format
+            description: "Konstant 'csv' — explizite Format-Markierung fuer Staging-Disambiguierung"
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['csv']
+          - name: raw_payload
+            description: "Kompletter CSV-Inhalt einschliesslich Header-Zeile, byte-identisch zum Original"
+            tests:
+              - not_null
+
       - name: nzdpu_emissions
-        description: "NZDPU Emissionsdaten aus JSON-API — typisiert durch Spark"
+        description: "NZDPU-Emissions-Daten als File-level Raw. Ein Row pro geladener JSON-Datei mit vollstaendiger Provenance. JSON-Expand erfolgt in Staging."
+        columns:
+          - name: ingestion_id
+            description: "UUID pro Ingestion-Run"
+            tests:
+              - not_null
+          - name: ingestion_timestamp
+            description: "Zeitpunkt des Ingestion-Runs (UTC)"
+            tests:
+              - not_null
+          - name: source_system
+            description: "Aus dem JSON-Wrapper-Feld 'source' abgeleitet (z.B. 'nzdpu_fallback'); Fallback 'nzdpu'"
+            tests:
+              - not_null
+          - name: source_version
+            description: "Manuell gesetzt beim Ingest (NZDPU-Wrapper enthaelt keine Version), Default 'v1'"
+          - name: source_file_path
+            description: "Absoluter Pfad der geladenen Datei"
+          - name: source_file_hash
+            description: "SHA-256 der geladenen Quelldatei (verifizierbar gegen raw_payload)"
+            tests:
+              - not_null
+          - name: source_file_size_bytes
+            description: "Groesse der Quelldatei in Bytes"
+            tests:
+              - not_null
+          - name: source_file_format
+            description: "Konstant 'json' — explizite Format-Markierung fuer Staging-Disambiguierung"
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['json']
+          - name: raw_payload
+            description: "Komplettes JSON-Wrapper-Objekt einschliesslich data-Array, byte-identisch zum Original"
+            tests:
+              - not_null
+
       - name: fund_master
         description: "Deka Fondsstammdaten — 10 Fonds"
       - name: fund_positions

@@ -1,3 +1,13 @@
+-- TEMPORAER DEAKTIVIERT in AP-10:
+-- Dieses Modell bezieht sich auf die deaktivierten Staging-Modelle
+-- (stg_cdp_emissions, stg_nzdpu_emissions) und wird in AP-12
+-- reaktiviert, sobald Staging neu gebaut ist.
+
+{{ config(
+    enabled=false,
+    materialized='table'
+) }}
+
 -- Beide ESG-Quellen (CDP + NZDPU) vereinigt und dedupliziert
 -- Bei Duplikaten (gleiche ISIN + gleicher Reporting Year) wird NZDPU bevorzugt
 -- weil NZDPU detailliertere Daten liefert (LEI, Verification Status)

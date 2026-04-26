@@ -1,3 +1,15 @@
+-- TEMPORAER DEAKTIVIERT in AP-10:
+-- Diese Staging-Logik bezieht sich auf das alte Source-Schema
+-- (strukturierte Spalten via Spark-Ingestion aus JSON). Mit AP-10
+-- wurde die Source auf File-level Raw umgestellt (raw_payload als
+-- String). AP-11 wird dieses Modell auf doppelten JSON-UNNEST
+-- (data[] x reporting_periods[]) umschreiben.
+
+{{ config(
+    enabled=false,
+    materialized='table'
+) }}
+
 -- NZDPU-Daten normalisieren auf das gleiche Schema wie CDP
 -- Felder sind bereits typisiert (Spark-Ingestion aus JSON)
 
