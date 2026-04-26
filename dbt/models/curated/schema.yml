@@ -1,11 +1,70 @@
 version: 2
 
 models:
-  - name: curated_esg_emissions
-    description: "ESG-Emissionen vereinigt aus CDP + NZDPU, dedupliziert nach ISIN + Jahr"
+  - name: curated_companies
+    description: "Curated Stammdaten pro ISIN. UNION ueber NZDPU + CDP mit Source-Priorisierung (NZDPU bevorzugt, weil dort LEI vorhanden)."
     columns:
       - name: isin
-        description: "ISIN — kann NULL sein bei CDP-Eintraegen ohne ISIN"
-      - name: scope_1_tco2e
+        description: "ISIN als eindeutiger Schluessel, harmonisiert via standardize_isin"
         tests:
           - not_null
+          - unique
+      - name: company_name
+        description: "Unternehmensname (aus bevorzugter Quelle)"
+        tests:
+          - not_null
+      - name: lei
+        description: "Legal Entity Identifier (nur fuer NZDPU-priorisierte Records gefuellt)"
+      - name: country
+        description: "Sitzland"
+      - name: primary_sector
+        description: "Sektor, harmonisiert via harmonize_sector Macro"
+      - name: preferred_source
+        description: "Welche Quelle den Stammdaten-Record geliefert hat"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['nzdpu', 'cdp']
+
+  - name: curated_esg_emissions
+    description: "Curated Emissionen pro (ISIN, reporting_year, source_system). Beide Quellen separat erhalten fuer transparenten Cross-Source-Vergleich; ISIN-NULL-Records ausgefiltert."
+    columns:
+      - name: isin
+        description: "ISIN, gefiltert auf NOT NULL, harmonisiert via standardize_isin"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('curated_companies')
+              field: isin
+      - name: reporting_year
+        description: "Berichtsjahr"
+        tests:
+          - not_null
+      - name: source_system
+        description: "Welche Quelle (nzdpu oder cdp)"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['nzdpu', 'cdp']
+      - name: scope_1_tco2e
+        description: "Scope 1 Emissionen in tCO2e (DECIMAL 18.3)"
+      - name: scope_2_location_tco2e
+        description: "Scope 2 Location-Based in tCO2e (DECIMAL 18.3)"
+      - name: scope_2_market_tco2e
+        description: "Scope 2 Market-Based in tCO2e (DECIMAL 18.3)"
+      - name: scope_3_total_tco2e
+        description: "Scope 3 Total in tCO2e (DECIMAL 18.3)"
+      - name: ingestion_timestamp
+        description: "Provenance: Ingestion-Zeitpunkt"
+        tests:
+          - not_null
+      - name: source_file_hash
+        description: "Provenance: SHA-256 der Quelldatei"
+        tests:
+          - not_null
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - isin
+            - reporting_year
+            - source_system
