@@ -2,22 +2,46 @@ version: 2
 
 models:
   - name: stg_cdp_emissions
-    description: "CDP-Emissionen bereinigt: Strings -> Typen, leere Strings -> NULL"
+    description: "Staging fuer CDP-Emissionen: CSV-Expand mit Header-Skip, leere Werte als NULL, Numerik defensiv via TRY_CAST gecastet, Provenance durchgereicht. 100 Rows."
     columns:
-      - name: company_name
+      - name: ingestion_id
+        description: "UUID pro Ingestion-Run (aus Raw)"
         tests:
           - not_null
-      - name: reporting_year
+      - name: ingestion_timestamp
+        description: "Zeitpunkt des Ingestion-Runs (UTC, aus Raw)"
+        tests:
+          - not_null
+      - name: source_file_hash
+        description: "SHA-256 der Quelldatei (aus Raw, fuer Lineage)"
+        tests:
+          - not_null
+      - name: row_number
+        description: "Zeilennummer im Source-File (Header = Zeile 1, erste Datenzeile = 2)"
+        tests:
+          - not_null
+      - name: account_number
+        description: "Fachlicher Identifier von CDP (Wert-Form: CDP-<ISIN>-<Year>)"
         tests:
           - not_null
       - name: isin
-        description: "ISIN — WIRD FEHLSCHLAGEN: CDP hat Eintraege ohne ISIN"
+        description: "ISIN, kann NULL sein (40% der CDP-Records haben keine ISIN)"
+      - name: reporting_year
+        description: "Berichtsjahr"
         tests:
           - not_null
       - name: scope_1_tco2e
-        description: "Scope 1 in tCO2e — KÖNNTE FEHLSCHLAGEN: CDP hat fehlende Werte"
-        tests:
-          - not_null
+        description: "Scope 1 in tCO2e, kann NULL sein"
+      - name: scope_2_location_tco2e
+        description: "Scope 2 Location-Based in tCO2e"
+      - name: scope_2_market_tco2e
+        description: "Scope 2 Market-Based in tCO2e"
+      - name: scope_3_total_tco2e
+        description: "Scope 3 Total in tCO2e"
+      - name: emission_unit
+        description: "Einheit des Emission-Werts; mixed im Source ('metric tons CO2e' vs. 'tonnes CO2')"
+      - name: cdp_score
+        description: "CDP-Bewertung (A bis D)"
 
   - name: stg_nzdpu_emissions
     description: "Staging fuer NZDPU-Emissionen: doppelter JSON-Expand ueber data[] -> reporting_periods[], Scope-Werte typkonvertiert, Provenance durchgereicht. 30 Companies x 3 Jahre = 90 Rows."
