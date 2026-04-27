@@ -178,10 +178,7 @@ WHERE json_extract_scalar(rec, '$.isin') = 'DE000A1JX0V2'
 ### Befehl/Query
 
 ```bash
-docker compose exec spark-master spark-submit \
-    /scripts/ingest-fondspreise.py \
-    --file /data/sample/fondspreise_load2_correction.json \
-    --ingestion-timestamp 2026-04-20T14:37:00Z
+docker compose exec spark-master spark-submit /scripts/ingest-fondspreise.py --file /data/sample/fondspreise_load2_correction.json --ingestion-timestamp 2026-04-22T14:37:00Z
 ```
 
 Direkt danach kurz in CloudBeaver pruefen:
@@ -346,11 +343,18 @@ In VS Code: `dbt/snapshots/snp_fondspreise_scd2.sql` oeffnen
 besonders `unique_key=['isin','business_date']` und
 `check_cols=['nav','currency']`.
 
-Falls der Snapshot noch nicht ueber Load 2 lief (sollte aber, weil
-`reset-demo1.sh` ihn gebaut hat — nach Station 3 muss er aber neu
-laufen):
+**Wichtig:** Nach Load 2 muss zuerst Staging refreshed werden,
+**dann** der Snapshot — sonst arbeitet `dbt snapshot` mit
+veralteten Staging-Daten und sieht die Korrektur nicht.
 
 ```bash
+# 1. Staging neu bauen — zieht jetzt beide Loads
+docker compose exec jupyter bash -c \
+    "cd /home/jovyan/dbt && dbt run --select stg_fondspreise"
+```
+
+```bash
+# 2. Snapshot laufen lassen — vergleicht Staging mit alter Snapshot-Version
 docker compose exec jupyter bash -c \
     "cd /home/jovyan/dbt && dbt snapshot --select snp_fondspreise_scd2"
 ```
@@ -385,9 +389,15 @@ Zwei Zeilen:
 
 ### Was-wenn
 
-- *Nur eine Zeile sichtbar / beide mit `dbt_valid_to = NULL`:*
-  `dbt snapshot` ist noch nicht ueber Load 2 gelaufen — den
-  Snapshot-Befehl oben ausfuehren, danach Query wiederholen.
+- *Nur eine Zeile sichtbar:* Staging wurde noch nicht refreshed.
+  Beide Befehle oben in der Reihenfolge `dbt run` -> `dbt snapshot`
+  ausfuehren.
+- *Beide Zeilen mit `dbt_valid_to = NULL`:* `dbt snapshot` lief vor
+  dem Staging-Refresh — selbe Reihenfolge nochmal ausfuehren, dann
+  Query wiederholen.
+- *Snapshot meldet 0 Aenderungen:* heisst `stg_fondspreise` zeigt
+  noch den alten Stand. Erst `dbt run --select stg_fondspreise`,
+  dann erneut `dbt snapshot`.
 - *VS Code findet die Datei nicht:* `Ctrl+P` ->
   `snp_fondspreise_scd2`.
 
@@ -538,6 +548,11 @@ SELECT COUNT(*) FROM nessie.raw.fondspreise FOR VERSION AS OF <SNAP2>;
 ### Station 6 — SCD2
 
 ```bash
+# 1. Staging refreshen — Pflicht nach Load 2
+docker compose exec jupyter bash -c \
+    "cd /home/jovyan/dbt && dbt run --select stg_fondspreise"
+
+# 2. Erst dann Snapshot
 docker compose exec jupyter bash -c \
     "cd /home/jovyan/dbt && dbt snapshot --select snp_fondspreise_scd2"
 ```
@@ -580,5 +595,5 @@ ORDER BY dbt_valid_from;
 | Time-Travel-Query: "snapshot not found"    | Snapshot-ID neu aus Station 4 kopieren         |
 | spark-submit faellt mit Path-Fehler        | `MSYS_NO_PATHCONV=1` voranstellen / PowerShell |
 | CloudBeaver verbindet nicht                | Connection rechtsklick -> Invalidate           |
-| `dbt snapshot` zeigt 0 Aenderungen         | Stand ist schon aktuell, kein Bug              |
-| SCD2-Query zeigt nur 1 Zeile               | `dbt snapshot` aus Station 6 ausfuehren        |
+| `dbt snapshot` zeigt 0 Aenderungen         | Staging nicht refreshed — erst `dbt run --select stg_fondspreise`, dann erneut `dbt snapshot` |
+| SCD2-Query zeigt nur 1 Zeile               | Reihenfolge aus Station 6: erst `dbt run stg_fondspreise`, dann `dbt snapshot` |
