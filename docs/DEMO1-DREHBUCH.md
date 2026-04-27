@@ -349,14 +349,12 @@ veralteten Staging-Daten und sieht die Korrektur nicht.
 
 ```bash
 # 1. Staging neu bauen — zieht jetzt beide Loads
-docker compose exec jupyter bash -c \
-    "cd /home/jovyan/dbt && dbt run --select stg_fondspreise"
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt run --select stg_fondspreise"
 ```
 
 ```bash
 # 2. Snapshot laufen lassen — vergleicht Staging mit alter Snapshot-Version
-docker compose exec jupyter bash -c \
-    "cd /home/jovyan/dbt && dbt snapshot --select snp_fondspreise_scd2"
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt snapshot --select snp_fondspreise_scd2"
 ```
 
 In CloudBeaver:
@@ -518,10 +516,7 @@ WHERE json_extract_scalar(rec, '$.isin') = 'DE000A1JX0V2'
 ### Station 3 — Korrektur-Load
 
 ```bash
-docker compose exec spark-master spark-submit \
-    /scripts/ingest-fondspreise.py \
-    --file /data/sample/fondspreise_load2_correction.json \
-    --ingestion-timestamp 2026-04-20T14:37:00Z
+docker compose exec spark-master spark-submit /scripts/ingest-fondspreise.py --file /data/sample/fondspreise_load2_correction.json --ingestion-timestamp 2026-04-20T14:37:00Z
 ```
 
 ```sql
@@ -549,12 +544,10 @@ SELECT COUNT(*) FROM nessie.raw.fondspreise FOR VERSION AS OF <SNAP2>;
 
 ```bash
 # 1. Staging refreshen — Pflicht nach Load 2
-docker compose exec jupyter bash -c \
-    "cd /home/jovyan/dbt && dbt run --select stg_fondspreise"
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt run --select stg_fondspreise"
 
 # 2. Erst dann Snapshot
-docker compose exec jupyter bash -c \
-    "cd /home/jovyan/dbt && dbt snapshot --select snp_fondspreise_scd2"
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt snapshot --select snp_fondspreise_scd2"
 ```
 
 ```sql
