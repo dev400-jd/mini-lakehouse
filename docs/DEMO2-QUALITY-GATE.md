@@ -31,11 +31,19 @@ dem offiziellen `trino`-Python-Client.
 
 Nach jedem `dbt run --select curated`:
 
+**PowerShell:**
+
 ```powershell
 # Variante 1: Python API (robust gegen Console-Encoding-Probleme unter Windows)
 uv run python -c "import great_expectations as gx; r = gx.get_context(context_root_dir='great_expectations').run_checkpoint(checkpoint_name='curated_esg_checkpoint'); raise SystemExit(0 if r.success else 1)"
 
-# Variante 2: GE CLI (kann unter Windows mit cp1252-Console an Unicode-Symbolen scheitern)
+# Variante 2: GE CLI (PowerShell setzt PYTHONIOENCODING per $env: vor dem Aufruf)
+$env:PYTHONIOENCODING = "utf-8"; uv run great_expectations checkpoint run curated_esg_checkpoint
+```
+
+**Git Bash / WSL:**
+
+```bash
 PYTHONIOENCODING=utf-8 uv run great_expectations checkpoint run curated_esg_checkpoint
 ```
 
@@ -134,13 +142,26 @@ auf. GE laeuft lokal (uv-Venv).
 
 ### Aufruf
 
+**PowerShell:**
+
 ```powershell
+# Einmalig pro Session: Encoding fuer Python auf UTF-8 setzen
+$env:PYTHONIOENCODING = "utf-8"
+
 # Standard-Pfad (alle drei Phasen)
-PYTHONIOENCODING=utf-8 uv run python scripts/promote-trusted-esg.py
+uv run python scripts/promote-trusted-esg.py
 
 # Phase 1 ueberspringen (z.B. nach manueller Curated-Manipulation
 # fuer den Demo-Roten-Pfad — sonst wuerde der Refresh die
 # Manipulation ueberschreiben)
+uv run python scripts/promote-trusted-esg.py --skip-curated-refresh
+```
+
+**Git Bash / WSL:**
+
+```bash
+# In ~/.bashrc empfohlen: export PYTHONIOENCODING=utf-8
+PYTHONIOENCODING=utf-8 uv run python scripts/promote-trusted-esg.py
 PYTHONIOENCODING=utf-8 uv run python scripts/promote-trusted-esg.py --skip-curated-refresh
 ```
 
@@ -157,7 +178,8 @@ PYTHONIOENCODING=utf-8 uv run python scripts/promote-trusted-esg.py --skip-curat
 **Szenario A — Gruener Pfad (Standard):**
 
 ```powershell
-PYTHONIOENCODING=utf-8 uv run python scripts/promote-trusted-esg.py
+$env:PYTHONIOENCODING = "utf-8"
+uv run python scripts/promote-trusted-esg.py
 ```
 
 Output zeigt:
@@ -188,7 +210,8 @@ Skript mit `--skip-curated-refresh` aufrufen, damit der Curated-
 Rebuild die Manipulation nicht wieder ueberschreibt:
 
 ```powershell
-PYTHONIOENCODING=utf-8 uv run python scripts/promote-trusted-esg.py --skip-curated-refresh
+$env:PYTHONIOENCODING = "utf-8"
+uv run python scripts/promote-trusted-esg.py --skip-curated-refresh
 ```
 
 Output zeigt:
@@ -214,10 +237,16 @@ Anschliessend laeuft der Standard-Pfad wieder gruen durch.
 ### Troubleshooting
 
 - **`UnicodeEncodeError` beim Skript-Aufruf**: Windows-Terminal
-  setzt cp1252 als stdout-Encoding. Workaround: `PYTHONIOENCODING=utf-8`
-  voranstellen (oder einmalig in `~/.bashrc` exportieren). Das Skript
-  setzt den UTF-8-Wrapper zusaetzlich selbst, falls die Variable
-  nicht gesetzt ist.
+  setzt cp1252 als stdout-Encoding. Workaround:
+  - PowerShell: `$env:PYTHONIOENCODING = "utf-8"` vor dem Aufruf
+    (gilt fuer die aktuelle Session; persistent ueber
+    `[Environment]::SetEnvironmentVariable("PYTHONIOENCODING","utf-8","User")`).
+  - Git Bash / WSL: `export PYTHONIOENCODING=utf-8` in `~/.bashrc`.
+  - **Bash-Inline-Form (`PYTHONIOENCODING=utf-8 uv run ...`) funktioniert
+    in PowerShell NICHT** — PowerShell interpretiert die Form als
+    Befehlsname und scheitert mit `CommandNotFoundException`.
+  Das Skript setzt den UTF-8-Wrapper zusaetzlich selbst, falls die
+  Variable nicht gesetzt ist.
 - **`docker compose exec: not running`**: Stack starten mit
   `docker compose up -d`.
 - **GE-Checkpoint-Exception ("table does not exist")**: Curated-
