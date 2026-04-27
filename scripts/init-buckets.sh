@@ -11,7 +11,7 @@ ALIAS="lakehouse"
 echo ">>> Setze mc alias..."
 mc alias set "${ALIAS}" "${MINIO_ENDPOINT}" "${MINIO_ROOT_USER}" "${MINIO_ROOT_PASSWORD}"
 
-for BUCKET in "${S3_BUCKET_RAW}" "${S3_BUCKET_STAGING}" "${S3_BUCKET_CURATED}" "${S3_BUCKET_WAREHOUSE}"; do
+for BUCKET in "${S3_BUCKET_RAW}" "${S3_BUCKET_STAGING}" "${S3_BUCKET_CURATED}" "${S3_BUCKET_TRUSTED}" "${S3_BUCKET_WAREHOUSE}"; do
   mc mb --ignore-existing "${ALIAS}/${BUCKET}"
   echo ">>> Bucket bereit: ${BUCKET}"
 done

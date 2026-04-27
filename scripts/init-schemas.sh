@@ -22,4 +22,7 @@ echo ">>> Schema staging -> s3a://staging/"
 run_sql "CREATE SCHEMA IF NOT EXISTS nessie.curated WITH (location = 's3a://curated/')"
 echo ">>> Schema curated -> s3a://curated/"
 
+run_sql "CREATE SCHEMA IF NOT EXISTS nessie.trusted WITH (location = 's3a://trusted/')"
+echo ">>> Schema trusted -> s3a://trusted/"
+
 echo ">>> Alle Schemas angelegt."

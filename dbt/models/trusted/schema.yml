@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: trusted_esg_emissions
+    description: "Trusted ESG Emissions: fachlich freigegebenes Endprodukt der Pipeline. Promotion aus Curated nur nach gruenem Quality Gate (Great Expectations). Tests sind strikter als in Curated — z.B. not_null auf scope_1_tco2e."
+    columns:
+      - name: isin
+        description: "ISIN, in Trusted garantiert nicht null"
+        tests:
+          - not_null
+      - name: reporting_year
+        description: "Berichtsjahr"
+        tests:
+          - not_null
+      - name: source_system
+        description: "Welche Quelle (nzdpu oder cdp)"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['nzdpu', 'cdp']
+      - name: scope_1_tco2e
+        description: "Scope 1 in tCO2e — in Trusted garantiert nicht null und im plausiblen Bereich"
+        tests:
+          - not_null
+      - name: ingestion_id
+        description: "Provenance: UUID der Ingestion"
+        tests:
+          - not_null
+      - name: ingestion_timestamp
+        description: "Provenance: Zeitpunkt der Ingestion"
+        tests:
+          - not_null
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - isin
+            - reporting_year
+            - source_system
