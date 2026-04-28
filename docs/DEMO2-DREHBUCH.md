@@ -204,6 +204,14 @@ WHERE isin = 'DE0007236101'
 ORDER BY reporting_year;
 ```
 
+Optional, dbt-Tests gegen NZDPU-Staging (zeigt `accepted_values` auf
+`scope_1_unit = 'tCO2e'`, `not_null` auf Provenance + `isin` +
+`reporting_year`):
+
+```bash
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt test --select stg_nzdpu_emissions"
+```
+
 ### Erwartung
 
 - Count-Query: `total_rows = 90`, `distinct_isins = 30`.
@@ -256,6 +264,15 @@ SELECT emission_unit, COUNT(*) AS n
 FROM nessie.staging.stg_cdp_emissions
 GROUP BY emission_unit
 ORDER BY n DESC;
+```
+
+Optional, dbt-Tests gegen CDP-Staging (zeigt `not_null` auf
+`account_number`, `reporting_year`, Provenance — **bewusst kein**
+`not_null` auf `isin` oder `scope_1_tco2e`, weil diese Luecken
+fachlich erwartet sind):
+
+```bash
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt test --select stg_cdp_emissions"
 ```
 
 ### Erwartung
@@ -314,10 +331,21 @@ ORDER BY source_system;
 SELECT COUNT(*) AS companies FROM nessie.curated.curated_companies;
 ```
 
+Optional, dbt-Tests gegen Curated (didaktischer Hoehepunkt: der
+`relationships`-Test pruefte, dass jede ISIN aus `curated_esg_emissions`
+einen Eintrag in `curated_companies` hat):
+
+```bash
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt test --select curated_companies curated_esg_emissions"
+```
+
 ### Erwartung
 
 - Erste Query: `cdp = 60`, `nzdpu = 90`. Summe 150.
 - Zweite Query: `companies = 30`.
+- Optional dbt-Tests: 13/13 PASS — inklusive `relationships`,
+  `unique` auf `curated_companies.isin`, `unique_combination_of_columns`
+  auf `(isin, reporting_year, source_system)`.
 
 ### Sprech-Anker
 
@@ -433,6 +461,16 @@ Direkt danach in CloudBeaver:
 
 ```sql
 SELECT COUNT(*) AS rows FROM nessie.trusted.trusted_esg_emissions;
+```
+
+Optional dbt-Test gegen Trusted (zeigt 6 Failures auf
+`not_null_trusted_esg_emissions_scope_1_tco2e` — bewusst rot, weil
+Trusted strenger ist als Curated. Der Hebel der Demo: das **externe**
+Quality Gate ist die Pflicht-Pruefung **vor** der Promotion, dbt-Test
+ist die zusaetzliche Sicht **nach** dem Build):
+
+```bash
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt test --select trusted_esg_emissions"
 ```
 
 ### Erwartung
@@ -763,6 +801,23 @@ Cleanup (Pflicht!):
 ```sql
 DELETE FROM nessie.curated.curated_esg_emissions
 WHERE source_system = 'manipulation';
+```
+
+### dbt-Tests pro Layer
+
+```bash
+# Staging
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt test --select stg_nzdpu_emissions"
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt test --select stg_cdp_emissions"
+
+# Curated (inkl. relationships-Test)
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt test --select curated_companies curated_esg_emissions"
+
+# Trusted (zeigt 6 erwartete Failures auf not_null scope_1_tco2e)
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt test --select trusted_esg_emissions"
+
+# Alles auf einmal
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt test --select stg_nzdpu_emissions stg_cdp_emissions curated_companies curated_esg_emissions trusted_esg_emissions"
 ```
 
 ### State-Machine fuer Resets

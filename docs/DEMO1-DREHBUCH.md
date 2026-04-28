@@ -357,6 +357,14 @@ docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt run --select stg
 docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt snapshot --select snp_fondspreise_scd2"
 ```
 
+Optional, dbt-Tests gegen den Snapshot (zeigt: Eindeutigkeit von
+`dbt_scd_id`, `not_null` auf Schluesseln, `unique_combination_of_columns`
+auf `(isin, business_date)` fuer aktuell-gueltige Rows):
+
+```bash
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt test --select snp_fondspreise_scd2"
+```
+
 In CloudBeaver:
 
 ```sql
@@ -548,6 +556,15 @@ docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt run --select stg
 
 # 2. Erst dann Snapshot
 docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt snapshot --select snp_fondspreise_scd2"
+
+# 3. Optional: Tests gegen Snapshot
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt test --select snp_fondspreise_scd2"
+```
+
+Optional Source-Tests zu Station 2:
+
+```bash
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt test --select source:raw.fondspreise"
 ```
 
 ```sql
