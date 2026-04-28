@@ -516,32 +516,47 @@ was passiert."
 
 - **Dauer:** 4 Minuten
 - **Bildschirm:** CloudBeaver -> Terminal -> CloudBeaver -> (optional Browser)
-- **Was passiert:** In CloudBeaver einen INSERT in
-  `curated_esg_emissions` mit unbekanntem `source_system = 'manipulation'` —
-  das verletzt `expect_column_values_to_be_in_set`. Im Terminal das
-  Promotion-Skript mit `--skip-curated-refresh` (sonst wuerde Phase 1
-  die Manipulation ueberschreiben). GE wird rot, Phase 3 nicht ausgefuehrt,
-  Trusted bleibt unveraendert. Optional Browser: Data Docs HTML zeigt den
-  Befund. Aufraeumen sofort danach.
+- **Was passiert:** In CloudBeaver einen Multi-Row-INSERT in
+  `curated_esg_emissions` mit 8 plausibel-aussehenden Records, die
+  einzeln **alle dbt-Tests passieren** wuerden — aber zusammen das
+  GE-Verhaeltnis kippen. `dbt test` bleibt gruen, GE faellt rot bei
+  `expect_column_values_to_be_between` (mostly=0.95 — ab 5% Anteil
+  out-of-range schlaegt der Test an). Im Terminal das Promotion-Skript
+  mit `--skip-curated-refresh` (sonst wuerde Phase 1 die Manipulation
+  ueberschreiben). GE rot, Phase 3 nicht ausgefuehrt, Trusted bleibt
+  unveraendert. Optional Browser: Data Docs HTML zeigt den Befund.
+  Aufraeumen sofort danach.
 
 ### Befehl/Query
 
-In CloudBeaver — Manipulation einfuegen:
+In CloudBeaver — 8 plausibel-aussehende Records einfuegen, die einzeln
+dbt-konform sind (existierende ISIN, akzeptiertes `source_system`,
+neue Jahres-Tupel, alle Pflichtspalten gefuellt). In Summe kippen sie
+das `mostly=0.95`-Verhaeltnis von `scope_1_tco2e between 0..100M`:
 
 ```sql
 INSERT INTO nessie.curated.curated_esg_emissions
 (isin, reporting_year, source_system,
  scope_1_tco2e, scope_2_location_tco2e, scope_2_market_tco2e, scope_3_total_tco2e,
  verification, ingestion_id, ingestion_timestamp, source_file_hash)
-VALUES (
- 'DE0007236101', 2099, 'manipulation',
- DECIMAL '5000000000.000', NULL, NULL, NULL,
- 'manual_demo_violation',
- 'demo-violation-uuid',
- TIMESTAMP '2026-04-27 12:00:00',
- 'sha256:demo'
-);
+VALUES
+('DE0007236101', 2030, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo'),
+('DE0007236101', 2031, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo'),
+('DE0007236101', 2032, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo'),
+('DE0007236101', 2033, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo'),
+('DE0007236101', 2034, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo'),
+('DE0007236101', 2035, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo'),
+('DE0007236101', 2036, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo'),
+('DE0007236101', 2037, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo');
 ```
+
+Optional Zwischenschritt — zeigt dass dbt-Tests gruen bleiben:
+
+```bash
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt test --select curated_esg_emissions"
+```
+
+Erwartung: **PASS=8/8** — keine einzelne Test-Regel ist verletzt.
 
 Im Terminal:
 
@@ -568,7 +583,7 @@ file:///C:/Users/dev400/mini-lakehouse/great_expectations/uncommitted/data_docs/
 
 ```sql
 DELETE FROM nessie.curated.curated_esg_emissions
-WHERE source_system = 'manipulation';
+WHERE ingestion_id = 'demo-ge-violation';
 ```
 
 ### Erwartung
@@ -587,21 +602,31 @@ CloudBeaver-Query: `rows = 150` (Trusted unveraendert vom gruenen Lauf
 in Station 7 — die Manipulation hat es nicht durchgeschafft).
 
 Optional Browser: Data Docs zeigt eine FAIL-Zeile bei
-`expect_column_values_to_be_in_set` mit `unexpected_value: manipulation`.
+`expect_column_values_to_be_between` auf `scope_1_tco2e` —
+`unexpected_count: 8`, `unexpected_percent: 5.26%`. Die `mostly=0.95`-
+Schwelle wurde knapp ueberschritten.
 
 ### Sprech-Anker
 
-> "Quality Gate funktioniert wie ein Tuersteher — problematische Daten
-> kommen nicht in Trusted. Curated darf den Befund zeigen, Trusted
-> bleibt sauber, und die Promotion-Kette steht still bis das Problem
-> behoben ist."
+> "dbt-Tests pruefen jede Zeile fuer sich — ISIN, Wertebereich,
+> Eindeutigkeit. Great Expectations prueft das **Verhaeltnis** im
+> Datensatz: zu viele Werte ausserhalb der Plausibilitaets-Bandbreite.
+> Beide Sichten zusammen sind das Quality Gate — und genau diese
+> Mehrheits-Sicht ist der Grund, warum wir GE als externes Gate
+> brauchen."
 
 ### Was-wenn
 
 - *INSERT scheitert mit Schema-Fehler:* Spalten-Reihenfolge stimmt
   nicht — kompletter INSERT inkl. Spalten-Liste verwenden (oben).
+- *GE bleibt trotz INSERT gruen:* zu wenige Violation-Rows. 8 ist die
+  Mindestmenge bei 144 nicht-NULL-Werten — weniger Rows kippen die
+  `mostly=0.95`-Schwelle nicht (1/145 = 99.3% in-range > 95%).
+- *dbt test schlaegt fehl:* eine ISIN- oder Year-Kollision. Pruefen
+  ob die 8 (year, source)-Tupel wirklich neu sind — Cleanup, dann
+  INSERT erneut.
 - *Skript laeuft trotzdem in Phase 3:* `--skip-curated-refresh`-Flag
-  vergessen? Wenn Phase 1 lief, wurde der Manipulations-Record
+  vergessen? Wenn Phase 1 lief, wurde der Demo-Record-Block
   ueberschrieben — INSERT erneut.
 - *Data Docs HTML existiert nicht:* in einem fruehen Lauf wurde
   `build_data_docs()` noch nicht aufgerufen. Skript triggert es ueber
@@ -660,7 +685,7 @@ Wechsel zur Folie 13 (oder was nach Demo 2 kommt).
 - Falls Demo 2 ohne Aufraeumen abgeschlossen wurde:
   ```sql
   DELETE FROM nessie.curated.curated_esg_emissions
-  WHERE source_system = 'manipulation';
+  WHERE ingestion_id = 'demo-ge-violation';
   ```
 
 **Demo musste mittendrin abgebrochen werden:**
@@ -769,12 +794,26 @@ SELECT COUNT(*) FROM nessie.trusted.trusted_esg_emissions;     -- 150
 
 ### Station 8 — Roter Lauf (mit Cleanup)
 
-INSERT (Manipulation):
+INSERT (8-Row Multi-Row, dbt-konform aber GE-violierend):
 
 ```sql
 INSERT INTO nessie.curated.curated_esg_emissions
 (isin, reporting_year, source_system, scope_1_tco2e, scope_2_location_tco2e, scope_2_market_tco2e, scope_3_total_tco2e, verification, ingestion_id, ingestion_timestamp, source_file_hash)
-VALUES ('DE0007236101', 2099, 'manipulation', DECIMAL '5000000000.000', NULL, NULL, NULL, 'manual_demo_violation', 'demo-violation-uuid', TIMESTAMP '2026-04-27 12:00:00', 'sha256:demo');
+VALUES
+('DE0007236101', 2030, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo'),
+('DE0007236101', 2031, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo'),
+('DE0007236101', 2032, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo'),
+('DE0007236101', 2033, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo'),
+('DE0007236101', 2034, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo'),
+('DE0007236101', 2035, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo'),
+('DE0007236101', 2036, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo'),
+('DE0007236101', 2037, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo');
+```
+
+dbt-Test-Check (zeigt 8/8 PASS):
+
+```bash
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt test --select curated_esg_emissions"
 ```
 
 PowerShell:
@@ -800,7 +839,7 @@ Cleanup (Pflicht!):
 
 ```sql
 DELETE FROM nessie.curated.curated_esg_emissions
-WHERE source_system = 'manipulation';
+WHERE ingestion_id = 'demo-ge-violation';
 ```
 
 ### dbt-Tests pro Layer
@@ -878,9 +917,12 @@ docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt test --select st
 5. `expect_column_values_to_be_between` — `scope_1_tco2e` 0..100M, mostly 0.95
 6. `expect_compound_columns_to_be_unique` — `(isin, reporting_year, source_system)`
 
-Manipulation in Station 8 verletzt #4 (`source_system = 'manipulation'`)
-und #2/#3 fuer die ISIN-Plausibilitaet — die Suite faellt mit
-mindestens einer FAIL-Zeile.
+Manipulation in Station 8 verletzt **#5** (`expect_column_values_to_be_between`):
+8 Records mit `scope_1_tco2e = 500 000 000` (ueber dem 100M-Limit) bei
+144 vorhandenen non-NULL-Werten in Range. Anteil out-of-range: 8/152
+= 5.26 %, gerade ueber der `mostly=0.95`-Schwelle. **dbt-Tests bleiben
+gruen** — keine einzelne Zeile verletzt eine dbt-Regel; erst die
+Mehrheits-Sicht von GE faellt.
 
 ---
 
@@ -891,7 +933,7 @@ mindestens einer FAIL-Zeile.
 | Eine Demo-2-Tabelle leer / nicht da               | `./scripts/demo2-state.sh raw_cur`                                  |
 | `UnicodeEncodeError` im PowerShell-Aufruf         | `$env:PYTHONIOENCODING = "utf-8"` voranstellen                      |
 | Skript laeuft Phase 3 obwohl nicht erwartet       | `--skip-curated-refresh` vergessen — Manipulation ist weg, INSERT erneut |
-| Phase 2 ploetzlich rot ohne Manipulation          | Manipulations-INSERT aus Station 8 nicht aufgeraeumt — Cleanup-DELETE   |
+| Phase 2 ploetzlich rot ohne Manipulation          | Demo-INSERT aus Station 8 nicht aufgeraeumt — `DELETE WHERE ingestion_id = 'demo-ge-violation'` |
 | GE-Checkpoint Exception "table does not exist"    | Curated nicht gebaut — `./scripts/demo2-state.sh raw_cur`           |
 | `docker compose exec: not running`                | Stack hochfahren mit `docker compose up -d`                         |
 | Cross-Source-Query nur 1 Zeile                    | ISIN nicht in beiden Quellen — andere DAX-ISIN waehlen oder Reset   |

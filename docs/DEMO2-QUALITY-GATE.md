@@ -191,8 +191,11 @@ Output zeigt:
 **Szenario B — Roter Pfad (Manipulation):**
 
 In CloudBeaver/Trino vor dem Skript-Aufruf einen Verstoss in Curated
-einfuegen (`expect_column_values_to_be_in_set` auf `source_system`
-schlaegt zuverlaessig bei jedem unbekannten Wert fehl):
+einfuegen. Der INSERT ist bewusst so gewaehlt, dass jede einzelne
+Zeile **alle dbt-Tests** durchlaeuft (existierende ISIN, akzeptiertes
+`source_system`, neue `(isin, year, source)`-Tupel) — aber das
+Mehrheits-Verhaeltnis kippt die GE-Schwelle
+`expect_column_values_to_be_between(scope_1_tco2e, 0, 100M, mostly=0.95)`:
 
 ```sql
 INSERT INTO nessie.curated.curated_esg_emissions
@@ -200,11 +203,23 @@ INSERT INTO nessie.curated.curated_esg_emissions
      scope_1_tco2e, scope_2_location_tco2e, scope_2_market_tco2e, scope_3_total_tco2e,
      verification, ingestion_id, ingestion_timestamp, source_file_hash)
 VALUES
-    ('DE0007236101', 2099, 'manipulation',
-     DECIMAL '5000000000.000', NULL, NULL, NULL,
-     'manual', '00000000-0000-0000-0000-000000000000',
-     TIMESTAMP '2026-04-27 12:00:00', 'sha256:demo');
+('DE0007236101', 2030, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo'),
+('DE0007236101', 2031, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo'),
+('DE0007236101', 2032, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo'),
+('DE0007236101', 2033, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo'),
+('DE0007236101', 2034, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo'),
+('DE0007236101', 2035, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo'),
+('DE0007236101', 2036, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo'),
+('DE0007236101', 2037, 'cdp', DECIMAL '500000000.000', NULL, NULL, NULL, 'demo', 'demo-ge-violation', TIMESTAMP '2026-04-28 12:00:00', 'sha256:demo');
 ```
+
+Optional vor dem GE-Lauf zur Demonstration, dass dbt nichts merkt:
+
+```bash
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt test --select curated_esg_emissions"
+```
+
+Erwartung: **PASS=8/8** — keine einzelne Test-Regel ist verletzt.
 
 Skript mit `--skip-curated-refresh` aufrufen, damit der Curated-
 Rebuild die Manipulation nicht wieder ueberschreibt:
@@ -216,20 +231,21 @@ uv run python scripts/promote-trusted-esg.py --skip-curated-refresh
 
 Output zeigt:
 - Phase 1 uebersprungen
-- `PHASE 2` — 5/6 OK, 1/6 FAIL (`expect_column_values_to_be_in_set(source_system)`)
+- `PHASE 2` — 5/6 OK, 1/6 FAIL (`expect_column_values_to_be_between(scope_1_tco2e)`,
+  `unexpected_count: 8`, `unexpected_percent: 5.26%`)
 - "GATE ROT -- Promotion blockiert"
 - Verweis auf Data Docs HTML
 - Phase 3 wird **nicht** ausgefuehrt
 - Exit 1
 
 Trusted ist **unveraendert** (= 150 Rows aus dem letzten gruenen Lauf,
-kein Manipulations-Row).
+keiner der 8 Demo-Records hat es durchgeschafft).
 
 **Aufraeumen nach der Demo:**
 
 ```sql
 DELETE FROM nessie.curated.curated_esg_emissions
-WHERE source_system = 'manipulation';
+WHERE ingestion_id = 'demo-ge-violation';
 ```
 
 Anschliessend laeuft der Standard-Pfad wieder gruen durch.
@@ -255,8 +271,10 @@ Anschliessend laeuft der Standard-Pfad wieder gruen durch.
 
 ### Verifikation (Stand AP-14)
 
-| Test                                           | Erwartung           | Ergebnis |
-|------------------------------------------------|---------------------|----------|
-| Standard-Lauf, kein Manipulation               | Exit 0, Trusted=150 | OK       |
-| Mit Manipulation `source_system='manipulation'`| Exit 1, Trusted=150 | OK       |
-| Trusted-Counts vor/nach rotem Lauf             | unveraendert        | OK       |
+| Test                                                  | Erwartung           | Ergebnis |
+|-------------------------------------------------------|---------------------|----------|
+| Standard-Lauf, kein Manipulation                      | Exit 0, Trusted=150 | OK       |
+| dbt-Test nach 8-Row-INSERT                            | PASS=8/8            | OK       |
+| GE-Checkpoint nach 8-Row-INSERT                       | 5/6 OK, 1 FAIL on `between` | OK |
+| Promotion mit Manipulation, `--skip-curated-refresh`  | Exit 1, Trusted=150 | OK       |
+| Trusted-Counts vor/nach rotem Lauf                    | unveraendert        | OK       |
