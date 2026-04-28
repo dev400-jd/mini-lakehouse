@@ -136,6 +136,13 @@ WHERE json_extract_scalar(rec, '$.isin') = 'DE000A1JX0V2'
   AND json_extract_scalar(rec, '$.business_date') = '2026-04-20';
 ```
 
+Optional Source-Tests (`not_null` auf Provenance-Spalten — fuer
+Publikum, das fragt "wie pruefen wir dass jeder Row eine Provenance hat?"):
+
+```bash
+docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt test --select source:raw.fondspreise"
+```
+
 ### Erwartung
 
 - Erste Query: 1 Zeile, `source_version = 'v1'`,
