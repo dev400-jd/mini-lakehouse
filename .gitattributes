@@ -1,0 +1,17 @@
+# Alle Textdateien mit LF normalisieren
+* text=auto eol=lf
+
+# Shell-Skripte immer LF (auch auf Windows)
+*.sh text eol=lf
+
+# Windows-spezifische Dateien mit CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Binärdateien nicht anfassen
+*.jar binary
+*.png binary
+*.jpg binary
+*.ico binary
+*.zip binary
