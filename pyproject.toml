@@ -4,6 +4,8 @@ version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.12"
 dependencies = [
+    "dagster>=1.13.10",
+    "dagster-webserver>=1.13.10",
     "great-expectations>=0.18,<0.19",
     "pandas>=3.0.1",
     "requests>=2.33.0",
