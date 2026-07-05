@@ -63,4 +63,9 @@ ENV SPARK_HOME=/usr/local/spark
 USER jovyan
 
 # trino Python-Client + dbt (pandas + matplotlib bereits im Basisimage)
-RUN pip install --no-cache-dir "trino>=0.328.0" dbt-trino
+# mlflow-Client + scikit-learn fuer Experiment-Tracking und Modelltraining
+RUN pip install --no-cache-dir \
+      "trino>=0.328.0" \
+      dbt-trino \
+      "mlflow==2.19.0" \
+      scikit-learn

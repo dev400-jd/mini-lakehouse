@@ -28,10 +28,11 @@ Danach im Browser:
 |-----|-----|
 | Jupyter (Notebooks) | http://localhost:8888?token=lakehouse |
 | CloudBeaver (SQL-Editor) | http://localhost:8978 |
-| MinIO Console | http://localhost:9001 |
+| MLflow (Experiment-Tracking) | http://localhost:5555 |
+| MinIO Console | http://localhost:9003 |
 | Nessie UI | http://localhost:19120 |
 | Trino Web UI | http://localhost:8080 |
-| Spark Master UI | http://localhost:8081 |
+| Spark Master UI | http://localhost:8085 |
 
 ---
 
@@ -39,14 +40,19 @@ Danach im Browser:
 
 | Service | Port(s) | Beschreibung |
 |---------|---------|--------------|
-| MinIO API | 9000 | S3-kompatibler Objektspeicher |
-| MinIO Console | 9001 | Web-UI: Buckets, Objekte, Pfade |
-| PostgreSQL | 5432 | Metastore-Backend fuer Nessie |
+| MinIO API | 9002 | S3-kompatibler Objektspeicher |
+| MinIO Console | 9003 | Web-UI: Buckets, Objekte, Pfade |
+| PostgreSQL | 5432 | Metastore-Backend fuer Nessie + MLflow |
 | Nessie | 19120 | Iceberg REST Catalog mit Branch-Uebersicht |
 | Trino | 8080 | Verteilte SQL-Engine, Web-UI |
-| Spark Master | 7077 / 8081 | Spark-Cluster (7077 intern, 8081 Web-UI) |
+| Spark Master | 7077 / 8085 | Spark-Cluster (7077 intern, 8085 Web-UI) |
 | Jupyter | 8888 | Notebook-Umgebung (Token: `lakehouse`) |
 | CloudBeaver | 8978 | Web-basierter SQL-Editor fuer Trino |
+| MLflow | 5555 | Experiment-Tracking & Model Registry |
+
+> Hinweis: MinIO (9002/9003) und Spark-UI (8085) weichen von den ueblichen
+> Standard-Ports (9000/9001, 8081) ab, weil auf der Workshop-Maschine bereits
+> andere Container diese Ports belegen. Alle Ports sind in `.env` konfigurierbar.
 
 Alle Ports und Credentials sind in `.env` konfigurierbar. Standard: Benutzer `lakehouse`, Passwort `lakehouse123`.
 
@@ -100,6 +106,7 @@ flowchart LR
 |----------|--------|
 | `01_iceberg_erkunden.ipynb` | Anatomie einer Iceberg-Tabelle: Data Files, Manifest Files, Snapshots, Partitionen |
 | `02_time_travel_schema_evolution.ipynb` | NZDPU aendert sein API-Format: Schema Evolution, Feld-Mapping, Time Travel per Snapshot-ID |
+| `03_ml_fonds_co2_fussabdruck.ipynb` | Data-Science-Projekt mit MLflow: Fonds-CO₂-Fußabdruck aus Holdings + Emissionen, ESG-Clustering (KMeans), Experiment-Tracking & Model Registry |
 
 Beide Notebooks setzen `make seed` voraus.
 Vor dem manuellen Durchlauf von Notebook 02 muss `make seed` erneut ausgefuehrt werden, da das Notebook die Tabelle veraendert.
@@ -140,6 +147,34 @@ uv run scripts/generate-sample-data.py
 
 Alle Versionen, Ports und Credentials stehen in `.env` (Single Source of Truth).
 Docker Compose und alle Skripte lesen ausschliesslich aus dieser Datei.
+
+---
+
+## Machine Learning mit MLflow
+
+Der Stack enthaelt einen integrierten **MLflow Tracking Server** — er nutzt dieselben
+Backing-Services wie das Lakehouse: PostgreSQL als Backend-Store (DB `mlflow`) und
+MinIO als Artifact-Store (Bucket `mlflow`). Trainingsdaten kommen aus dem Iceberg-
+`raw`-Layer via Trino.
+
+```
+Iceberg (Trino) --> Jupyter (Training) --> MLflow Server --> PostgreSQL (Runs/Metriken)
+                                                        \--> MinIO (Modelle/Artefakte)
+                                                         --> MLflow UI (http://localhost:5555)
+```
+
+**Beispielprojekt** (`notebooks/03_ml_fonds_co2_fussabdruck.ipynb`): Fonds-CO₂-Fußabdruck
+aus Fondspositionen + Unternehmensemissionen, danach ESG-Clustering der Fonds (KMeans)
+mit k-Sweep. Jeder Lauf wird als MLflow-Run mit Parametern, Silhouette-Score, Modell
+und Cluster-Plot geloggt; das beste Modell landet in der Model Registry.
+
+```bash
+make train          # fuehrt scripts/train-fund-carbon.py im jupyter-Container aus
+```
+
+Danach in der **MLflow UI** (http://localhost:5555): Experiment `fonds-co2-fussabdruck`
+oeffnen, Runs vergleichen, Artefakte ansehen, Modell `fonds-esg-clustering` in der
+Registry auf *Staging*/*Production* setzen.
 
 ---
 

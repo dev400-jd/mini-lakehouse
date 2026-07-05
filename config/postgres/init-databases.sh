@@ -10,6 +10,7 @@ set -e
 
 psql -v ON_ERROR_STOP=1 --username "${POSTGRES_USER}" --dbname "nessie" <<-EOSQL
     CREATE DATABASE dagster;
+    CREATE DATABASE mlflow;
 EOSQL
 
-echo ">>> Datenbank 'dagster' angelegt."
+echo ">>> Datenbanken 'dagster' und 'mlflow' angelegt."
