@@ -63,4 +63,6 @@ ENV SPARK_HOME=/usr/local/spark
 USER jovyan
 
 # trino Python-Client + dbt (pandas + matplotlib bereits im Basisimage)
-RUN pip install --no-cache-dir "trino>=0.328.0" dbt-trino
+# duckdb + pyiceberg + polars fuer DE1 (Engine-Right-Sizing, siehe
+# scripts/pyiceberg_init.py, config/duckdb/attach-nessie.sql)
+RUN pip install --no-cache-dir "trino>=0.328.0" dbt-trino duckdb pyiceberg polars

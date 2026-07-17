@@ -25,7 +25,7 @@ else
 endif
 
 .PHONY: help up down clean status logs logs-spark logs-trino seed demo health \
-        dbt-run dbt-test dbt-docs restart pull reset-demo1
+        dbt-run dbt-test dbt-docs restart pull reset-demo1 fetch-taxi
 
 help: ## Zeigt alle verfügbaren Targets mit Beschreibung
 	@echo ""
@@ -82,3 +82,6 @@ pull: ## Lädt alle Docker-Images vorab (für Offline-Demo)
 
 reset-demo1: ## Setzt Demo 1 (Fondspreise) auf Startzustand zurück
 	sh $(SCRIPTS_DIR)/reset-demo1.sh
+
+fetch-taxi: ## Laedt N Monate NYC-TLC-Taxi-Parquet fuer DE1 (make fetch-taxi N=3)
+	bash $(SCRIPTS_DIR)/fetch-taxi.sh $(N)

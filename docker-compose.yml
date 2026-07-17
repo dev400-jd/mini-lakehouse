@@ -58,6 +58,11 @@ services:
       QUARKUS_DATASOURCE_POSTGRESQL_JDBC_URL: jdbc:postgresql://postgres:5432/nessie
       QUARKUS_DATASOURCE_POSTGRESQL_USERNAME: ${POSTGRES_USER}
       QUARKUS_DATASOURCE_POSTGRESQL_PASSWORD: ${POSTGRES_PASSWORD}
+      # Nessie Catalog (Iceberg-REST) kommt aus gemounteter Properties-Datei,
+      # siehe config/nessie/application.properties fuer Details/Begruendung.
+      QUARKUS_CONFIG_LOCATIONS: /config/application.properties
+    volumes:
+      - ./config/nessie/application.properties:/config/application.properties:ro
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:19120/api/v2/config"]
       interval: 10s
@@ -171,6 +176,8 @@ services:
       - ./data:/home/jovyan/data:ro
       - ./config/spark/spark-defaults.conf:/home/jovyan/spark-defaults.conf.template:ro
       - ./dbt:/home/jovyan/dbt:rw
+      - ./scripts:/home/jovyan/scripts:ro
+      - ./config:/home/jovyan/config:ro
     healthcheck:
       test: ["CMD-SHELL", "curl -sf http://localhost:8888/api || exit 1"]
       interval: 15s

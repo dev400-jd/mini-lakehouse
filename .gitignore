@@ -2,6 +2,9 @@
 docker-volumes/
 *.tar
 
+# === DE1: NYC-Taxi-Parquet (bewusst nicht im Git, siehe make fetch-taxi) ===
+data/taxi/
+
 # === Environment (lokale Overrides) ===
 .env.local
 .env.*.local
