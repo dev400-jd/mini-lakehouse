@@ -57,14 +57,15 @@ bash scripts/seed-data.sh
 
 `make seed` ruft `scripts/seed-data.sh` auf: prüft die Health von `minio`,
 `postgres`, `nessie`, `spark-master`, lädt die Raw-Tabellen (geparste Referenz­tabellen
-per `scripts/spark-ingestion.py`, File-level cdp/nzdpu per `init-*`/`ingest-*`-Skripten),
-legt die Schemas `staging` und `curated` an und verifiziert die Zeilenzahlen über Trino.
-Erwartetes Ergebnis — fünf Tabellen in `nessie.raw`:
+per `scripts/spark-ingestion.py`, File-level cdp/nzdpu/fondspreise per
+`init-*`/`drop-*`/`ingest-*`-Skripten), legt die Schemas `staging` und `curated` an und
+verifiziert die Zeilenzahlen über Trino. Erwartetes Ergebnis — sechs Tabellen in `nessie.raw`:
 
 | Tabelle | Zeilen | Form |
 |---------|--------|------|
 | `nzdpu_emissions` | 1 | File-level (`raw_payload`) — dbt-Staging entpackt |
 | `cdp_emissions` | 1 | File-level (`raw_payload`) — dbt-Staging entpackt |
+| `fondspreise` | 1 | File-level (`raw_payload`, Load 1) — dbt-Staging entpackt |
 | `owid_co2_countries` | 100 | geparst |
 | `fund_master` | 10 | geparst |
 | `fund_positions` | 319 | geparst |

@@ -163,6 +163,15 @@ spark_submit "nzdpu ingest" \
     --file /data/sample/nzdpu_emissions.json \
     --ingestion-timestamp 2026-04-20T08:30:00Z
 
+# Fondspreise File-level (Load 1). ingest-fondspreise.py nutzt append() und ist
+# nicht idempotent — daher vorher droppen, damit ein zweiter Seed-Lauf nicht
+# eine zweite Zeile/Snapshot erzeugt (Startzustand: 1 Row, 1 Snapshot).
+spark_submit "fondspreise drop"   /scripts/drop-fondspreise-table.py
+spark_submit "fondspreise ingest" \
+    /scripts/ingest-fondspreise.py \
+    --file /data/sample/fondspreise_load1.json \
+    --ingestion-timestamp 2026-04-20T08:15:00Z
+
 INGESTION_END=$(date +%s)
 INGESTION_SECS=$((INGESTION_END - INGESTION_START))
 
@@ -197,8 +206,8 @@ TABLES_OUTPUT=$(
 
 TABLE_COUNT=$(echo "$TABLES_OUTPUT" | grep -c '^\S' || true)
 
-if [ "$TABLE_COUNT" -lt 5 ]; then
-    fail "Nur ${TABLE_COUNT} Tabellen gefunden (erwartet: 5)"
+if [ "$TABLE_COUNT" -lt 6 ]; then
+    fail "Nur ${TABLE_COUNT} Tabellen gefunden (erwartet: 6)"
     echo "$TABLES_OUTPUT"
     exit 1
 fi
@@ -217,13 +226,14 @@ echo -e "${BOLD}─────────────────────�
 declare -A TABLE_LABELS=(
     ["nzdpu_emissions"]="nzdpu_emissions"
     ["cdp_emissions"]="cdp_emissions"
+    ["fondspreise"]="fondspreise"
     ["owid_co2_countries"]="owid_co2_countries"
     ["fund_master"]="fund_master"
     ["fund_positions"]="fund_positions"
 )
 
 VERIFY_FAILED=false
-for tbl in nzdpu_emissions cdp_emissions owid_co2_countries fund_master fund_positions; do
+for tbl in nzdpu_emissions cdp_emissions fondspreise owid_co2_countries fund_master fund_positions; do
     CNT=$(
         MSYS_NO_PATHCONV=1 docker compose exec -T trino \
             trino --execute "SELECT count(*) FROM nessie.raw.${tbl}" 2>/dev/null \

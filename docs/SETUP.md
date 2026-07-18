@@ -68,6 +68,8 @@ make seed
 - `scripts/init-cdp-table.py` + `scripts/ingest-cdp.py` — legen `cdp_emissions` als
   File-level Raw an (`raw_payload`)
 - `scripts/init-nzdpu-table.py` + `scripts/ingest-nzdpu.py` — dito fuer `nzdpu_emissions`
+- `scripts/drop-fondspreise-table.py` + `scripts/ingest-fondspreise.py` — legen
+  `fondspreise` als File-level Raw an (Load 1; Startzustand 1 Row, 1 Snapshot)
 - Prueft Zeilenanzahl in Trino
 
 ---

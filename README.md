@@ -108,19 +108,22 @@ per Trino auf `nessie.raw.fondspreise` zeigen (zwei Snapshots nach Demo-1-Load-2
 
 ## Beispieldaten
 
-`make seed` laedt fuenf Tabellen in den Raw Layer (`s3://raw/`):
+`make seed` laedt sechs Tabellen in den Raw Layer (`s3://raw/`):
 
 | Tabelle | Format | Zeilen | Beschreibung |
 |---------|--------|--------|--------------|
 | `nzdpu_emissions` | JSON, nested | 1 (File-level) | CO2-Emissionen (Scope 1-3) von 30 europaeischen Unternehmen, 3 Jahre — komplette JSON-Datei als `raw_payload`, wird in dbt-Staging entpackt |
 | `cdp_emissions` | CSV | 1 (File-level) | CDP Climate Change Questionnaire — komplette CSV-Datei als `raw_payload`, wird in dbt-Staging entpackt |
+| `fondspreise` | JSON | 1 (File-level) | Fondspreise Load 1 — komplette JSON-Datei als `raw_payload`, wird in dbt-Staging entpackt |
 | `owid_co2_countries` | CSV | 100 | CO2 pro Land und Jahr, partitioniert nach `year` |
 | `fund_master` | CSV | 10 | Fondsstammdaten mit ISINs |
 | `fund_positions` | CSV | 319 | Fondspositionen, partitioniert nach `position_date` |
 
-`nzdpu_emissions` und `cdp_emissions` liegen als File-level Raw vor (eine Quelldatei =
-ein Iceberg-Row mit `raw_payload`), damit die dbt-Staging-Modelle sie deterministisch
-entpacken. `owid_co2_countries`, `fund_master` und `fund_positions` liegen geparst vor.
+`nzdpu_emissions`, `cdp_emissions` und `fondspreise` liegen als File-level Raw vor
+(eine Quelldatei = ein Iceberg-Row mit `raw_payload`), damit die dbt-Staging-Modelle
+sie deterministisch entpacken. `owid_co2_countries`, `fund_master` und `fund_positions`
+liegen geparst vor. `make seed` laedt Fondspreise Load 1 (Startzustand: 1 Row, 1 Snapshot);
+Load 2 kommt live via [docs/DEMO1-DREHBUCH.md](docs/DEMO1-DREHBUCH.md).
 
 Datengenerierung (Fallback-Daten sind bereits im Repository enthalten):
 
