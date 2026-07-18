@@ -1,9 +1,17 @@
 """
-spark-ingestion.py — Raw Layer Ingestion: Beispieldaten -> Iceberg via Nessie
+spark-ingestion.py — Raw Layer Ingestion: geparste Referenztabellen -> Iceberg via Nessie
 
-Laedt 5 Quelldateien aus /data/sample/ und schreibt sie als Iceberg-Tabellen
-in den Raw Layer (nessie.raw.*). Demonstriert Spark's Staerken bei verschiedenen
-Quellformaten: nested JSON, dreckige CSV, saubere CSV, kleine Lookup-Tabellen.
+Laedt die Quelldateien, die im Raw Layer geparst (Record-level) vorliegen sollen:
+  - owid_co2_countries  (saubere Referenzdaten, partitioniert nach year)
+  - fund_master         (kleine Lookup-Tabelle)
+  - fund_positions      (partitioniert nach position_date)
+
+cdp_emissions und nzdpu_emissions werden NICHT hier geladen. Sie liegen als
+File-level Raw (eine Quelldatei = ein Iceberg-Row mit raw_payload) vor und
+werden ueber init-cdp-table.py / ingest-cdp.py bzw. init-nzdpu-table.py /
+ingest-nzdpu.py erzeugt (in seed-data.sh direkt nach diesem Skript). Die
+dbt-Staging-Modelle stg_cdp_emissions / stg_nzdpu_emissions erwarten die
+File-level-Form.
 
 Ausfuehrung:
   docker compose exec spark-master \
@@ -19,9 +27,7 @@ Prinzip Raw Layer:
     statt im Default-Warehouse (s3a://warehouse/)
 """
 
-import sys
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, explode
 
 # ---------------------------------------------------------------------------
 # SparkSession
@@ -58,11 +64,12 @@ print("\n[SETUP] Namespace und Cleanup ...", flush=True)
 spark.sql("CREATE NAMESPACE IF NOT EXISTS nessie.raw")
 log("Namespace nessie.raw bereit")
 
-# Alle bestehenden Raw-Tabellen droppen damit Location-Property neu gesetzt werden kann.
-# createOrReplace() aendert keine Location bei existierenden Tabellen.
+# Nur die hier verwalteten geparsten Tabellen droppen, damit die
+# Location-Property neu gesetzt werden kann (createOrReplace() aendert
+# keine Location bei existierenden Tabellen).
+# cdp_emissions / nzdpu_emissions werden NICHT angefasst — deren File-level
+# Tabellen legen init-cdp-table.py / init-nzdpu-table.py selbst neu an.
 TABLES_TO_DROP = [
-    "nessie.raw.nzdpu_emissions",
-    "nessie.raw.cdp_emissions",
     "nessie.raw.owid_co2_countries",
     "nessie.raw.fund_master",
     "nessie.raw.fund_positions",
@@ -76,108 +83,10 @@ log("Cleanup abgeschlossen")
 
 
 # ---------------------------------------------------------------------------
-# INGESTION 1 — NZDPU JSON (nested)
+# INGESTION 1 — OWID CO2 Countries (saubere Referenzdaten, mit Partitionierung)
 # ---------------------------------------------------------------------------
 
-print("\n[1/5] NZDPU Emissions JSON -> nessie.raw.nzdpu_emissions", flush=True)
-log("spark.read.json mit multiline=true (API-Response-Struktur)")
-log(f"Location: {RAW_BUCKET}/nzdpu_emissions")
-
-raw_nzdpu = (
-    spark.read
-    .option("multiline", "true")
-    .json(f"{DATA_DIR}/nzdpu_emissions.json")
-)
-
-# Top-Level: {status, total_records, source, data: [...]}
-# data[] enthaelt Unternehmens-Objekte, jedes mit reporting_periods[]
-# Ergebnis: 1 Zeile pro Unternehmen x Berichtsjahr (30 Unternehmen x 3 Jahre = 90 Zeilen)
-
-companies = raw_nzdpu.select(explode("data").alias("co"))
-nzdpu_df = (
-    companies
-    .select(
-        col("co.reporting_periods"),
-        col("co.company_id"),
-        col("co.company_name"),
-        col("co.isin"),
-        col("co.lei"),
-        col("co.country_of_incorporation").alias("country"),
-        col("co.primary_sector").alias("sector"),
-    )
-    .select(
-        explode("reporting_periods").alias("period"),
-        col("company_id"),
-        col("company_name"),
-        col("isin"),
-        col("lei"),
-        col("country"),
-        col("sector"),
-    )
-    .select(
-        col("company_id"),
-        col("company_name"),
-        col("isin"),
-        col("lei"),
-        col("country"),
-        col("sector"),
-        col("period.reporting_year").alias("reporting_year"),
-        col("period.scope_1.value").alias("scope_1_tco2e"),
-        col("period.scope_2_location_based.value").alias("scope_2_location_tco2e"),
-        col("period.scope_2_market_based.value").alias("scope_2_market_tco2e"),
-        col("period.verification_status"),
-        col("period.reporting_framework"),
-    )
-)
-
-log("Schema:")
-nzdpu_df.printSchema()
-
-(
-    nzdpu_df.writeTo("nessie.raw.nzdpu_emissions")
-    .tableProperty("write.format.default", "parquet")
-    .tableProperty("location", f"{RAW_BUCKET}/nzdpu_emissions")
-    .create()
-)
-
-spark.sql("SELECT count(*) AS cnt FROM nessie.raw.nzdpu_emissions").show()
-verify_and_record("nessie.raw.nzdpu_emissions")
-
-
-# ---------------------------------------------------------------------------
-# INGESTION 2 — CDP CSV (dreckige Realdaten, alles als String)
-# ---------------------------------------------------------------------------
-
-print("\n[2/5] CDP Emissions CSV -> nessie.raw.cdp_emissions", flush=True)
-log("inferSchema=False: alles als String — Typcasts kommen im Staging Layer")
-log(f"Location: {RAW_BUCKET}/cdp_emissions")
-
-cdp_df = (
-    spark.read
-    .option("header", "true")
-    .option("inferSchema", "false")
-    .option("mode", "PERMISSIVE")   # fehlerhafte Zeilen als null, nicht verwerfen
-    .csv(f"{DATA_DIR}/cdp_emissions.csv")
-)
-
-log(f"Spalten ({len(cdp_df.columns)}): {', '.join(cdp_df.columns)}")
-
-(
-    cdp_df.writeTo("nessie.raw.cdp_emissions")
-    .tableProperty("write.format.default", "parquet")
-    .tableProperty("location", f"{RAW_BUCKET}/cdp_emissions")
-    .create()
-)
-
-spark.sql("SELECT count(*) AS cnt FROM nessie.raw.cdp_emissions").show()
-verify_and_record("nessie.raw.cdp_emissions")
-
-
-# ---------------------------------------------------------------------------
-# INGESTION 3 — OWID CO2 Countries (saubere Referenzdaten, mit Partitionierung)
-# ---------------------------------------------------------------------------
-
-print("\n[3/5] OWID CO2 Countries CSV -> nessie.raw.owid_co2_countries", flush=True)
+print("\n[1/3] OWID CO2 Countries CSV -> nessie.raw.owid_co2_countries", flush=True)
 log("inferSchema=True: OWID-Daten sind sauber genug fuer automatische Typerkennung")
 log("Iceberg Hidden Partitioning nach 'year'")
 log(f"Location: {RAW_BUCKET}/owid_co2_countries")
@@ -205,10 +114,10 @@ verify_and_record("nessie.raw.owid_co2_countries")
 
 
 # ---------------------------------------------------------------------------
-# INGESTION 4 — Fund Master (kleine Lookup-Tabelle, keine Partitionierung)
+# INGESTION 2 — Fund Master (kleine Lookup-Tabelle, keine Partitionierung)
 # ---------------------------------------------------------------------------
 
-print("\n[4/5] Fund Master CSV -> nessie.raw.fund_master", flush=True)
+print("\n[2/3] Fund Master CSV -> nessie.raw.fund_master", flush=True)
 log("Kleine Lookup-Tabelle (10 Zeilen) — keine Partitionierung notwendig")
 log(f"Location: {RAW_BUCKET}/fund_master")
 
@@ -233,10 +142,10 @@ verify_and_record("nessie.raw.fund_master")
 
 
 # ---------------------------------------------------------------------------
-# INGESTION 5 — Fund Positions (partitioniert nach position_date)
+# INGESTION 3 — Fund Positions (partitioniert nach position_date)
 # ---------------------------------------------------------------------------
 
-print("\n[5/5] Fund Positions CSV -> nessie.raw.fund_positions", flush=True)
+print("\n[3/3] Fund Positions CSV -> nessie.raw.fund_positions", flush=True)
 log("Partitionierung nach 'position_date' (2 Stichtage = 2 Partitionen)")
 log(f"Location: {RAW_BUCKET}/fund_positions")
 
@@ -266,7 +175,7 @@ verify_and_record("nessie.raw.fund_positions")
 # ---------------------------------------------------------------------------
 
 print("\n" + "=" * 60, flush=True)
-print("  Raw Layer Ingestion abgeschlossen", flush=True)
+print("  Raw Layer Ingestion (geparste Referenztabellen) abgeschlossen", flush=True)
 print("=" * 60, flush=True)
 
 print("\nAlle Tabellen in nessie.raw:", flush=True)

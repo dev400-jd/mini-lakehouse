@@ -127,18 +127,41 @@ info "Starte spark-submit (dauert ~2-3 Minuten) ..."
 
 INGESTION_START=$(date +%s)
 
-INGESTION_OUTPUT=$(
-    MSYS_NO_PATHCONV=1 docker compose exec -T spark-master \
-        /opt/spark/bin/spark-submit \
-        --master spark://spark-master:7077 \
-        /scripts/spark-ingestion.py 2>&1
-) || {
-    fail "Spark Ingestion fehlgeschlagen"
-    echo ""
-    echo "--- Letzten 20 Zeilen der Ausgabe ---"
-    echo "$INGESTION_OUTPUT" | tail -20
-    exit 1
+# spark_submit <beschreibung> <spark-submit-argumente...>
+# Fuehrt einen spark-submit im spark-master aus, bricht bei Fehler mit den
+# letzten 20 Ausgabezeilen ab.
+spark_submit() {
+    local desc="$1"; shift
+    local out
+    out=$(
+        MSYS_NO_PATHCONV=1 docker compose exec -T spark-master \
+            /opt/spark/bin/spark-submit --master spark://spark-master:7077 "$@" 2>&1
+    ) || {
+        fail "Spark Ingestion fehlgeschlagen: ${desc}"
+        echo ""
+        echo "--- Letzten 20 Zeilen der Ausgabe ---"
+        echo "$out" | tail -20
+        exit 1
+    }
 }
+
+# Geparste Referenztabellen: owid_co2_countries, fund_master, fund_positions
+spark_submit "geparste Referenztabellen" /scripts/spark-ingestion.py
+
+# File-level Raw (raw_payload) fuer die dbt-ESG-Pipeline: cdp + nzdpu.
+# Deterministische Ingestion-Timestamps wie in demo2-state.sh, damit der
+# Seed reproduzierbar bleibt.
+spark_submit "cdp init"  /scripts/init-cdp-table.py
+spark_submit "cdp ingest" \
+    /scripts/ingest-cdp.py \
+    --file /data/sample/cdp_emissions.csv \
+    --ingestion-timestamp 2026-04-20T08:15:00Z
+
+spark_submit "nzdpu init" /scripts/init-nzdpu-table.py
+spark_submit "nzdpu ingest" \
+    /scripts/ingest-nzdpu.py \
+    --file /data/sample/nzdpu_emissions.json \
+    --ingestion-timestamp 2026-04-20T08:30:00Z
 
 INGESTION_END=$(date +%s)
 INGESTION_SECS=$((INGESTION_END - INGESTION_START))

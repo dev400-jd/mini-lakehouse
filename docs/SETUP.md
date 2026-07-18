@@ -63,8 +63,11 @@ make seed
 ```
 
 `make seed` fuehrt aus:
-- `scripts/generate-nzdpu-v2.py` — erzeugt V2-Testdaten
-- `scripts/spark-ingestion.py` via spark-submit — laedt alle 5 Tabellen in den Raw Layer
+- `scripts/spark-ingestion.py` via spark-submit — laedt die geparsten Referenztabellen
+  (`owid_co2_countries`, `fund_master`, `fund_positions`)
+- `scripts/init-cdp-table.py` + `scripts/ingest-cdp.py` — legen `cdp_emissions` als
+  File-level Raw an (`raw_payload`)
+- `scripts/init-nzdpu-table.py` + `scripts/ingest-nzdpu.py` — dito fuer `nzdpu_emissions`
 - Prueft Zeilenanzahl in Trino
 
 ---
@@ -97,14 +100,8 @@ cp .env.example .env
 
 ## Notebooks ausfuehren
 
-Notebook 01 kann beliebig oft ausgefuehrt werden (nur lesend).
-
-Notebook 02 veraendert die Tabelle `nzdpu_emissions` (Schema Evolution + Append).
-Vor jedem erneuten Durchlauf von Notebook 02 muss der Ausgangszustand wiederhergestellt werden:
-
-```bash
-make seed
-```
+Notebook 01 (`01_iceberg_erkunden.ipynb`) kann beliebig oft ausgefuehrt werden
+(nur lesend).
 
 ---
 
