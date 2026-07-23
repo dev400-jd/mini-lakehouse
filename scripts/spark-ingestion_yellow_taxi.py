@@ -40,7 +40,7 @@ spark = (
 )
 spark.sparkContext.setLogLevel("WARN")
 
-DATA_DIR = "/data/sample"
+DATA_DIR = "/data/sample/yellow_taxi"
 RAW_BUCKET = "s3a://raw"
 RESULTS = []   # (tabelle, zeilenanzahl)
 
@@ -64,16 +64,8 @@ print("\n[SETUP] Namespace und Cleanup ...", flush=True)
 spark.sql("CREATE NAMESPACE IF NOT EXISTS nessie.raw")
 log("Namespace nessie.raw bereit")
 
-# Nur die hier verwalteten geparsten Tabellen droppen, damit die
-# Location-Property neu gesetzt werden kann (createOrReplace() aendert
-# keine Location bei existierenden Tabellen).
-# cdp_emissions / nzdpu_emissions werden NICHT angefasst — deren File-level
-# Tabellen legen init-cdp-table.py / init-nzdpu-table.py selbst neu an.
 TABLES_TO_DROP = [
-    "nessie.raw.owid_co2_countries",
-    "nessie.raw.fund_master",
-    "nessie.raw.fund_positions",
-    "nessie.raw.smoke_test",
+    "nessie.raw.yellowtripdata",
 ]
 for tbl in TABLES_TO_DROP:
     spark.sql(f"DROP TABLE IF EXISTS {tbl}")
@@ -86,10 +78,10 @@ log("Cleanup abgeschlossen")
 # INGESTION 1 — OWID CO2 Countries (saubere Referenzdaten, mit Partitionierung)
 # ---------------------------------------------------------------------------
 
-print("\n[1/3] OWID CO2 Countries CSV -> nessie.raw.owid_co2_countries", flush=True)
-log("inferSchema=True: OWID-Daten sind sauber genug fuer automatische Typerkennung")
+print("\nyellow_tripdata_2010-05.parquet -> nessie.raw.yellowtripdata", flush=True)
+log("inferSchema=True: Daten sind sauber genug fuer automatische Typerkennung")
 log("Iceberg Hidden Partitioning nach 'year'")
-log(f"Location: {RAW_BUCKET}/owid_co2_countries")
+log(f"Location: {RAW_BUCKET}/yellowtripdata")
 
 owid_df = (
     spark.read
@@ -112,70 +104,12 @@ owid_df.select(owid_df.columns[:8]).printSchema()
 spark.sql("SELECT count(*) AS cnt FROM nessie.raw.owid_co2_countries").show()
 verify_and_record("nessie.raw.owid_co2_countries")
 
-
-# ---------------------------------------------------------------------------
-# INGESTION 2 — Fund Master (kleine Lookup-Tabelle, keine Partitionierung)
-# ---------------------------------------------------------------------------
-
-print("\n[2/3] Fund Master CSV -> nessie.raw.fund_master", flush=True)
-log("Kleine Lookup-Tabelle (10 Zeilen) — keine Partitionierung notwendig")
-log(f"Location: {RAW_BUCKET}/fund_master")
-
-fund_master_df = (
-    spark.read
-    .option("header", "true")
-    .option("inferSchema", "true")
-    .csv(f"{DATA_DIR}/fund_master.csv")
-)
-
-log(f"Spalten: {', '.join(fund_master_df.columns)}")
-
-(
-    fund_master_df.writeTo("nessie.raw.fund_master")
-    .tableProperty("write.format.default", "parquet")
-    .tableProperty("location", f"{RAW_BUCKET}/fund_master")
-    .create()
-)
-
-spark.sql("SELECT count(*) AS cnt FROM nessie.raw.fund_master").show()
-verify_and_record("nessie.raw.fund_master")
-
-
-# ---------------------------------------------------------------------------
-# INGESTION 3 — Fund Positions (partitioniert nach position_date)
-# ---------------------------------------------------------------------------
-
-print("\n[3/3] Fund Positions CSV -> nessie.raw.fund_positions", flush=True)
-log("Partitionierung nach 'position_date' (2 Stichtage = 2 Partitionen)")
-log(f"Location: {RAW_BUCKET}/fund_positions")
-
-fund_positions_df = (
-    spark.read
-    .option("header", "true")
-    .option("inferSchema", "true")
-    .csv(f"{DATA_DIR}/fund_positions.csv")
-)
-
-log(f"Spalten: {', '.join(fund_positions_df.columns)}")
-
-(
-    fund_positions_df.writeTo("nessie.raw.fund_positions")
-    .tableProperty("write.format.default", "parquet")
-    .tableProperty("location", f"{RAW_BUCKET}/fund_positions")
-    .partitionedBy("position_date")
-    .create()
-)
-
-spark.sql("SELECT count(*) AS cnt FROM nessie.raw.fund_positions").show()
-verify_and_record("nessie.raw.fund_positions")
-
-
 # ---------------------------------------------------------------------------
 # Abschlusskontrolle
 # ---------------------------------------------------------------------------
 
 print("\n" + "=" * 60, flush=True)
-print("  Raw Layer Ingestion (geparste Referenztabellen) abgeschlossen", flush=True)
+print("  Raw Layer Ingestion abgeschlossen", flush=True)
 print("=" * 60, flush=True)
 
 print("\nAlle Tabellen in nessie.raw:", flush=True)
