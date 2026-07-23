@@ -40,7 +40,7 @@ spark = (
 )
 spark.sparkContext.setLogLevel("WARN")
 
-DATA_DIR = "/data/sample/yellow_taxi"
+DATA_DIR = "/data/yellow_taxi"
 RAW_BUCKET = "s3a://raw"
 RESULTS = []   # (tabelle, zeilenanzahl)
 
@@ -75,7 +75,7 @@ log("Cleanup abgeschlossen")
 
 
 # ---------------------------------------------------------------------------
-# INGESTION 1 — OWID CO2 Countries (saubere Referenzdaten, mit Partitionierung)
+# INGESTION yellow_tripdata_2010-05.parquet -> nessie.raw.yellowtripdata
 # ---------------------------------------------------------------------------
 
 print("\nyellow_tripdata_2010-05.parquet -> nessie.raw.yellowtripdata", flush=True)
@@ -83,26 +83,22 @@ log("inferSchema=True: Daten sind sauber genug fuer automatische Typerkennung")
 log("Iceberg Hidden Partitioning nach 'year'")
 log(f"Location: {RAW_BUCKET}/yellowtripdata")
 
-owid_df = (
-    spark.read
-    .option("header", "true")
-    .option("inferSchema", "true")
-    .csv(f"{DATA_DIR}/owid_co2_countries.csv")
+taxi_df = (
+    spark.read.parquet(f"{DATA_DIR}/yellow_tripdata_2010-05.parquet")
 )
 
 log("Schema (erste 8 Spalten):")
-owid_df.select(owid_df.columns[:8]).printSchema()
+taxi_df.select(taxi_df.columns[:8]).printSchema()
 
 (
-    owid_df.writeTo("nessie.raw.owid_co2_countries")
+    taxi_df.writeTo("nessie.raw.yellowtripdata")
     .tableProperty("write.format.default", "parquet")
-    .tableProperty("location", f"{RAW_BUCKET}/owid_co2_countries")
-    .partitionedBy("year")
+    .tableProperty("location", f"{RAW_BUCKET}/yellowtripdata")
     .create()
 )
 
-spark.sql("SELECT count(*) AS cnt FROM nessie.raw.owid_co2_countries").show()
-verify_and_record("nessie.raw.owid_co2_countries")
+spark.sql("SELECT count(*) AS cnt FROM nessie.raw.yellowtripdata").show()
+verify_and_record("nessie.raw.yellowtripdata")
 
 # ---------------------------------------------------------------------------
 # Abschlusskontrolle
