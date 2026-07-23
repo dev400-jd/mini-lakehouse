@@ -1,0 +1,40 @@
+# =============================================================================
+# ingest-dbt.yaml — Schritt 2 von 2: dbt-Artefakte (manifest/catalog/
+# run_results) als Lineage, Column-Descriptions und Testergebnisse an die per
+# ingest-trino.yaml bereits angelegten Tabellen im Service "trino_lakehouse"
+# haengen.
+#
+# Voraussetzung: dbt/target/catalog.json muss existieren -- entsteht nicht bei
+# "dbt run", sondern erst bei "dbt docs generate" (fehlt aktuell im Repo,
+# siehe target-Verzeichnis). Ohne catalog.json gibt es Lineage, aber keine
+# Column-level-Details.
+#   docker compose exec jupyter bash -c "cd /home/jovyan/dbt && dbt docs generate"
+#
+# Ausfuehren:
+#   docker compose exec jupyter bash -c \
+#     'envsubst < /home/jovyan/config/openmetadata/ingest-dbt.yaml > /tmp/ingest-dbt.yaml \
+#      && metadata ingest -c /tmp/ingest-dbt.yaml'
+# =============================================================================
+
+source:
+  type: dbt
+  serviceName: trino_lakehouse
+  sourceConfig:
+    config:
+      type: DBT
+      dbtConfigSource:
+        dbtConfigType: local
+        dbtCatalogFilePath: /home/jovyan/dbt/target/catalog.json
+        dbtManifestFilePath: /home/jovyan/dbt/target/manifest.json
+        dbtRunResultsFilePath: /home/jovyan/dbt/target/run_results.json
+
+sink:
+  type: metadata-rest
+  config: {}
+
+workflowConfig:
+  openMetadataServerConfig:
+    hostPort: http://openmetadata-server:8585/api
+    authProvider: openmetadata
+    securityConfig:
+      jwtToken: "${OPENMETADATA_JWT_TOKEN}"

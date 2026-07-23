@@ -1,0 +1,47 @@
+# =============================================================================
+# ingest-trino.yaml — Schritt 1 von 2: Trino/Nessie-Tabellen als OpenMetadata-
+# Database-Service "trino_lakehouse" anlegen (raw/staging/curated/trusted).
+#
+# MUSS vor ingest-dbt.yaml laufen: dbt-Ingestion haengt Lineage/Descriptions/
+# Tests an bereits existierende Table-Entities, sie legt die Tabellen selbst
+# nicht neu an. Ohne diesen Schritt findet dbt keine passenden Ziel-Tabellen.
+#
+# ${OPENMETADATA_JWT_TOKEN} wird per envsubst injiziert (gleiches Muster wie
+# config/jupyter/before-spark-conf.sh), nicht in dieser Datei fest hinterlegt.
+# Token erzeugen: OpenMetadata-UI -> Settings -> Bots -> ingestion-bot -> Token.
+#
+# Ausfuehren (im jupyter-Container, das den envsubst-Wrapper macht):
+#   docker compose exec jupyter bash -c \
+#     'envsubst < /home/jovyan/config/openmetadata/ingest-trino.yaml > /tmp/ingest-trino.yaml \
+#      && metadata ingest -c /tmp/ingest-trino.yaml'
+# =============================================================================
+
+source:
+  type: trino
+  serviceName: trino_lakehouse
+  serviceConnection:
+    config:
+      type: Trino
+      username: dbt
+      hostPort: trino:8080
+      catalog: nessie
+  sourceConfig:
+    config:
+      type: DatabaseMetadata
+      schemaFilterPattern:
+        includes:
+          - ^raw$
+          - ^staging$
+          - ^curated$
+          - ^trusted$
+
+sink:
+  type: metadata-rest
+  config: {}
+
+workflowConfig:
+  openMetadataServerConfig:
+    hostPort: http://openmetadata-server:8585/api
+    authProvider: openmetadata
+    securityConfig:
+      jwtToken: "${OPENMETADATA_JWT_TOKEN}"

@@ -1,0 +1,166 @@
+# =============================================================================
+# docker-compose.openmetadata.yml — DE2-Teilprojekt: OpenMetadata als
+# operativer Katalog, im Minimal-Zuschnitt (siehe DE-2-Hackathon-Projekt.docx).
+#
+# Bewusst als eigenes Compose-File neben docker-compose.yml, nicht darin
+# eingebaut — wird per -f dazugeladen und teilt sich Netzwerk und Postgres
+# mit dem Basis-Stack. So bleibt der Kern-Stack unangetastet und dieser
+# Teil ist einzeln start-/stoppbar.
+#
+# Start (zusammen mit dem Basis-Stack):
+#   docker compose -f docker-compose.yml -f docker-compose.openmetadata.yml up -d
+#
+# Nur die OpenMetadata-Komponenten (Basis-Stack muss bereits laufen):
+#   docker compose -f docker-compose.yml -f docker-compose.openmetadata.yml \
+#     up -d openmetadata-server
+#   (startet transitiv openmetadata-db-init -> elasticsearch ->
+#    openmetadata-migrate -> openmetadata-server, in dieser Reihenfolge)
+#
+# Abbauen, ohne den Basis-Stack anzufassen:
+#   docker compose -f docker-compose.yml -f docker-compose.openmetadata.yml \
+#     rm -sf openmetadata-server elasticsearch openmetadata-db-init openmetadata-migrate
+#
+# ACHTUNG (siehe Briefing Abschnitt 3): Dieses Setup wurde nicht auf der
+# Zielhardware getestet. Image-Tag und Env-Var-Namen unten sind der
+# dokumentierte, aber nicht verifizierte Weg -- vor dem Hackathon-Tag
+# gegen die offizielle docker-compose-Vorlage der gewaehlten
+# OpenMetadata-Release abgleichen (get.openmetadata.org), nicht ungeprueft
+# uebernehmen.
+# =============================================================================
+
+services:
+
+  # Einmaliger Setup-Schritt: legt openmetadata_db in der bestehenden
+  # Postgres-Instanz an, falls sie noch nicht existiert. Analog zu
+  # trino-init / minio-init im Basis-Stack.
+  openmetadata-db-init:
+    image: postgres:${POSTGRES_VERSION}
+    container_name: openmetadata-db-init
+    depends_on:
+      postgres:
+        condition: service_healthy
+    entrypoint: /bin/bash /scripts/init-openmetadata-db.sh
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      OPENMETADATA_DB: ${OPENMETADATA_DB}
+    volumes:
+      - ./scripts:/scripts:ro
+    restart: "no"
+    networks:
+      - lakehouse-net
+
+  # Suchindex fuer OpenMetadata (Lineage-Graph, Suche, Glossar-Lookup).
+  # Zwingend noetig -- OpenMetadata startet ohne ES/OpenSearch nicht.
+  # Single-Node, Security aus, Heap klein gehalten (Hebel 1 im Briefing).
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTICSEARCH_VERSION}
+    container_name: openmetadata-elasticsearch
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+    ports:
+      - "${ELASTICSEARCH_PORT}:9200"
+    volumes:
+      - openmetadata-es-data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:9200/_cluster/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - lakehouse-net
+
+  # Einmaliger Setup-Schritt: fuehrt die Flyway-Schema-Migration +
+  # Suchindex-Mapping aus. Zwingend noetig -- das openmetadata-server-Image
+  # fuehrt diese Migration NICHT automatisch beim Start aus (entgegen
+  # naheliegender Annahme); ohne diesen Schritt crasht der Server in einer
+  # Restart-Schleife mit "relation ... does not exist". Praktisch verifiziert
+  # am 2026-07-23. Nutzt denselben Bootstrap-Wrapper des Server-Images
+  # (/opt/openmetadata/bootstrap/openmetadata-ops.sh), der den Pfad zur
+  # mitgelieferten conf/openmetadata.yaml bereits selbst auf Basis seines
+  # eigenen Skript-Pfads aufloest -- kein eigenes -c noetig/erlaubt.
+  openmetadata-migrate:
+    image: docker.getcollate.io/openmetadata/server:${OPENMETADATA_VERSION}
+    container_name: openmetadata-migrate
+    depends_on:
+      openmetadata-db-init:
+        condition: service_completed_successfully
+      elasticsearch:
+        condition: service_healthy
+    entrypoint: /opt/openmetadata/bootstrap/openmetadata-ops.sh
+    command: ["migrate"]
+    environment:
+      DB_DRIVER_CLASS: org.postgresql.Driver
+      DB_SCHEME: postgresql
+      DB_USE_SSL: "false"
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: ${POSTGRES_USER}
+      DB_USER_PASSWORD: ${POSTGRES_PASSWORD}
+      OM_DATABASE: ${OPENMETADATA_DB}
+      ELASTICSEARCH_HOST: elasticsearch
+      ELASTICSEARCH_PORT: 9200
+      ELASTICSEARCH_SCHEME: http
+      SEARCH_TYPE: elasticsearch
+    restart: "no"
+    networks:
+      - lakehouse-net
+
+  # OpenMetadata-Anwendungsserver + UI (Port 8585). Kein eigenes
+  # MySQL/Postgres, kein Airflow-Container -- nutzt das bestehende
+  # Postgres 16 des Basis-Stacks (Hebel 1). Ingestion laeuft separat per
+  # CLI (openmetadata-ingestion, `metadata ingest -c <workflow>.yaml`),
+  # nicht ueber diesen Container.
+  openmetadata-server:
+    image: docker.getcollate.io/openmetadata/server:${OPENMETADATA_VERSION}
+    container_name: openmetadata-server
+    depends_on:
+      openmetadata-migrate:
+        condition: service_completed_successfully
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      # --- Metadaten-Backend: bestehendes Postgres, eigene DB ---
+      DB_DRIVER_CLASS: org.postgresql.Driver
+      DB_SCHEME: postgresql
+      DB_USE_SSL: "false"
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: ${POSTGRES_USER}
+      DB_USER_PASSWORD: ${POSTGRES_PASSWORD}
+      OM_DATABASE: ${OPENMETADATA_DB}
+      # --- Suchindex ---
+      ELASTICSEARCH_HOST: elasticsearch
+      ELASTICSEARCH_PORT: 9200
+      ELASTICSEARCH_SCHEME: http
+      SEARCH_TYPE: elasticsearch
+      # --- JVM-Heap begrenzen (Hebel 1) ---
+      OPENMETADATA_HEAP_OPTS: "-Xmx1G -Xms1G"
+      # --- Airflow-Pipeline-Verwaltung bewusst nicht konfiguriert:
+      #     kein Ingestion-Container vorhanden, Ingestion laeuft per CLI.
+      PIPELINE_SERVICE_CLIENT_ENABLED: "false"
+    ports:
+      - "${OPENMETADATA_SERVER_PORT}:8585"
+      - "${OPENMETADATA_ADMIN_PORT}:8586"
+    healthcheck:
+      # curl ist im Alpine-basierten Image nicht vorhanden (im Gegensatz zu
+      # den anderen Services hier) -- wget -q --spider ist das Aequivalent.
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:8586/healthcheck || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 15
+      start_period: 90s
+    restart: unless-stopped
+    networks:
+      - lakehouse-net
+
+networks:
+  lakehouse-net:
+    driver: bridge
+
+volumes:
+  openmetadata-es-data:
