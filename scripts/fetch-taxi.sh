@@ -7,18 +7,20 @@
 # die Dateien selbst, am besten schon am Pre-Flight-Abend (siehe Briefing).
 #
 # Nutzung:
-#   make fetch-taxi N=3          # ueber Makefile (empfohlen)
-#   bash scripts/fetch-taxi.sh 3 # direkt
+#   make fetch-taxi N=3                     # ueber Makefile (empfohlen), ab 2024-01
+#   make fetch-taxi FROM=2009-01 N=195       # ab beliebigem Startmonat (z.B. volle Historie)
+#   bash scripts/fetch-taxi.sh 3 2024-01     # direkt
 #
-# Laedt die ersten N Monate ab Januar 2024 (2024-01, 2024-02, ...). Ueberspringt
-# bereits vorhandene Dateien, damit wiederholte Aufrufe guenstig sind.
+# Laedt die ersten N Monate ab FROM (Default 2024-01). Ueberspringt bereits
+# vorhandene Dateien, damit wiederholte Aufrufe guenstig sind. Yellow-Taxi-Daten
+# sind ab 2009-01 verfuegbar; die volle Historie (2009-01 bis heute) summiert
+# sich auf ca. 50GB.
 # =============================================================================
 
 set -euo pipefail
 
 N="${1:-1}"
-START_YEAR=2024
-START_MONTH=1
+FROM="${2:-2024-01}"
 BASE_URL="https://d37ci6vzurychx.cloudfront.net/trip-data"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -28,6 +30,15 @@ if ! [[ "$N" =~ ^[0-9]+$ ]] || [ "$N" -lt 1 ]; then
   echo "Fehler: N muss eine positive Zahl sein (z.B. make fetch-taxi N=3), erhalten: '$N'" >&2
   exit 1
 fi
+
+if ! [[ "$FROM" =~ ^[0-9]{4}-(0[1-9]|1[0-2])$ ]]; then
+  echo "Fehler: FROM muss im Format YYYY-MM sein (z.B. FROM=2009-01), erhalten: '$FROM'" >&2
+  exit 1
+fi
+
+START_YEAR="${FROM%%-*}"
+START_MONTH="${FROM##*-}"
+START_MONTH=$((10#$START_MONTH))
 
 mkdir -p "$DEST_DIR"
 

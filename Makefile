@@ -83,5 +83,5 @@ pull: ## Lädt alle Docker-Images vorab (für Offline-Demo)
 reset-demo1: ## Setzt Demo 1 (Fondspreise) auf Startzustand zurück
 	sh $(SCRIPTS_DIR)/reset-demo1.sh
 
-fetch-taxi: ## Laedt N Monate NYC-TLC-Taxi-Parquet fuer DE1 (make fetch-taxi N=3)
-	bash $(SCRIPTS_DIR)/fetch-taxi.sh $(N)
+fetch-taxi: ## Laedt N Monate NYC-TLC-Taxi-Parquet fuer DE1 (make fetch-taxi N=3 [FROM=2009-01])
+	bash $(SCRIPTS_DIR)/fetch-taxi.sh $(if $(N),$(N),1) $(if $(FROM),$(FROM),2024-01)
