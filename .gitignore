@@ -6,6 +6,9 @@ docker-volumes/
 .env.local
 .env.*.local
 
+# === Data (lokale Rohdaten, nicht committed) ===
+/data/yellow_taxi/
+
 # === Python ===
 __pycache__/
 *.py[cod]
