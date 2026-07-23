@@ -127,18 +127,50 @@ info "Starte spark-submit (dauert ~2-3 Minuten) ..."
 
 INGESTION_START=$(date +%s)
 
-INGESTION_OUTPUT=$(
-    MSYS_NO_PATHCONV=1 docker compose exec -T spark-master \
-        /opt/spark/bin/spark-submit \
-        --master spark://spark-master:7077 \
-        /scripts/spark-ingestion.py 2>&1
-) || {
-    fail "Spark Ingestion fehlgeschlagen"
-    echo ""
-    echo "--- Letzten 20 Zeilen der Ausgabe ---"
-    echo "$INGESTION_OUTPUT" | tail -20
-    exit 1
+# spark_submit <beschreibung> <spark-submit-argumente...>
+# Fuehrt einen spark-submit im spark-master aus, bricht bei Fehler mit den
+# letzten 20 Ausgabezeilen ab.
+spark_submit() {
+    local desc="$1"; shift
+    local out
+    out=$(
+        MSYS_NO_PATHCONV=1 docker compose exec -T spark-master \
+            /opt/spark/bin/spark-submit --master spark://spark-master:7077 "$@" 2>&1
+    ) || {
+        fail "Spark Ingestion fehlgeschlagen: ${desc}"
+        echo ""
+        echo "--- Letzten 20 Zeilen der Ausgabe ---"
+        echo "$out" | tail -20
+        exit 1
+    }
 }
+
+# Geparste Referenztabellen: owid_co2_countries, fund_master, fund_positions
+spark_submit "geparste Referenztabellen" /scripts/spark-ingestion.py
+
+# File-level Raw (raw_payload) fuer die dbt-ESG-Pipeline: cdp + nzdpu.
+# Deterministische Ingestion-Timestamps wie in demo2-state.sh, damit der
+# Seed reproduzierbar bleibt.
+spark_submit "cdp init"  /scripts/init-cdp-table.py
+spark_submit "cdp ingest" \
+    /scripts/ingest-cdp.py \
+    --file /data/sample/cdp_emissions.csv \
+    --ingestion-timestamp 2026-04-20T08:15:00Z
+
+spark_submit "nzdpu init" /scripts/init-nzdpu-table.py
+spark_submit "nzdpu ingest" \
+    /scripts/ingest-nzdpu.py \
+    --file /data/sample/nzdpu_emissions.json \
+    --ingestion-timestamp 2026-04-20T08:30:00Z
+
+# Fondspreise File-level (Load 1). ingest-fondspreise.py nutzt append() und ist
+# nicht idempotent — daher vorher droppen, damit ein zweiter Seed-Lauf nicht
+# eine zweite Zeile/Snapshot erzeugt (Startzustand: 1 Row, 1 Snapshot).
+spark_submit "fondspreise drop"   /scripts/drop-fondspreise-table.py
+spark_submit "fondspreise ingest" \
+    /scripts/ingest-fondspreise.py \
+    --file /data/sample/fondspreise_load1.json \
+    --ingestion-timestamp 2026-04-20T08:15:00Z
 
 INGESTION_END=$(date +%s)
 INGESTION_SECS=$((INGESTION_END - INGESTION_START))
@@ -174,8 +206,8 @@ TABLES_OUTPUT=$(
 
 TABLE_COUNT=$(echo "$TABLES_OUTPUT" | grep -c '^\S' || true)
 
-if [ "$TABLE_COUNT" -lt 5 ]; then
-    fail "Nur ${TABLE_COUNT} Tabellen gefunden (erwartet: 5)"
+if [ "$TABLE_COUNT" -lt 6 ]; then
+    fail "Nur ${TABLE_COUNT} Tabellen gefunden (erwartet: 6)"
     echo "$TABLES_OUTPUT"
     exit 1
 fi
@@ -194,13 +226,14 @@ echo -e "${BOLD}─────────────────────�
 declare -A TABLE_LABELS=(
     ["nzdpu_emissions"]="nzdpu_emissions"
     ["cdp_emissions"]="cdp_emissions"
+    ["fondspreise"]="fondspreise"
     ["owid_co2_countries"]="owid_co2_countries"
     ["fund_master"]="fund_master"
     ["fund_positions"]="fund_positions"
 )
 
 VERIFY_FAILED=false
-for tbl in nzdpu_emissions cdp_emissions owid_co2_countries fund_master fund_positions; do
+for tbl in nzdpu_emissions cdp_emissions fondspreise owid_co2_countries fund_master fund_positions; do
     CNT=$(
         MSYS_NO_PATHCONV=1 docker compose exec -T trino \
             trino --execute "SELECT count(*) FROM nessie.raw.${tbl}" 2>/dev/null \

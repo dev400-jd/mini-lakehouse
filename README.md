@@ -99,24 +99,31 @@ flowchart LR
 | Notebook | Inhalt |
 |----------|--------|
 | `01_iceberg_erkunden.ipynb` | Anatomie einer Iceberg-Tabelle: Data Files, Manifest Files, Snapshots, Partitionen |
-| `02_time_travel_schema_evolution.ipynb` | NZDPU aendert sein API-Format: Schema Evolution, Feld-Mapping, Time Travel per Snapshot-ID |
 
-Beide Notebooks setzen `make seed` voraus.
-Vor dem manuellen Durchlauf von Notebook 02 muss `make seed` erneut ausgefuehrt werden, da das Notebook die Tabelle veraendert.
+Das Notebook setzt `make seed` voraus. Time Travel und Snapshot-Historie lassen sich
+per Trino auf `nessie.raw.fondspreise` zeigen (zwei Snapshots nach Demo-1-Load-2, siehe
+[docs/DEMO1-DREHBUCH.md](docs/DEMO1-DREHBUCH.md)).
 
 ---
 
 ## Beispieldaten
 
-`make seed` laedt fuenf Tabellen in den Raw Layer (`s3://raw/`):
+`make seed` laedt sechs Tabellen in den Raw Layer (`s3://raw/`):
 
 | Tabelle | Format | Zeilen | Beschreibung |
 |---------|--------|--------|--------------|
-| `nzdpu_emissions` | JSON, nested | 90 | CO2-Emissionen (Scope 1-3) von 30 europaeischen Unternehmen, 3 Jahre |
-| `cdp_emissions` | CSV | 100 | CDP Climate Change Questionnaire — unreine Daten fuer Staging-Demo |
+| `nzdpu_emissions` | JSON, nested | 1 (File-level) | CO2-Emissionen (Scope 1-3) von 30 europaeischen Unternehmen, 3 Jahre — komplette JSON-Datei als `raw_payload`, wird in dbt-Staging entpackt |
+| `cdp_emissions` | CSV | 1 (File-level) | CDP Climate Change Questionnaire — komplette CSV-Datei als `raw_payload`, wird in dbt-Staging entpackt |
+| `fondspreise` | JSON | 1 (File-level) | Fondspreise Load 1 — komplette JSON-Datei als `raw_payload`, wird in dbt-Staging entpackt |
 | `owid_co2_countries` | CSV | 100 | CO2 pro Land und Jahr, partitioniert nach `year` |
 | `fund_master` | CSV | 10 | Fondsstammdaten mit ISINs |
 | `fund_positions` | CSV | 319 | Fondspositionen, partitioniert nach `position_date` |
+
+`nzdpu_emissions`, `cdp_emissions` und `fondspreise` liegen als File-level Raw vor
+(eine Quelldatei = ein Iceberg-Row mit `raw_payload`), damit die dbt-Staging-Modelle
+sie deterministisch entpacken. `owid_co2_countries`, `fund_master` und `fund_positions`
+liegen geparst vor. `make seed` laedt Fondspreise Load 1 (Startzustand: 1 Row, 1 Snapshot);
+Load 2 kommt live via [docs/DEMO1-DREHBUCH.md](docs/DEMO1-DREHBUCH.md).
 
 Datengenerierung (Fallback-Daten sind bereits im Repository enthalten):
 
