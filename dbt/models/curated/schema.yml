@@ -26,6 +26,27 @@ models:
           - accepted_values:
               values: ['nzdpu', 'cdp']
 
+  - name: curated_mitarbeiterzahlen
+    description: "Curated Mitarbeiterzahlen pro (ISIN, Jahr). Deduplikation ueber juengsten Ingestion-Timestamp, ISIN harmonisiert via standardize_isin."
+    columns:
+      - name: isin
+        description: "ISIN, harmonisiert via standardize_isin"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('curated_companies')
+              field: isin
+      - name: unternehmen
+        description: "Unternehmensname"
+      - name: jahr
+        description: "Berichtsjahr"
+        tests:
+          - not_null
+      - name: mitarbeiterzahl
+        description: "Mitarbeiterzahl (Headcount) im Berichtsjahr"
+      - name: region
+        description: "Geografische Region"
+
   - name: curated_esg_emissions
     description: "Curated Emissionen pro (ISIN, reporting_year, source_system). Beide Quellen separat erhalten fuer transparenten Cross-Source-Vergleich; ISIN-NULL-Records ausgefiltert."
     columns:

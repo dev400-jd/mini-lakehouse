@@ -81,6 +81,44 @@ sources:
             tests:
               - not_null
 
+      - name: mitarbeiterzahlen
+        description: "Mitarbeiterzahlen als File-level Raw. Ein Row pro geladener CSV-Datei mit vollstaendiger Provenance. Parsing erfolgt in Staging. Kleinste Beispiel-Quelle zum Durchspielen von Raw -> Staging -> Curated."
+        columns:
+          - name: ingestion_id
+            description: "UUID pro Ingestion-Run"
+            tests:
+              - not_null
+          - name: ingestion_timestamp
+            description: "Zeitpunkt des Ingestion-Runs (UTC)"
+            tests:
+              - not_null
+          - name: source_system
+            description: "Konstant 'hr_synthetic'"
+            tests:
+              - not_null
+          - name: source_version
+            description: "Manuell gesetzt beim Ingest, Default 'v1'"
+          - name: source_file_path
+            description: "Absoluter Pfad der geladenen Datei"
+          - name: source_file_hash
+            description: "SHA-256 der geladenen Quelldatei (verifizierbar gegen raw_payload)"
+            tests:
+              - not_null
+          - name: source_file_size_bytes
+            description: "Groesse der Quelldatei in Bytes"
+            tests:
+              - not_null
+          - name: source_file_format
+            description: "Konstant 'csv' — explizite Format-Markierung fuer Staging-Disambiguierung"
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['csv']
+          - name: raw_payload
+            description: "Kompletter CSV-Inhalt einschliesslich Header-Zeile, byte-identisch zum Original"
+            tests:
+              - not_null
+
       - name: fund_master
         description: "Deka Fondsstammdaten — 10 Fonds"
       - name: fund_positions
