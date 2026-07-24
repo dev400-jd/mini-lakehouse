@@ -1,0 +1,16 @@
+
+[1m═══════════════════════════════════════[0m
+[1m   Mini-Lakehouse — Daten-Setup[0m
+[1m═══════════════════════════════════════[0m
+
+[1m[1/4] Services prüfen...[0m
+  [0;32m✅[0m Alle Services healthy (minio, postgres, nessie, spark-master)
+
+[1m[3/4] Spark Ingestion...[0m
+  [0;33mℹ[0m  Starte spark-submit (dauert ~2-3 Minuten) ...
+  [0;31m❌  Spark Ingestion fehlgeschlagen: yellow taxi[0m
+
+--- Letzten 20 Zeilen der Ausgabe ---
+python3: can't open file '/scripts/spark-ingestion_yellow_taxi_mulifile.py': [Errno 2] No such file or directory
+26/07/24 07:48:52 INFO ShutdownHookManager: Shutdown hook called
+26/07/24 07:48:52 INFO ShutdownHookManager: Deleting directory /tmp/spark-32d41713-e25d-4d9a-b155-a59416e85bea
