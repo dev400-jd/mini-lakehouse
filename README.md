@@ -26,6 +26,8 @@ Danach im Browser:
 
 | Was | URL |
 |-----|-----|
+| ESG-Dashboard (Streamlit) | http://localhost:8501 |
+| Model-API (FastAPI / Swagger) | http://localhost:8000/docs |
 | Jupyter (Notebooks) | http://localhost:8888?token=lakehouse |
 | CloudBeaver (SQL-Editor) | http://localhost:8978 |
 | MLflow (Experiment-Tracking) | http://localhost:5555 |
@@ -49,6 +51,8 @@ Danach im Browser:
 | Jupyter | 8888 | Notebook-Umgebung (Token: `lakehouse`) |
 | CloudBeaver | 8978 | Web-basierter SQL-Editor fuer Trino |
 | MLflow | 5555 | Experiment-Tracking & Model Registry |
+| Model-API (FastAPI) | 8000 | REST-Serving des registrierten Modells (`/predict`, `/health`, Swagger unter `/docs`) |
+| Streamlit ESG-Dashboard | 8501 | Praesentations-App: Modellergebnisse, Cluster-Verteilung, interaktiver Fonds-Rechner |
 
 > Hinweis: MinIO (9002/9003) und Spark-UI (8085) weichen von den ueblichen
 > Standard-Ports (9000/9001, 8081) ab, weil auf der Workshop-Maschine bereits
@@ -85,6 +89,12 @@ flowchart LR
         Jupyter[Jupyter\nSparkSession + Trino]
     end
 
+    subgraph "ML & Serving"
+        MLflow[(MLflow\nTracking + Registry)]
+        API[FastAPI\nmodel-api]
+        App[Streamlit\nESG-Dashboard]
+    end
+
     J --> Spark
     C --> Spark
     Spark -->|schreibt Parquet| MinIO
@@ -96,6 +106,13 @@ flowchart LR
     Jupyter -->|JDBC| Trino
     Jupyter <-->|Catalog| Nessie
     CloudBeaver[CloudBeaver\nSQL-Editor] -->|JDBC| Trino
+    Jupyter -->|Training + Runs| MLflow
+    MLflow -->|Backend-Store| PG
+    MLflow -->|Artifacts| MinIO
+    API -->|laedt Modell| MLflow
+    App -->|/predict| API
+    App -->|Features| Trino
+    App -->|Metriken| MLflow
 ```
 
 ---
