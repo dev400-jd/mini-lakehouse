@@ -308,6 +308,7 @@ services:
         condition: service_healthy
       model-api:
         condition: service_started
+    restart: unless-stopped
     networks:
       - lakehouse-net
 
