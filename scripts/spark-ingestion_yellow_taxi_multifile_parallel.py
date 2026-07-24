@@ -27,6 +27,7 @@ Prinzip Raw Layer:
     statt im Default-Warehouse (s3a://warehouse/)
 """
 
+from pathlib import Path
 from pyspark.sql import SparkSession
 
 # ---------------------------------------------------------------------------
@@ -40,7 +41,7 @@ spark = (
 )
 spark.sparkContext.setLogLevel("WARN")
 
-DATA_DIR = "/data/yellow_taxi"
+DATA_DIR = "/data/yellow_taxi_selection"
 RAW_BUCKET = "s3a://raw"
 RESULTS = []   # (tabelle, zeilenanzahl)
 
@@ -61,7 +62,7 @@ def verify_and_record(table: str) -> int:
 # ---------------------------------------------------------------------------
 
 print("\n[SETUP] Namespace und Cleanup ...", flush=True)
-spark.sql("CREATE NAMESPACE IF NOT EXISTS nessie.raw")
+#spark.sql("CREATE NAMESPACE IF NOT EXISTS nessie.raw")
 log("Namespace nessie.raw bereit")
 
 TABLES_TO_DROP = [
@@ -83,19 +84,17 @@ log("inferSchema=True: Daten sind sauber genug fuer automatische Typerkennung")
 log("Iceberg Hidden Partitioning nach 'year'")
 log(f"Location: {RAW_BUCKET}/yellowtripdata")
 
-taxi_df = (
-    spark.read.parquet(f"{DATA_DIR}/yellow_tripdata_2010-05.parquet")
-)
+taxi_df = spark.read.parquet(f"{DATA_DIR}/*.parquet")
 
-# log("Schema (erste 8 Spalten):")
-# taxi_df.select(taxi_df.columns[:8]).printSchema()
-
-(
-    taxi_df.writeTo("nessie.raw.yellowtripdata")
-    .tableProperty("write.format.default", "parquet")
-    .tableProperty("location", f"{RAW_BUCKET}/yellowtripdata")
-    .create()
-)
+if spark.catalog.tableExists("nessie.raw.yellowtripdata"):
+    taxi_df.writeTo("nessie.raw.yellowtripdata").append()
+else:
+    (
+        taxi_df.writeTo("nessie.raw.yellowtripdata")
+        .tableProperty("write.format.default", "parquet")
+        .tableProperty("location", f"{RAW_BUCKET}/yellowtripdata")
+        .create()
+    )
 
 spark.sql("SELECT count(*) AS cnt FROM nessie.raw.yellowtripdata").show()
 verify_and_record("nessie.raw.yellowtripdata")
@@ -104,22 +103,22 @@ verify_and_record("nessie.raw.yellowtripdata")
 # Abschlusskontrolle
 # ---------------------------------------------------------------------------
 
-print("\n" + "=" * 60, flush=True)
-print("  Raw Layer Ingestion abgeschlossen", flush=True)
-print("=" * 60, flush=True)
+# print("\n" + "=" * 60, flush=True)
+# print("  Raw Layer Ingestion abgeschlossen", flush=True)
+# print("=" * 60, flush=True)
 
-print("\nAlle Tabellen in nessie.raw:", flush=True)
-spark.sql("SHOW TABLES IN nessie.raw").show()
+# print("\nAlle Tabellen in nessie.raw:", flush=True)
+# #spark.sql("SHOW TABLES IN nessie.raw").show()
 
-print("\nZusammenfassung:", flush=True)
-print(f"  {'Tabelle':<40} {'Zeilen':>8}", flush=True)
-print(f"  {'-'*48}", flush=True)
-for table, cnt in RESULTS:
-    short = table.replace("nessie.raw.", "raw.")
-    print(f"  {short:<40} {cnt:>8}", flush=True)
+# print("\nZusammenfassung:", flush=True)
+# print(f"  {'Tabelle':<40} {'Zeilen':>8}", flush=True)
+# print(f"  {'-'*48}", flush=True)
+# for table, cnt in RESULTS:
+#     short = table.replace("nessie.raw.", "raw.")
+#     print(f"  {short:<40} {cnt:>8}", flush=True)
 
-total = sum(cnt for _, cnt in RESULTS)
-print(f"  {'-'*48}", flush=True)
-print(f"  {'GESAMT':<40} {total:>8}", flush=True)
+# total = sum(cnt for _, cnt in RESULTS)
+# print(f"  {'-'*48}", flush=True)
+# print(f"  {'GESAMT':<40} {total:>8}", flush=True)
 
 spark.stop()

@@ -8,6 +8,7 @@ docker-volumes/
 
 # === Data (lokale Rohdaten, nicht committed) ===
 /data/yellow_taxi/
+/data/yellow_taxi_selection/
 
 # === Python ===
 __pycache__/
