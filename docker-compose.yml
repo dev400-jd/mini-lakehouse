@@ -282,8 +282,11 @@ services:
     container_name: model-api
     ports:
       - "8000:8000"
+    environment:
+      MLFLOW_TRACKING_URI: http://mlflow:5000
     depends_on:
-      - mlflow
+      mlflow:
+        condition: service_healthy
     networks:
       - lakehouse-net
 

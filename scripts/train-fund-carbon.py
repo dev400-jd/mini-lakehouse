@@ -22,6 +22,7 @@ import mlflow
 import mlflow.sklearn
 from mlflow.models.signature import infer_signature
 from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 from trino.dbapi import connect
@@ -75,7 +76,8 @@ def main():
     print(f"Features geladen: {len(df)} Fonds, {len(FEATURES)} Features")
 
     X = df[FEATURES].to_numpy(dtype="float64")
-    X_scaled = StandardScaler().fit_transform(X)
+    scaler = StandardScaler().fit(X)
+    X_scaled = scaler.transform(X)
 
     results = []
     for k in range(2, 7):
@@ -91,8 +93,10 @@ def main():
             mlflow.log_metric("silhouette", sil)
             mlflow.log_metric("inertia", km.inertia_)
 
-            signature = infer_signature(X_scaled, labels)
-            mlflow.sklearn.log_model(km, artifact_path="model", signature=signature)
+            # Scaler + KMeans als Pipeline loggen -> self-contained, nimmt Roh-Features
+            pipe = Pipeline([("scaler", scaler), ("kmeans", km)])
+            signature = infer_signature(X, labels)
+            mlflow.sklearn.log_model(pipe, artifact_path="model", signature=signature)
 
             # Cluster-Scatter als Artefakt
             fig, ax = plt.subplots(figsize=(7, 5))
