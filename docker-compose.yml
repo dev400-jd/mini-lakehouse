@@ -287,6 +287,27 @@ services:
     networks:
       - lakehouse-net
 
+  streamlit-app:
+    build:
+      context: ./streamlit-app
+    container_name: streamlit-app
+    ports:
+      - "${STREAMLIT_PORT}:8501"
+    environment:
+      FASTAPI_URL: http://model-api:8000
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+      TRINO_HOST: trino
+      TRINO_PORT: "8080"
+    depends_on:
+      trino:
+        condition: service_healthy
+      mlflow:
+        condition: service_healthy
+      model-api:
+        condition: service_started
+    networks:
+      - lakehouse-net
+
 networks:
   lakehouse-net:
     driver: bridge
