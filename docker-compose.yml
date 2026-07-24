@@ -276,6 +276,16 @@ services:
     restart: unless-stopped
     networks:
       - lakehouse-net
+  model-api:
+    build:
+      context: ./model-api
+    container_name: model-api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mlflow
+    networks:
+      - lakehouse-net
 
 networks:
   lakehouse-net:
@@ -285,3 +295,5 @@ volumes:
   minio-data:
   postgres-data:
   cloudbeaver-data:
+
+
