@@ -1,0 +1,147 @@
+[
+  {
+    "id": 1,
+    "category": "discovery",
+    "question": "Welche Schemas gibt es im Katalog nessie?",
+    "ground_truth": "curated, information_schema, raw, staging, trusted",
+    "ground_truth_sql": "SHOW SCHEMAS FROM nessie",
+    "check_strings": ["curated", "raw", "staging", "trusted"]
+  },
+  {
+    "id": 2,
+    "category": "discovery",
+    "question": "Welche Tabellen gibt es im Trusted Layer?",
+    "ground_truth": "genau eine Tabelle: trusted_esg_emissions",
+    "ground_truth_sql": "SHOW TABLES FROM nessie.trusted",
+    "check_strings": ["trusted_esg_emissions"]
+  },
+  {
+    "id": 3,
+    "category": "discovery",
+    "question": "Welche Tabellen gibt es im Raw Layer?",
+    "ground_truth": "cdp_emissions, fondspreise, fund_master, fund_positions, nzdpu_emissions, owid_co2_countries (6 Tabellen)",
+    "ground_truth_sql": "SHOW TABLES FROM nessie.raw",
+    "check_strings": ["fund_master", "fund_positions", "owid_co2_countries"]
+  },
+  {
+    "id": 4,
+    "category": "schema",
+    "question": "Welche Spalten hat die Tabelle nessie.raw.fund_master?",
+    "ground_truth": "fund_isin, fund_wkn, fund_name, fund_type, currency, inception_date, domicile (7 Spalten)",
+    "ground_truth_sql": "DESCRIBE nessie.raw.fund_master",
+    "check_strings": ["fund_isin", "fund_name", "domicile"]
+  },
+  {
+    "id": 5,
+    "category": "aggregation",
+    "question": "Wie viele Fonds gibt es in der Tabelle fund_master?",
+    "ground_truth": "10",
+    "ground_truth_sql": "SELECT count(*) FROM nessie.raw.fund_master",
+    "check_strings": ["10"]
+  },
+  {
+    "id": 6,
+    "category": "aggregation",
+    "question": "Wie viele Positionen (Zeilen) hat fund_positions insgesamt, aufgeschluesselt nach Stichtag (position_date)?",
+    "ground_truth": "319 Zeilen insgesamt: 150 am 2023-12-31, 169 am 2024-06-30",
+    "ground_truth_sql": "SELECT position_date, count(*) FROM nessie.raw.fund_positions GROUP BY position_date ORDER BY position_date",
+    "check_strings": ["150", "169"]
+  },
+  {
+    "id": 7,
+    "category": "aggregation",
+    "question": "Wie viele Fonds haben ihren Sitz (domicile) in Luxembourg, wie viele in Germany?",
+    "ground_truth": "Luxembourg: 8, Germany: 2",
+    "ground_truth_sql": "SELECT domicile, count(*) FROM nessie.raw.fund_master GROUP BY domicile",
+    "check_strings": ["8", "2"]
+  },
+  {
+    "id": 8,
+    "category": "topn",
+    "question": "Welcher Fonds wurde als erster aufgelegt (fruehestes inception_date in fund_master)?",
+    "ground_truth": "DekaFonds CF, inception_date 1956-01-01",
+    "ground_truth_sql": "SELECT fund_name, inception_date FROM nessie.raw.fund_master ORDER BY inception_date ASC LIMIT 1",
+    "check_strings": ["DekaFonds", "1956"]
+  },
+  {
+    "id": 9,
+    "category": "topn",
+    "question": "Welche einzelne Position (Fonds/Holding-Kombination) hat das hoechste Gewicht (weight_pct) ueber alle Fonds und Stichtage?",
+    "ground_truth": "Fonds DE000DK0EQ06, Holding DE0005557508, weight_pct 15.1507%",
+    "ground_truth_sql": "SELECT fund_isin, holding_isin, weight_pct FROM nessie.raw.fund_positions ORDER BY weight_pct DESC LIMIT 1",
+    "check_strings": ["DE000DK0EQ06", "15.15"]
+  },
+  {
+    "id": 10,
+    "category": "aggregation",
+    "question": "Wie viele Unternehmen gibt es in curated_companies, und aus welcher Quelle (source) stammen sie ueberwiegend?",
+    "ground_truth": "30 Unternehmen, alle 30 mit preferred_source='nzdpu' (0 von cdp, weil bei ISIN-Konflikten nzdpu bevorzugt wird)",
+    "ground_truth_sql": "SELECT preferred_source, count(*) FROM nessie.curated.curated_companies GROUP BY preferred_source",
+    "check_strings": ["30", "nzdpu"]
+  },
+  {
+    "id": 11,
+    "category": "aggregation",
+    "question": "Wie viele Zeilen haben curated_esg_emissions und trusted_esg_emissions jeweils?",
+    "ground_truth": "beide Tabellen haben 150 Zeilen",
+    "ground_truth_sql": "SELECT count(*) FROM nessie.curated.curated_esg_emissions; SELECT count(*) FROM nessie.trusted.trusted_esg_emissions",
+    "check_strings": ["150"]
+  },
+  {
+    "id": 12,
+    "category": "data_quality",
+    "question": "Wie viele Zeilen in trusted_esg_emissions haben einen NULL-Wert bei scope_1_tco2e?",
+    "ground_truth": "6 Zeilen (bewusste, dokumentierte Datenqualitaets-Verletzung, siehe dbt-Test not_null auf scope_1_tco2e)",
+    "ground_truth_sql": "SELECT count(*) FROM nessie.trusted.trusted_esg_emissions WHERE scope_1_tco2e IS NULL",
+    "check_strings": ["6"]
+  },
+  {
+    "id": 13,
+    "category": "join_topn",
+    "question": "Welches Unternehmen hat den hoechsten einzelnen Scope-1-Ausstoss (scope_1_tco2e) ueber alle Jahre und Quellen, und aus welcher Quelle stammt dieser Wert?",
+    "ground_truth": "BP p.l.c., Quelle cdp, Jahr 2023, 51044782.000 tCO2e",
+    "ground_truth_sql": "SELECT c.company_name, t.source_system, t.reporting_year, t.scope_1_tco2e FROM nessie.trusted.trusted_esg_emissions t JOIN nessie.curated.curated_companies c ON c.isin=t.isin ORDER BY t.scope_1_tco2e DESC LIMIT 1",
+    "check_strings": ["BP", "cdp"]
+  },
+  {
+    "id": 14,
+    "category": "join_compare",
+    "question": "Fuer BP p.l.c. im Jahr 2023: meldet cdp oder nzdpu den niedrigeren Scope-1-Wert?",
+    "ground_truth": "nzdpu meldet den niedrigeren Wert (48241206.000) im Vergleich zu cdp (51044782.000) fuer 2023",
+    "ground_truth_sql": "SELECT c.company_name, t.source_system, t.scope_1_tco2e FROM nessie.trusted.trusted_esg_emissions t JOIN nessie.curated.curated_companies c ON c.isin=t.isin WHERE c.company_name LIKE 'BP%' AND t.reporting_year=2023",
+    "check_strings": ["nzdpu"]
+  },
+  {
+    "id": 15,
+    "category": "aggregation",
+    "question": "Wie viele unterschiedliche Unternehmen (ISINs) und welcher Jahresbereich sind in trusted_esg_emissions enthalten?",
+    "ground_truth": "30 unterschiedliche ISINs, Jahre 2021 bis 2023",
+    "ground_truth_sql": "SELECT count(DISTINCT isin), min(reporting_year), max(reporting_year) FROM nessie.trusted.trusted_esg_emissions",
+    "check_strings": ["30", "2021", "2023"]
+  },
+  {
+    "id": 16,
+    "category": "aggregation",
+    "question": "Welches Land hatte 2023 laut owid_co2_countries den hoechsten CO2-Ausstoss (Spalte co2)?",
+    "ground_truth": "Germany, 593.766 (Mt CO2, laut OWID-Definition)",
+    "ground_truth_sql": "SELECT country, co2 FROM nessie.raw.owid_co2_countries WHERE year=2023 ORDER BY co2 DESC LIMIT 1",
+    "check_strings": ["Germany"]
+  },
+  {
+    "id": 17,
+    "category": "negative",
+    "question": "Welche Tabellen gibt es im 'gold' Schema?",
+    "ground_truth": "Es gibt kein Schema 'gold' im Katalog nessie (nur curated, information_schema, raw, staging, trusted). Ein korrektes Modell sagt das explizit, statt Tabellen zu erfinden.",
+    "ground_truth_sql": "SHOW SCHEMAS FROM nessie",
+    "check_strings": ["nicht", "kein", "existiert nicht", "no such", "not exist", "not found"],
+    "check_mode": "any"
+  },
+  {
+    "id": 18,
+    "category": "distractor",
+    "question": "Wie viele Zeilen hat die Tabelle nessie.staging.stg_nzdpu_emissions, und wie unterscheidet sie sich von nessie.staging.nzdpu_emissions_flat?",
+    "ground_truth": "stg_nzdpu_emissions hat 90 Zeilen (echtes dbt-Staging-Modell aus der ESG-Pipeline). nzdpu_emissions_flat hat 180 Zeilen und ist eine Demo-Tabelle aus notebooks/02_time_travel_schema_evolution.ipynb (V1+V2-Schema-Evolutions-Uebung), kein Teil der Produktions-Pipeline. Ein gutes Modell unterscheidet beide statt sie zu verwechseln.",
+    "ground_truth_sql": "SELECT count(*) FROM nessie.staging.stg_nzdpu_emissions; SELECT count(*) FROM nessie.staging.nzdpu_emissions_flat",
+    "check_strings": ["90", "180"]
+  }
+]
