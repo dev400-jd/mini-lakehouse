@@ -25,7 +25,7 @@ else
 endif
 
 .PHONY: help up down clean status logs logs-spark logs-trino seed demo health \
-        dbt-run dbt-test dbt-docs restart pull reset-demo1
+        dbt-run dbt-test dbt-docs restart pull reset-demo1 train mlflow-ui
 
 help: ## Zeigt alle verfügbaren Targets mit Beschreibung
 	@echo ""
@@ -74,6 +74,12 @@ dbt-test: ## Führt dbt test im dbt-Verzeichnis aus
 
 dbt-docs: ## Generiert und startet die dbt-Dokumentation
 	cd $(DBT_DIR) && uv run dbt docs generate && uv run dbt docs serve
+
+train: ## Trainiert das Fonds-CO2-Modell (Clustering) und loggt nach MLflow
+	$(COMPOSE) exec jupyter python /scripts/train-fund-carbon.py
+
+mlflow-ui: ## Oeffnet die MLflow-UI im Browser
+	$(OPEN) "http://localhost:$(MLFLOW_PORT)"
 
 restart: down up ## Startet alle Services neu (down + up)
 
